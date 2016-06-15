@@ -1,4 +1,4 @@
-title: 我的第一个react项目
+title: 我的第一个react native项目
 date: 2016-06-15 17:01:31
 category: javascript #分类
 tags:
@@ -49,5 +49,5 @@ js来实现的。
 
 ![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/72574623.jpg)
 ![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/74893793.jpg)
-![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg)  
+![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg)
 ![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/81527796.jpg)
