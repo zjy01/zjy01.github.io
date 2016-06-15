@@ -47,7 +47,7 @@ js来实现的。
 
 下见图：
 
-![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/72574623.jpg)
-![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/74893793.jpg)
-![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg)
-![](http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/81527796.jpg)
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/72574623.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/74893793.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/81527796.jpg" width="300" />
