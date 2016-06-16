@@ -40,7 +40,7 @@ js来实现的。
 > ToastAndroid----------弹出系统的提示框（黑底在偏底部水平居中的那种），android原生的也叫toast，一般做一些小消息提示
 > Picker----------------相当于html的select吧
 > TouchableOpacity------普通的可点击按钮
-
+看图
 可见，react native 提供了相对丰富的组件。此外同`fetch`做网络请求。
 这里可以下载到我写的app[广外教务查询.apk](https://pan.baidu.com/s/1qYvhu6C)
 。。（需要数字广外的帐号密码登录）
