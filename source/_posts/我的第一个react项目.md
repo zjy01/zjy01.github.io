@@ -1,4 +1,4 @@
-title: 我的第一个react项目
+title: 我的第一个react native项目
 date: 2016-06-15 17:01:31
 category: javascript #分类
 tags:
@@ -45,4 +45,9 @@ js来实现的。
 这里可以下载到我写的app[广外教务查询.apk](https://pan.baidu.com/s/1qYvhu6C)
 。。（需要数字广外的帐号密码登录）
 
+下见图：
 
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/72574623.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/74893793.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg" width="300" />
+<img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/81527796.jpg" width="300" />
