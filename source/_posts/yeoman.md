@@ -6,7 +6,7 @@ tags:
 - 工具
 ---
 ## 接触yeoman
-最近在慕课网上观看(@Materliu)[http://www.imooc.com/u/102030/courses?sort=publish]老师的课程(React实战--打造画廊应用)[http://www.imooc.com/learn/507]，
+最近在慕课网上观看[@Materliu](http://www.imooc.com/u/102030/courses?sort=publish)老师的课程[React实战--打造画廊应用](http://www.imooc.com/learn/507)，
 接触到了新的东西--`yeoman`。前端工程师可以通过`yeoman`快速的搭建好一个项目结构。
 
 ## 安装
@@ -15,7 +15,7 @@ tags:
 下面是正式的搭建
 
 ### 安装yeoman
-我们可以直接登录(yeoman的官网)[http://yeoman.io/]查看(Get Started)[http://yeoman.io/learning/]教程。
+我们可以直接登录[yeoman的官网](http://yeoman.io/)查看[Get Started](http://yeoman.io/learning/)教程。
 1. 首先是安装yeoman工具
 ```
 npm install -g yo
@@ -23,7 +23,7 @@ npm install -g yo
 2. 然后我们需要安装相应的生成器（generator(s)）。
 
 生成器的npm报名普遍是`generator-XYZ`格式。
-我们可以到(yeoman的生成器页面)[http://yeoman.io/generators/]查看需要的生成器。
+我们可以到[yeoman的生成器页面](http://yeoman.io/generators/)查看需要的生成器。
 比如我现在需要的是生成一个react项目，我是搜索并点击进去，会有相应的安装教程。
 ![](http://i4.buimg.com/78db63dcbf230428.png)
 现在我们安装一个生成器
