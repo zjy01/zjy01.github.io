@@ -19,6 +19,7 @@ tags:
 我学习react native的时候，所写的程序是一个电影列表，react native 中文网有相应的[教程](http://reactnative.cn/docs/0.27/tutorial.html)。
 通过这个教程，就可以大致了解到react-native所用到的各种基础组件（View, Text之类的），对flex布局有大致了解。同时，极客学院也有关于实现这个代码的[教程](http://www.jikexueyuan.com/course/1504.html)
 
+<!-- more -->
 ## 我的react native 程序
 由于学校的手机软件大作业需要，我要亲手做一个app，我对安卓开发并不熟悉，而且时间非常有限。于是我打算选择 react-native。
 事实证明我的选择非常正确。。我开发这个app只用了5天时间，包括后台和客户端。。后台是nodejs 的 express框架写的接口， 客户端是react native 写的安卓程序，可以说，我这一整套应用都是用

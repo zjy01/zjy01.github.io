@@ -22,6 +22,7 @@ tags:
 * 源码地址 ： https://github.com/zjy01/socketChat/
 * 参考源码 ： https://github.com/coofly/qx-chat （博主是参考这个源码写的）
 
+<!-- more -->
 观看源码前需要了解 `nodejs` 和 `express`
 ##### 教程开始
 我讲得并不详细，如果基础比较差的建议结合其他博文教程学习。我的主要版本是比较新，能对你们提供帮助。

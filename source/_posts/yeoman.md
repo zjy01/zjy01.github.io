@@ -14,6 +14,7 @@ tags:
 所以：前提条件，已经安装了node，没有安装的，直接google安装就好。
 下面是正式的搭建
 
+<!-- more -->
 ### 安装yeoman
 我们可以直接登录[yeoman的官网](http://yeoman.io/)查看[Get Started](http://yeoman.io/learning/)教程。
 1. 首先是安装yeoman工具

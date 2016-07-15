@@ -24,6 +24,7 @@ description: 零星记录自己使用hexo建成博客网站的过程
 但是时代在进步，我依照上面的教程依然遇到了问题。
 下面我仅指出不一样的地方供参考。
 
+<!-- more -->
 1. hexo 的安装使用最好直接参照[hexo官网](https://hexo.io/)，现在hexo分离出命令行工具 hexo-cli了。
 
 2. 由于我的电脑安装不了github for windows,只安装了git bash.而hexo的deploy操作真是需要ssh key,

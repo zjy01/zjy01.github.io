@@ -8,6 +8,7 @@ tags:
 2016年3月11日,收到来自新加坡网友@Steven Goh 的一封邮件, 大体内容是他是一家公司(Kloudsec)的员工,这个公司的产品可以使用``LetsEncrypt cert``为用户免费搭建``HTTPS``,
 希望我可以在中国帮他测试.抱着人人为我,我为人人的心态,我答应的进行尝试. 使用了我的博客网站 github pages 的 [blog.zjy.space](blog.zjy.space)作为测试.
 
+<!-- more -->
 ## 配置
 根据@Steven Goh 的提示,我通过两篇文章的参考
 * http://boke112.com/2827.html

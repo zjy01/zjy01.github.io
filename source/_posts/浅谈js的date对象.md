@@ -15,6 +15,7 @@ tags:
 展示一下后台拿来的数据
 ![](http://i2.piimg.com/2daef4b7237ba3bf.jpg)
 
+<!-- more -->
 做起来并不难，我开始写了如下版本
 ```js
 data.forEach(function (value, index) {
