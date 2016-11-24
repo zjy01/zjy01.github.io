@@ -7,7 +7,7 @@ body
     else
       background color-theme
     color color-white
-    padding 1em 0 0.8em 
+    padding 1em 0 0.8em
     @media tablet
       padding 1.8em 0 1.5em
     >div
@@ -86,7 +86,7 @@ body
   padding-left 1em
 
 header nav
-  float left    
+  float left
   width 100%
   @media phone
     width 50%
@@ -135,3 +135,53 @@ header nav
         width 15em
   label
     display none
+#local-search-bg
+  position fixed
+  width 100%
+  height 100%
+  z-index 999
+  left 0
+  top 0
+  background hsla(0,1%,1%,.5)
+  display none
+#local-search-result
+  position absolute
+  width 80%
+  background color-white
+  box-shadow 2px 4px 5px hsla(0,1%,1%,.2)
+  left 10%
+  top 20%
+  padding 10px 20px
+  border-radius 3px
+  .s-header
+    color color-theme
+    text-indent 2em
+    border-bottom color-theme solid 2px
+  .s-body
+    height 90%
+    overflow auto
+    margin 10px 0
+  .s-footer
+    color color-theme
+    text-indent 2em
+    border-top color-theme solid 2px
+
+  ul.search-result-list
+    padding-left 10px
+    li
+      margin-bottom 5px
+      border-bottom lighten(color-theme, 30%) solid 1px
+
+  a.search-result-title
+    font-weight bold
+    color color-theme
+    &:hover
+      color color-font-nav
+
+  p.search-result
+    color #555
+
+  em.search-keyword
+    border-bottom 1px dashed #4088b8
+    font-weight bold
+    color red

@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.zjy.space
+url: /
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,3 +73,8 @@ deploy:
   type: git
   repo: git@github.com:zjy01/zjy01.github.io.git
   branch: master
+
+# search
+search:
+  path: search.xml
+  field: post
