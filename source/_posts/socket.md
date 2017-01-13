@@ -18,7 +18,7 @@ tags:
 > nodejs __v4.1.1__
 > express __v4.13.1__
 > bootstrap __v3.3.5__
-* 实例地址 ： http://chat.zjy.space
+* 实例地址 ： http://chat.carvenzhang.cn
 * 源码地址 ： https://github.com/zjy01/socketChat/
 * 参考源码 ： https://github.com/coofly/qx-chat （博主是参考这个源码写的）
 
@@ -186,7 +186,7 @@ io.on('connection', function (_socket) {
     }
     //省略对对象操作的代码，存放在一个js（controller.js）里，这里就不展示了。
     ```
-8. 重申，教程很不详细，[请戳这里找源码](https://github.com/zjy01/socketChat/)，[戳这里看成品]( http://chat.zjy.space)
+8. 重申，教程很不详细，[请戳这里找源码](https://github.com/zjy01/socketChat/)，[戳这里看成品]( http://chat.carvenzhang.cn)
 
 #### 结尾
 自己尝试做这个的时候，对express的应用更加熟练了。

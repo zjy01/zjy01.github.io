@@ -6,7 +6,7 @@ tags:
 
 ## 初衷
 2016年3月11日,收到来自新加坡网友@Steven Goh 的一封邮件, 大体内容是他是一家公司(Kloudsec)的员工,这个公司的产品可以使用``LetsEncrypt cert``为用户免费搭建``HTTPS``,
-希望我可以在中国帮他测试.抱着人人为我,我为人人的心态,我答应的进行尝试. 使用了我的博客网站 github pages 的 [blog.zjy.space](blog.zjy.space)作为测试.
+希望我可以在中国帮他测试.抱着人人为我,我为人人的心态,我答应的进行尝试. 使用了我的博客网站 github pages 的 [blog.carvenzhang.cn](blog.carvenzhang.cn)作为测试.
 
 <!-- more -->
 ## 配置
@@ -37,4 +37,3 @@ https://kloudsec.com/github-pages
 ## 结尾
 
 虽然只是简单折腾了一番,也没有对https有什么加强的理解,不过至少初步接触了,希望以后有机会多多了解.
-
