@@ -27,11 +27,11 @@ koa 给人感觉最大的不同就是，在处理流程上使用的是
 
 跟 `express` 一样，`koa`也有一个生成器。
 我们直接全局安装
-```
+```bash
 npm install -g koa-generator
 ```
 然后新建一个项目，我习惯使用`ejs`模板引擎。
-```
+```bash
 koa newKoa -e # 新建一个项目，使用ejs模板引擎（默认使用jade）
 cd newKoa
 npm install #安装模块
