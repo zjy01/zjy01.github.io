@@ -22,7 +22,7 @@ tags:
 浏览器会自动将请求分为两类：简单请求、非简单请求。
 只要同时满足以下条件，就属于简单请求。
 <pre>
-1) 请求方法是以下三种方法之一：
+ (1) 请求方法是以下三种方法之一：
 · HEAD
 · GET
 · POST
@@ -52,13 +52,13 @@ tags:
 ### 非简单请求
 当浏览器判定是非简单请求的时候，会在发正式请求前，想同一地址发起一个`options`的预请求。
 预请求携带了正式请求的方法（method）和特殊头（headers）。
-```
+```text
 Access-Control-Request-Method: POST,
 Access-Control-Request-Headers: CARVEN
 ```
 然后服务器返回自己允许的方法（method）和特殊头（headers），当然还有允许域
 
-```
+```txt
 Access-Control-Allow-Method: POST, PUT
 Access-Control-Allow-Headers: CARVEN, ZJY
 Access-Control-Allow-Origin: http://localhost:63342
@@ -82,7 +82,7 @@ Access-Control-Allow-Origin: http://localhost:63342
 
 ## 控制CORS
 在ES6的fetch中，已经可以控制`cors`开关了。
-```
+```js
 fetch(url,{ mode: mode})
 ```
 > + mode=same-origin，不支持跨域，直接在浏览器端拦截跨域请求

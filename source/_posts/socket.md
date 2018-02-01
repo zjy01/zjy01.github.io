@@ -29,7 +29,7 @@ tags:
 1. 首先要安装nodejs，没有安装的先到官网安装。
 
 2. 安装express
- ```
+ ```js
  npm install -g express-generator //安装express命令行工具
  ```
 3. 建立express项目，我这里建的是ejs版

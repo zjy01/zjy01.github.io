@@ -32,7 +32,7 @@ app此后凭借token向爬虫服务器请求信息，爬虫服务器根据token�
 `react native`进行网络请求的函数是`fetch`，会自动保存网络请求的cookie，不需要自己做任何的程序处理，就像平时用浏览器上网一样简单。
 我针对常用的网络请求--`GET`和`POST`，分别写了一个接口函数。
 <b>GET</b>
-```
+```js
 fetchGet($url, $filed){
         if ($filed) {
             $url += "?" + querystring.stringify($filed);

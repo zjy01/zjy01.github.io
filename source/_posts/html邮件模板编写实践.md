@@ -51,7 +51,7 @@ tags:
 
 后台直接google了一下`gulp-inline`，结果搜索出一个`gulp-inline-css`插件，可以将css转成 inline-css，即行内样式，
 用法如下
-```
+```js
 var gulp = require('gulp'),
     inlineCss = require('gulp-inline-css');
 

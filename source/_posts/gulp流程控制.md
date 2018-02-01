@@ -15,7 +15,7 @@ tags:
    周一在打包一个文件的时候，打包引入后，发现文件报错了。
    大致是因为我打算将关于`webpack`的部分整合到`gulp`里面的(用的是`webpack-stream`，我也是最近才知道，`webpack-stream`是`gulp-webpack`的进阶版)，整合完成后，进行打包。
    原来的打包文件是这样写的：
-   ```
+   ```js
    gulp.task('dev',function(){
    //希望'webpack_test','devconcatcss','devsass'顺序执行
         gulp.run('webpack_test','devconcatcss','devsass'/*,...*/);

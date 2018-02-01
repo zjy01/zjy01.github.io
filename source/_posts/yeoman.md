@@ -18,7 +18,7 @@ tags:
 ### 安装yeoman
 我们可以直接登录[yeoman的官网](http://yeoman.io/)查看[Get Started](http://yeoman.io/learning/)教程。
 1. 首先是安装yeoman工具
-```
+```bash
 npm install -g yo
 ```
 2. 然后我们需要安装相应的生成器（generator(s)）。

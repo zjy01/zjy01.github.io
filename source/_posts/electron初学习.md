@@ -13,11 +13,13 @@ Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开�
 当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；
 借用[Get社区](http://get.ftqq.com/)的一个图片进行流程展示，一定要看哦；
 <img src="http://newsget-cache.stor.sinaapp.com/0b998dc2ebd3441852e5423fc8e723c1.png" width="500"/>
+继续向下看：
+<!-- more -->
 ## 入手electron
 一开始认识electron的时候，因为我一直在写react的缘故，我以为electron也会需要一大堆的辅助组件、复杂的构建流程，但是不是的，electron的使用出奇简单；
 electron只需要一个核心组件`electron-prebuilt`就能运行，当然，你一定是已经安装了`nodejs`的；
 习惯来说，我会全局安装一个`electron-prebuilt`
-```
+```bash
 npm install -g electron-prebuilt
 ```
 并在electron项目的文件夹中安装一个本地组件
@@ -69,8 +71,6 @@ const { app, BrowserWindow } = require('electron');
 > 右键菜单、粘贴板clipboard、弹窗dialog
 > 按钮监听
 
-继续向下看：
-<!-- more -->
 
 ## electron -- 二维码生成器
 ### Yeoman

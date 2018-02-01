@@ -5,8 +5,9 @@
 # Site
 title: zjyBlog
 subtitle: from nothing to nothing
+keywords: blog,博客,前端,node,react
 description:
-author: zjy
+author: carvenzhang
 language: zh-CN
 timezone:
 
@@ -38,9 +39,9 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
-  auto_detect: true
+  enable: false
+  line_number: false
+  auto_detect: false
   tab_replace:
 
 # Category & Tag
@@ -63,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: jacman
+theme: "material-1.5.2"
 stylus:
   compress: true
 
@@ -77,4 +78,4 @@ deploy:
 # search
 search:
   path: search.xml
-  field: post
+  field: all

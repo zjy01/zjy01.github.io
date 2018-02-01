@@ -62,7 +62,7 @@ io.on('connection', function (_socket) {
 ```
 
 在'./bin/www'中加入`io-server.js`的引用
-```
+```js
 var app = require('../app');
 var debug = require('debug')('demo:server');
 var http = require('http');
@@ -91,7 +91,7 @@ io.listen(server);
 正在发生的动作相对比较好捕获，因为只是简单的实验，我只做了`click`动作的捕获。
 如何确定正在发生动作的元素呢。
 编写如下代码
-```
+```js
 //transcribe.js
 //确定正在发生动作的元素
 function getSelector (element) {
@@ -160,7 +160,7 @@ function getSelector (element) {
 
 我们需要做一些优化，筛选掉无用的事件，减少`socket`传输量。
 在一个html的`<head>`内写入以下代码，改造`addEventListener`,为调用过`addEventListener`的元素加入标识。
-```
+```js
 <script>
   var __addEventListener = Element.prototype.addEventListener;
   Element.prototype.addEventListener = function (type, handler, capture) {
@@ -173,7 +173,7 @@ function getSelector (element) {
 </script>
 ```
 并且编写一个函数做辨识
-```
+```js
 //transcribe.js
 var findHashEventsElements = function (ele, eventType) {
     if (!ele.tagName) return null;
@@ -195,7 +195,7 @@ var findHashEventsElements = function (ele, eventType) {
 #### 2、 通过`socket`发送正在发生的动作和目标元素
 
 正式做`click`动作的全局时间监听
-```
+```js
 //transcribe.js
 //启动socket连接
 var socket = io();
@@ -218,7 +218,7 @@ document.addEventListener('click', function (e) {
 
 #### 3、 接受`socket`，并使目标元素促发目标动作。
 新建一个文件`trigger.js`，写入促发代码
-```
+```js
 //trigger.js
 socket.on('connect', function () {
     console.log('connect');
@@ -229,7 +229,7 @@ socket.on('connect', function () {
 });
 ```
 之前这里，我使用了`JQuery`的`trigger`:
-```
+```js
 $(data.target).trigger(data.action)
 ```
 但是这样会造成页面间的重复触发。
@@ -243,7 +243,7 @@ $(data.target).trigger(data.action)
 ## 效果图
 合并源代码到`io.js`.
 编写简单的html，完成一个demo
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
