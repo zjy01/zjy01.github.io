@@ -6,9 +6,8 @@
     "version": "3.5.0"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-livereload": "^3.8.1",
     "hexo": "^3.2.0",
+    "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
     "hexo-generator-category": "^0.1.3",

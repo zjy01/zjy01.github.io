@@ -79,3 +79,6 @@ deploy:
 search:
   path: search.xml
   field: all
+
+livereload:
+  port: 35729
