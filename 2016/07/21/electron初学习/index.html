@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            electron初学习 | 
+        
+        zjyBlog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/public/img/favicon.png">
+    <link rel="icon" href="/public/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="什么是electronElectron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开发者可以通过web的方式构建视图，通过nodejs去进行io操作，甚至可以在html文档中直接调用nodejs功能；这可以使前端开发者以一种非常熟悉的方式去开发一款桌面应用。
+当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；借用Get社区的一个图片进行流程展示，一定要看哦；继续向下看：">
+    <meta name="keywords" content=",nodejs,electron">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/vibrant-ink.min.css?e5E/qqGcGveS7VTH4M896w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.1/jquery.js", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="zjyBlog">
+    <meta name="msapplication-starturl" content="/2016/07/21/electron初学习/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="zjyBlog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/public/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="/2016/07/21/electron初学习/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="electron初学习 | zjyBlog">
+    <meta property="og:image" content="/public/img/favicon.png">
+    <meta property="og:description" content="什么是electronElectron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开发者可以通过web的方式构建视图，通过nodejs去进行io操作，甚至可以在html文档中直接调用nodejs功能；这可以使前端开发者以一种非常熟悉的方式去开发一款桌面应用。
+当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；借用Get社区的一个图片进行流程展示，一定要看哦；继续向下看：">
+    <meta property="og:article:tag" content="nodejs"> <meta property="og:article:tag" content="electron"> 
+
+    
+        <meta property="article:published_time" content="Thu Jul 21 2016 11:17:59 GMT+0800">
+        <meta property="article:modified_time" content="Thu Feb 01 2018 16:10:42 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="/2016/07/21/electron初学习/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "/2016/07/21/electron初学习/index.html",
+    "headline": "electron初学习",
+    "datePublished": "Thu Jul 21 2016 11:17:59 GMT+0800",
+    "dateModified": "Thu Feb 01 2018 16:10:42 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "carvenzhang",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/public/img/avatar.png"
+        },
+        "description": "From nothing to nothing"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "zjyBlog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/public/img/favicon.png"
+        }
+    },
+    "keywords": ",nodejs,electron",
+    "description": "什么是electronElectron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开发者可以通过web的方式构建视图，通过nodejs去进行io操作，甚至可以在html文档中直接调用nodejs功能；这可以使前端开发者以一种非常熟悉的方式去开发一款桌面应用。
+当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；借用Get社区的一个图片进行流程展示，一定要看哦；继续向下看：",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是electron"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是electron</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入手electron"><span class="post-toc-number">2.</span> <span class="post-toc-text">入手electron</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#electron-–-二维码生成器"><span class="post-toc-number">3.</span> <span class="post-toc-text">electron – 二维码生成器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Yeoman"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Yeoman</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在静态js资源中直接使用node模块（添加生成二维码功能）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">在静态js资源中直接使用node模块（添加生成二维码功能）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加任务栏上的图标和菜单（Tray，Menu）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">添加任务栏上的图标和菜单（Tray，Menu）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ipc通讯"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">ipc通讯</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入框聚焦（按钮监听）"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">输入框聚焦（按钮监听）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结尾"><span class="post-toc-number">4.</span> <span class="post-toc-text">结尾</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                electron初学习
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/public/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>carvenzhang</strong>
+        <span>7月 21, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=/2016/07/21/electron初学习/">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/electron/">electron</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/nodejs/">nodejs</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=electron初学习&url=/2016/07/21/electron初学习/index.html&pic=/public/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=electron初学习&url=/2016/07/21/electron初学习/index.html&via=carvenzhang" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/21/electron初学习/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=/2016/07/21/electron初学习/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="什么是electron"><a href="#什么是electron" class="headerlink" title="什么是electron"></a>什么是electron</h2><p>Electron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。<br>Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开发者可以通过web的方式构建视图，通过nodejs去进行io操作，甚至可以在html文档中直接调用nodejs功能；<br>这可以使前端开发者以一种非常熟悉的方式去开发一款桌面应用。</p>
+<p>当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；<br>借用<a href="http://get.ftqq.com/" target="_blank" rel="noopener">Get社区</a>的一个图片进行流程展示，一定要看哦；<br><img src="http://newsget-cache.stor.sinaapp.com/0b998dc2ebd3441852e5423fc8e723c1.png" width="500"><br>继续向下看：<br><a id="more"></a></p>
+<h2 id="入手electron"><a href="#入手electron" class="headerlink" title="入手electron"></a>入手electron</h2><p>一开始认识electron的时候，因为我一直在写react的缘故，我以为electron也会需要一大堆的辅助组件、复杂的构建流程，但是不是的，electron的使用出奇简单；<br>electron只需要一个核心组件<code>electron-prebuilt</code>就能运行，当然，你一定是已经安装了<code>nodejs</code>的；<br>习惯来说，我会全局安装一个<code>electron-prebuilt</code></p>
+<pre><code class="bash">npm install -g electron-prebuilt
+</code></pre>
+<p>并在electron项目的文件夹中安装一个本地组件</p>
+<pre><code>npm install --save-dev electron-prebuilt
+</code></pre><p>我们先驾起一个最简单的应用试一试:<br>新建 main.js</p>
+<pre><code>&#39;use strict&#39;;
+const { app, BrowserWindow } = require(&#39;electron&#39;);
+let mainWindow;
+app.on(&#39;ready&#39;, () =&gt; {
+    mainWindow = new BrowserWindow({
+        width: 600,
+        height: 400
+    });
+    //引入视图文件
+    mainWindow.loadURL(&quot;https://www.baidu.com&quot;);
+});
+</code></pre><p>在项目文件夹，运行</p>
+<pre><code>electron main.js
+</code></pre><p>就可以看到一个桌面应用色生成，并加载了百度首页作为视图；</p>
+<p>我是通过Get社区的<a href="http://get.ftqq.com/7870.get" target="_blank" rel="noopener">用Electron开发桌面应用</a>的教程来初步学习electron的，大家也可去过去膜拜，过程还是很详细的；<br>但是因为教程较老，很多语法已经不适用了。<br>比如</p>
+<pre><code>var app = require(&#39;app&#39;);
+var BrowserWindow = require(&#39;browser-window&#39;);
+</code></pre><p>应该改为</p>
+<pre><code>const { app, BrowserWindow } = require(&#39;electron&#39;);
+</code></pre><p>等等。<br>我在github上写了一个新版的，不过没有tag步骤，大家可以参考我的，使用教程里的一步步深入。<br><a href="https://github.com/zjy01/electron-sound" target="_blank" rel="noopener">https://github.com/zjy01/electron-sound</a></p>
+<p>当然，我自己也一步步搭建了一个小应用，大家也可以透过这个应用的搭建步骤去初步了解到electron。<br>我们会接触到：</p>
+<blockquote>
+<p>Yeoman 生成器<br>在静态js资源中直接使用node模块<br>添加任务栏上的图标和菜单（Tray，Menu）<br>ipc通讯<br>右键菜单、粘贴板clipboard、弹窗dialog<br>按钮监听</p>
+</blockquote>
+<h2 id="electron-–-二维码生成器"><a href="#electron-–-二维码生成器" class="headerlink" title="electron – 二维码生成器"></a>electron – 二维码生成器</h2><h3 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h3><p>一般接触一个新的应用，我们还可以通过Yeoman去快速搭建一个项目结构。<br>关于Yeoman的介绍我在之前的博客里面写过：<a href="/2016/05/30/yeoman">使用yeoman快速搭建前端项目结构</a><br>如果你还没有安装<code>Yeoman</code>,我们可以通过下面的命令安装</p>
+<pre><code>npm install -g yo
+</code></pre><p>接着我们安装electron项目的生成器</p>
+<pre><code>npm install -g generator-electron
+</code></pre><p>这样，我们就可以用yeoman去搭建一个electron项目了；</p>
+<pre><code># 创建项目文件夹并进入（也可以右键创建）
+mkdir electron-qr &amp;&amp; cd electron-qr
+# 生成文件结构
+yo electron
+# 耐心等待 npm install 完成
+</code></pre><p>得到以下结构图<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tgw1f61j3vybl6j305w05z74y.jpg" alt=""><br>改一改目录结构，新建一个js，成以下模样<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tgw1f61j71r4o5j306z07kgmf.jpg" alt=""><br>当然，要记得在html中引入index.js</p>
+<pre><code>&lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>并在主进程文件中修改视图文件地址</p>
+<pre><code>win.loadURL(`file://${__dirname}/app/index.html`);
+</code></pre><p>可以打开看看啦</p>
+<pre><code># 项目根目录执行
+electron .
+</code></pre><h3 id="在静态js资源中直接使用node模块（添加生成二维码功能）"><a href="#在静态js资源中直接使用node模块（添加生成二维码功能）" class="headerlink" title="在静态js资源中直接使用node模块（添加生成二维码功能）"></a>在静态js资源中直接使用node模块（添加生成二维码功能）</h3><hr>
+<p>通过修改<br><code>index.html</code> 和 <code>index.css</code>，使得视图如下所示<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tgw1f61jd63ecnj30go0dbjsb.jpg" alt=""></p>
+<p>nodejs有一个模块<code>qr-image</code>可用于快速生成二维码，我们先安装</p>
+<pre><code>npm install --save qr-image
+</code></pre><p>接着，我们编写<code>app/index.js</code></p>
+<pre><code>const qr = require(&#39;qr-image&#39;),//二维码模块
+    qrInput = document.getElementById(&#39;msg&#39;),//信息输入框
+    qrBtn = document.getElementById(&#39;qr-btn&#39;),//生成二维码按钮
+    qrImg = document.getElementById(&#39;qr&#39;);//二维码图片区
+
+let imgOfQr;
+qrBtn.addEventListener(&#39;click&#39;, function () {
+    let msg = qrInput.value;
+    imgOfQr = qr.imageSync(msg, {//生成png
+        &#39;margin&#39;:1,
+        &#39;size&#39;:10,
+        &#39;ec_level&#39;:&#39;Q&#39;
+    });
+
+    qrImg.src = &#39;data:image/png;base64,&#39;+imgOfQr.toString(&#39;base64&#39;)
+});
+</code></pre><p>如此，我们的主体功能就完成了，已经可以输入文字，生成二维码了，如此简单<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tgw1f61jmk3ip8j30gl0d6q46.jpg" alt=""></p>
+<p>下面我们来添加一下桌面应用特有的功能</p>
+<h3 id="添加任务栏上的图标和菜单（Tray，Menu）"><a href="#添加任务栏上的图标和菜单（Tray，Menu）" class="headerlink" title="添加任务栏上的图标和菜单（Tray，Menu）"></a>添加任务栏上的图标和菜单（Tray，Menu）</h3><hr>
+<p><code>remote.Tray</code>可以为窗口建立一个任务栏的小图标；<br><code>remote.Menu</code>可以编写一个菜单；<br>我们利用这两个组件做一个小图标出来。<br>首先选用一张小图片，我就用我博客的icon啦；<br>然后在<code>app/index.js</code>继续添加代码</p>
+<pre><code>   const path = require(&#39;path&#39;);
+   const { remote } = require(&#39;electron&#39;);
+   const { Tray, Menu } = remote;
+   const trayIcon = new Tray(path.join(__dirname,&#39;logo.ico&#39;));
+   const trayMenuTemplate = [
+       {
+           label: &quot;版本&quot;,
+           submenu:[
+               {
+                   label: &quot;electron: &quot; + process.versions.electron
+               },
+               {
+                   label: &quot;chrome: &quot; + process.versions.chrome
+               },
+               {
+                   label: &quot;nodejs: &quot; + process.versions.node
+               },
+           ]
+       },
+       {
+           label: &quot;退出&quot;
+       }
+   ];
+
+   const TrayMenu = Menu.buildFromTemplate(trayMenuTemplate);
+   trayIcon.setToolTip(&quot;右键查看信息&quot;);//小图标hover提示
+   trayIcon.setContextMenu(TrayMenu);//设置小图标菜单
+   Menu.setApplicationMenu(TrayMenu);//顺便可以设置一个应用顶部的菜单
+</code></pre><p>如图<br><img src="http://ww1.sinaimg.cn/large/0060lm7Tgw1f61l5pznvoj308003c3yn.jpg" alt=""><br>——————————————————————<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61l5q73j1j30fk05it98.jpg" alt=""></p>
+<h3 id="ipc通讯"><a href="#ipc通讯" class="headerlink" title="ipc通讯"></a>ipc通讯</h3><hr>
+<p>为了安全，也为了方便管理，很多东西需要在主进程处理（比如关闭、新建窗口），<br>那么，如果在渲染进程（应用窗口）中，与主进程进行通讯，使主进程在适当的时候处理事务呢？<br>那就是通过ipc（信息处理中心）啦；<br>在主进程中，使用<code>ipcMain</code>，在渲染进程中，使用<code>ipcRenderer</code>；<br>比如，</p>
+<blockquote>
+<p>我们在上一步的“退出”添加功能，使其关闭窗口；<br>当点击任务小图标的时候，窗口能得到焦点</p>
+</blockquote>
+<p>在<code>app/index.js</code>中修改</p>
+<pre><code>...
+const { remote, ipcRenderer } = require(&#39;electron&#39;);
+...
+    {
+        label: &quot;退出&quot;,
+        //click在ApplicationMenu中是不适用的，只能在任务小图标中使用
+        click: () =&gt; ipcRenderer.send(&#39;main-render-quit&#39;) //发送信息
+    }
+...
+trayIcon.on(&#39;click&#39;, () =&gt; ipcRenderer.send(&#39;main-render-focus&#39;));
+</code></pre><p>在主进程文件<code>index.js</code>中修改：</p>
+<pre><code>const { app, BrowserWindow, ipcMain } = require(&#39;electron&#39;);
+...
+ipcMain.on(&#39;main-render-quit&#39;, () =&gt; app.quit() );//监听信息，如果有&#39;main-render-quit&#39; send 过来，就执行后面的函数
+ipcMain.on(&#39;main-render-focus&#39;, () =&gt; mainWindow.focus() );
+</code></pre><h3 id="复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）"><a href="#复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）" class="headerlink" title="复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）"></a>复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）</h3><p>现在我们已经可以生成二维码了，但是如果我们想把二维码发给别人呢？我们需要使用复制功能；</p>
+<p>首先引入右键菜单所需的<code>MenuItem</code>， 还有粘贴板<code>clipboard</code>，图片元素 <code>nativeImage</code>，系统文件弹窗<code>dialog</code>，文件系统模块<code>fs</code><br>在<code>app/index.js</code>中修改</p>
+<pre><code>...
+const { remote, ipcRenderer, clipboard, nativeImage } = require(&#39;electron&#39;);
+const { Tray, Menu, MenuItem, dialog } = remote; //render进程的dialog需要在remote调用
+const fs = require(&#39;fs&#39;);
+...
+</code></pre><p>继续在<code>app/index.js</code>中实现逻辑</p>
+<pre><code>//新建一个菜单
+var menu = new Menu();
+menu.append(new MenuItem({
+    label: &#39;复制&#39;,
+    click: () =&gt; {//复制逻辑
+        clipboard.writeImage(
+            nativeImage.createFromBuffer(imgOfQr)
+        );
+    }
+}));
+menu.append(new MenuItem({
+    label: &#39;保存&#39;,
+    click: () =&gt; {
+        dialog.showSaveDialog({//复制逻辑
+            title: &#39;请选择保存路径&#39;,
+            filters: [
+                {name: &#39;Images&#39;, extensions: [&#39;jpg&#39;, &#39;png&#39;, &#39;gif&#39;]},
+            ]
+        }, (win) =&gt; {
+            fs.writeFile(win, nativeImage.createFromBuffer(imgOfQr).toPng(), (err) =&gt; {
+                if(err) {
+                    console.warn(err);
+                }
+            });
+        });
+    }
+}));
+
+qrImg.addEventListener(&#39;contextmenu&#39;, function (e) {
+    e.preventDefault();
+    menu.popup(remote.getCurrentWindow());//添加菜单
+}, false);
+</code></pre><p><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61o40pmjqj30bc09faaf.jpg" alt=""><br>——————————————————————<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61o4229kzj30jv0h741r.jpg" alt=""></p>
+<h3 id="输入框聚焦（按钮监听）"><a href="#输入框聚焦（按钮监听）" class="headerlink" title="输入框聚焦（按钮监听）"></a>输入框聚焦（按钮监听）</h3><hr>
+<p>这是一个可有无的小功能，但是为了展示快捷键，还是多一个小功能吧<br>我现在预想这样一个功能：<br>按下<code>ctrl+alt+i</code>的时候，输入框获得焦点<br>为了实现这个功能，我们需要用到按钮监听组件<code>globalShortcut</code>，这个是在主进程监听，所以我们也需要用到<code>ipc</code></p>
+<p>在主进程文件<code>index.js</code>中修改</p>
+<pre><code>const {app, BrowserWindow, ipcMain, globalShortcut } = require(&#39;electron&#39;);
+...
+app.on(&#39;ready&#39;, function() {
+...
+setGlobalShortcuts();
+});
+function setGlobalShortcuts() {
+    globalShortcut.unregisterAll();
+    globalShortcut.register(&#39;ctrl+alt+i&#39;, function () {//j监听按钮
+        mainWindow.webContents.send(&#39;global-shortcut&#39;, 0);//向某个窗口发送信息
+    });
+}
+...
+</code></pre><p>在渲染窗口的文件<code>app/index.js</code>中修改</p>
+<pre><code>ipcRenderer.on(&#39;global-shortcut&#39;, (event, arg) =&gt; {
+    switch (arg){
+        case 0: qrInput.focus();
+    }
+});
+</code></pre><p>成功！！</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>上<a href="http://electron.atom.io/docs/" target="_blank" rel="noopener">electron官网</a>查看文档，凭着前端经验，就可以做很多事情啦！！</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = '/2016/07/21/electron初学习/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/2016/07/21/electron初学习/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//carvenzhang.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/29/gulp流程控制/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/17/前端小积累/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/public/img/avatar.png" alt="carvenzhang's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        525315462@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2015/12/">十二月 2015<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2015/10/">十月 2015<span class="sidebar_archives-count">5</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/mac/">mac<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/后端/">后端<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/实习/">实习<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/每周积累计划/">每周积累计划<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">33</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/2415799587" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-weibo">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/zjy01" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2015&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>zjyBlog
+            
+                <br>
+                
+                    From GDUFS QuantaCenter
+                
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+<script id="dsq-count-scr" src="//carvenzhang.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

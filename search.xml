@@ -1,0 +1,3433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[T460黑苹果安装]]></title>
+      <url>/2017/05/06/T460%E9%BB%91%E8%8B%B9%E6%9E%9C%E5%AE%89%E8%A3%85/</url>
+      <content type="html"><![CDATA[<p>之前对黑苹果并没有认识，认为黑苹果的安装要求很苛刻。<br>当然，现在对黑苹果的认识也很肤浅，黑苹果对硬件也确实是有要求的，但是也远远没有我之前想的那么难。<br>最近手头多了一台联想ThinkPad系列的T460:<code>2.4 GHz Intel Core i5-6200U</code>、<code>8 GB 1600 MHz DDR3</code>、<code>NVIDIA GeForce 940MX</code>、<code>256G 固态硬盘</code>。其他具体参数可以看网上哦。</p>
+<h2 id="认识黑苹果"><a href="#认识黑苹果" class="headerlink" title="认识黑苹果"></a>认识黑苹果</h2><p>首先因为mac系统只有苹果公司的mac系列电脑才用到，硬件有限，所以对应硬件的驱动也有限，所以黑苹果的安装才那么困难，因为你电脑上的硬件不一定有合适的驱动，为此，需要通过一定的手段去伪装，才导致了安装的困难性。</p>
+<p>只要手段得当，现在的很多一部分笔记本都可以跑起黑苹果。<br>好吧其实我就知道那么多。</p>
+<a id="more"></a>
+<p>了解黑苹果，国内首选的是远景论坛，不过目前国内远景论坛正常情况下是不能访问的，需要修改host.<br>window修改的方法<br><strong>打开C盘 -&gt; Windows -&gt; System32 -&gt; drives -&gt; etc -&gt; hosts</strong></p>
+<pre><code class="vim">218.93.127.136 pcbeta.com  
+218.93.127.136 uc.pcbeta.com  
+218.93.127.136 m.pcbeta.com  
+218.93.127.136 web.pcbeta.com  
+218.93.127.136 i.pcbeta.com  
+218.93.127.136 bbs.pcbeta.com  
+218.93.127.136 www.pcbeta.com  
+218.93.127.136 cdn.pcbeta.attachment.inimc.com  
+218.93.127.136 cdn.pcbeta.static.inimc.com  
+218.93.127.136 cdn.pcbeta.css.inimc.com  
+218.93.127.136 mac.pcbeta.com
+</code></pre>
+<p>目前论坛是不能注册了，但是一些内容还是可以看到的，google一下文章标题，说不定还有惊喜。</p>
+<p>为了更加认识黑苹果，我们可以看一看一下这几篇文章<br><a href="http://bbs.pcbeta.com/viewthread-1494831-1-1.html" target="_blank" rel="noopener">[1]【入门必看】黑苹果新手引导,常见疑难解答,必要知识普及帖</a><br><a href="http://bbs.pcbeta.com/viewthread-1729715-1-1.html" target="_blank" rel="noopener">[2]最透彻的教你Win下怎么安装黑果，不需OS，直接帮你0经验吃上黑果-远景论坛-微软极客社区</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装黑苹果最保险的方法还是搜索一下自己机型的成功案例，对照着安装成功率更高。<br><a href="http://bbs.pcbeta.com/viewthread-1706854-1-1.html" target="_blank" rel="noopener">[3]macOSSierra区笔记本安装情况集合帖</a><br>我的安装T460的教程就是参考下面这篇文章的：<br><a href="http://www.insanelymac.com/forum/topic/315451-guide-lenovo-t460-macos-with-clover/" target="_blank" rel="noopener">[4][GUIDE] Lenovo T460 macOS with Clover</a><br>教程非常新。跟我同机型的可以直接参考这个教程进行安装。</p>
+<p>具体一点的安装过程，可以参考机锋网的一篇文章<a href="http://bbs.feng.com/read-htm-tid-7534160.html" target="_blank" rel="noopener">[5]【傻瓜图文式】Win系统下制作U盘CLOVER引导+安装原版Mavericks10.9+安装问题</a></p>
+<p>下面是我安装的大致过程</p>
+<h3 id="1-制作U盘镜像"><a href="#1-制作U盘镜像" class="headerlink" title="1. 制作U盘镜像"></a>1. 制作U盘镜像</h3><p>T460的教程中，U盘镜像的安装时在mac系统下进行的：下载最新mac系统，并写入U盘。<br>但在我们仅有win系统的情况下，这一步很难进行。<br>所以，我们需要做的是，下载别人已经写好的完整版镜像，通过<code>TransMac</code>写入u盘中。<br>此处有一个可用的镜像<br><a href="http://bbs.feng.com/read-htm-tid-11052668.html" target="_blank" rel="noopener">App Store下载的macOS Sierra 10.12.3（16D32）原版/安装U盘镜像</a><br>这个镜像是带clover引导的，对于没有clover引导的，自己要懂得手动加进去。<br>同时，如果找到适合自己机型的，已经配置好的clover，可以直接替换<code>EFI</code>文件夹。<br>毕竟，clover配置是一门很高深的学问，我也不懂。</p>
+<h3 id="2-U盘启动"><a href="#2-U盘启动" class="headerlink" title="2. U盘启动"></a>2. U盘启动</h3><p>U盘启动前，需要设置一下<code>bios</code>，具体设置可以在网上找到。<br>其次，建议还要格式化硬盘。格式化成<code>GUID分区表（拥有ESP分区）</code>、<code>EFI 系统类型</code><br>然后选择U盘启动就行(一般是F12)选择启动盘。</p>
+<h3 id="3-Clover安装系统"><a href="#3-Clover安装系统" class="headerlink" title="3. Clover安装系统"></a>3. Clover安装系统</h3><p>如果没问题的话，U盘启动，就进到Clover界面了，在这里就可以参考<br><a href="http://bbs.feng.com/read-htm-tid-7534160.html" target="_blank" rel="noopener">[5]【傻瓜图文式】Win系统下制作U盘CLOVER引导+安装原版Mavericks10.9+安装问题</a><br>一步步安装系统了。</p>
+<h3 id="4-完善系统"><a href="#4-完善系统" class="headerlink" title="4. 完善系统"></a>4. 完善系统</h3><p>这里就涉及到<code>驱动kext</code>的安装和<code>DSDT</code>的适配。还是得看教程</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>黑苹果的安装其实看起来就四步。<br>但是，其实里面涉及到很多复杂的过程：</p>
+<ul>
+<li>怎么设置适合的<code>config.plist</code>，使得clover成功启动</li>
+<li>怎么找到适合的驱动，使得硬件兼容</li>
+<li>怎么给DSDT打适合补丁</li>
+</ul>
+<p>这些过程，都需要根据不同的机型做不同的操作，所以建议参考同机型的安装教程，不然就要自己摸索了。</p>
+<p>再次列一下参考文章：<br><a href="http://bbs.pcbeta.com/viewthread-1494831-1-1.html" target="_blank" rel="noopener">[1]【入门必看】黑苹果新手引导,常见疑难解答,必要知识普及帖</a><br><a href="http://bbs.pcbeta.com/viewthread-1729715-1-1.html" target="_blank" rel="noopener">[2]最透彻的教你Win下怎么安装黑果，不需OS，直接帮你0经验吃上黑果-远景论坛-微软极客社区</a><br><a href="http://bbs.pcbeta.com/viewthread-1706854-1-1.html" target="_blank" rel="noopener">[3]macOSSierra区笔记本安装情况集合帖</a><br><a href="http://www.insanelymac.com/forum/topic/315451-guide-lenovo-t460-macos-with-clover/" target="_blank" rel="noopener">[4][GUIDE] Lenovo T460 macOS with Clover</a><br><a href="http://bbs.feng.com/read-htm-tid-7534160.html" target="_blank" rel="noopener">[5]【傻瓜图文式】Win系统下制作U盘CLOVER引导+安装原版Mavericks10.9+安装问题</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[xss总结记录]]></title>
+      <url>/2017/02/17/xss%E8%AE%A4%E8%AF%86/</url>
+      <content type="html"><![CDATA[<h2 id="认识XSS"><a href="#认识XSS" class="headerlink" title="认识XSS"></a>认识XSS</h2><p>最近工作小组上，集中精力提高安全意识。而XSS作为全端安全中最常见的问题之一，我们也做了着重的学习。<br><code>XSS</code>全称跨站脚本（Cross Site Scripting）攻击，看起来缩写应该是<code>CSS</code>，但是<code>CSS</code>已经普遍指层叠样式表（Cascading Style Sheets），所以呼作<code>XSS</code>。<br><a id="more"></a></p>
+<p>跨站脚本攻击是一种常见的WEB安全漏洞，它指攻击者可以在页面中注入恶意脚本，可被浏览器解析执行，当受害者打开被攻击的页面时，达到窃取用户信息、传播、钓鱼等的效果。</p>
+<h2 id="XSS的生成"><a href="#XSS的生成" class="headerlink" title="XSS的生成"></a>XSS的生成</h2><p>XSS的生成，通常依赖于一个注入点，指的是攻击者可控内容的提交位置。<br>日常最常接触到的就是输入框了，任何人都可以在输入框中输入任意内容，然后提交。<br><img src="http://p1.bqimg.com/567571/c3b31242629b55d6.gif" alt=""><br>但是，还有很多我们平常没有留意到，可能会被使用的注入点：</p>
+<pre><code class="vim">1、GET 请求参数
+2、POST请求参数
+3、UA
+4、Referer
+5、URI
+...
+
+一切可以提交数据到页面的点都称作向量
+</code></pre>
+<p><code>XSS</code>漏洞的产生，都是基于<font color="red">对非预期输入的信任</font>。<br>开发者对用户输入的数据保持了信任态度，无条件或者预防不足地显示了用户输入的内容，就有可能发生安全问题。</p>
+<h2 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h2><p>最常见的<code>XSS</code>分类</p>
+<ul>
+<li>反射型</li>
+<li>存储型</li>
+<li>DOM型</li>
+</ul>
+<h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p>反射型XSS也叫非持久型XSS，最常见在搜索框中（或者是构造在网站的某个GET参数的值中）。<br>比如：</p>
+<pre><code>http://example.xss.com/search.php?word=&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+</code></pre><p>如果模拟一个搜索页，假设搜索页如下构造</p>
+<pre><code class="PHP">/**
+ * 很多搜索页会在搜索框显示搜索值
+ */
+  &lt;input type=&quot;search&quot; value=&quot;&lt;?php echo $_GET[&#39;word&#39;] ?&gt;&quot;/&gt;
+</code></pre>
+<p>对于上面的网址，就会输出html如下</p>
+<pre><code class="html">&lt;input type=&quot;search&quot; value=&quot;&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&quot;/&gt;
+</code></pre>
+<p>一句script就生成了。<br>这就是<strong>反射型XSS</strong>，通过提交内容，但是不经过数据库存储，直接反射显示在页面上。</p>
+<h3 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h3><p>存储型XSS也叫持久型XSS，意思是输入值会经过存储，以后每次访问该页面（或者是使用到该输入的某些页面），都会触发<code>XSS</code>。<br>比较常见的就是论坛回复、发帖</p>
+<ol>
+<li>输入内容 -&gt; 存入数据库</li>
+<li>任意用户访问 -&gt; 从数据库取出</li>
+<li>发生攻击</li>
+</ol>
+<h3 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h3><p>其实DOM型也属于反射型的一种，不过比较特殊，所以一般也当做一种单独类型。<br>如我上图的那个动图，就是<strong>DOM型</strong>。<br>即不经过后端渲染，直接由js操作引发的<code>XSS</code>。</p>
+<h3 id="其他类型的XSS"><a href="#其他类型的XSS" class="headerlink" title="其他类型的XSS"></a>其他类型的XSS</h3><p>以下XSS涉及内容比较大，需要针对特定环境，没有经过系统学习。</p>
+<ul>
+<li>mXSS 突变型XSS</li>
+<li>UXSS 通用型XSS</li>
+<li>Flash XSS</li>
+<li>UTF-7 XSS</li>
+<li>MHTML XSS</li>
+<li>CSS XSS</li>
+<li>VBScript XSS</li>
+</ul>
+<h2 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h2><p>一般来说，XSS防御就是不信任任何用户数据的数据。<br>《给开发者的终极XSS防御备忘录》</p>
+<p>下面是提供一个XSS游戏</p>
+<ul>
+<li><a href="http://prompt.ml/" target="_blank" rel="noopener">http://prompt.ml/</a> 答案：<a href="https://github.com/cure53/xss-challenge-wiki/wiki/prompt.ml" target="_blank" rel="noopener">https://github.com/cure53/xss-challenge-wiki/wiki/prompt.ml</a></li>
+</ul>
+<p>最后，非常感谢我厂<code>youzuzhang</code>的文章，带我生动认识了XSS，本文基本沿袭其思路。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 每周积累计划 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 安全 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[yarn -- 新型包管理器]]></title>
+      <url>/2016/11/21/yarn/</url>
+      <content type="html"><![CDATA[<h2 id="node-包管理器"><a href="#node-包管理器" class="headerlink" title="node 包管理器"></a>node 包管理器</h2><p>随着<code>nodejs</code>的出现，另外两个东西也进入了前端大众的视野–<code>CommonJS规范</code>、<code>node 包管理器</code>。</p>
+<p>说到<code>node 包管理器</code>，就不得不提<code>npm</code>，毕竟是官方标配，安装了<code>node</code>就自带了<code>npm</code>。<br><code>npm + nodejs</code>，构成了一个宏伟了前端世界。<br>当然，出于各种原因，市面上还存在着各种包管理器，比较著名的端资源包管理器 – ‘bower’；<br>镜像为主的<code>cnpm</code>、<code>tnpm</code>；<br>工具提供的<code>rnpm</code>、<code>spm</code>；<br>还有很多其他的（我也没用过）：<code>jamjs</code>、<code>component</code>。</p>
+<p>今天，想向大家介绍的是<a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a>– 2016.10.11 Facebook 正式发布的 <code>javascript 包管理器</code>， 用来替代<code>npm</code>。<br>我在一次偶然的升级<code>react native</code>的时候，接触了<code>yarn</code>(<code>react native</code>已经将自家的<code>yarn</code>融入安装环境中)。<br>一遍文章<a href="https://code.facebook.com/posts/1840075619545360" target="_blank" rel="noopener">《Yarn: A new package manager for JavaScript》</a>讲述了<code>yarn</code>的诞生历程。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>yarn</code> 是Facebook与 Exponent、 Google 和 Tilde 进行合作，开源的 JavaScript 包管理器。<br>旨在针对<code>npm</code>使用过程中的一些问题，提供更好的包管理方式，同时兼容 <code>npm</code> 与 <code>bower</code> 工作流。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="npm的问题"><a href="#npm的问题" class="headerlink" title="npm的问题"></a>npm的问题</h3><ul>
+<li>安装依赖包不稳定。<br>不同平台、不同用户、不同次安装的依赖可能不一样（因为<code>npm</code>的依赖安装顺序具有不确定性）。</li>
+<li>安装耗时过长。<br><code>npm</code>在安装包的时候，采取队列式安装：只有前一个包安装完，才会安装下一个包。一个包失败，安装任务结束。</li>
+<li>安全性（这方面认识不是很深刻）</li>
+</ul>
+<h3 id="yarn的亮点"><a href="#yarn的亮点" class="headerlink" title="yarn的亮点"></a>yarn的亮点</h3><ul>
+<li><p>稳定的依赖分析。<br><code>yarn</code>会自动生成一个<code>yarn.lock</code>文件，记录包版本，把安装的软件包版本锁定在某个特定版本，并保证所有机器安装结果一样；对于不匹配的依赖版本的包创立一个独立的包，避免创建重复的</p>
+</li>
+<li><p>急速安装。<br><code>yarn</code>采用了新的算法来保证速度；同步执行所有任务；一个包安装失败的时候，会自动重试；对于已经安装过的包，会做全局缓存，避免重复下载（可实现离线安装）。</p>
+</li>
+<li><p>安全性。<br>下载前会检查签名和包完整性</p>
+</li>
+<li><p>同时，<code>yarn</code>还优化了cli信息输出，命令行简介语义化等。</p>
+</li>
+</ul>
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><p>借用译文<a href="http://blog.zhangjd.me/2016/10/12/yarn-a-new-package-manager-for-javascript/" target="_blank" rel="noopener">《Facebook 发布了新的 Node 模块管理器 Yarn，或取代 npm 客户端》</a></p>
+<blockquote>
+<p>1、 处理： <code>Yarn</code> 通过向代码仓库发送请求，并递归查找每个依赖项，从而解决依赖关系。<br>2、 抓取： 接下来，<code>Yarn</code> 会查找全局的缓存目录，检查所需的软件包是否已被下载。如果没有，Yarn 会抓取对应的压缩包，并放置在全局的缓存目录中，因此 Yarn 支持离线安装，同一个安装包不需要下载多次。依赖也可以通过 tarball 的压缩形式放置在源码控制系统中，以支持完整的离线安装。<br>3、生成： 最后，<code>Yarn</code> 从全局缓存中把需要用到的所有文件复制到本地的 node_modules 目录中。</p>
+</blockquote>
+<h2 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h2><p><code>yarn</code>保持现有的工作流成特性，使用<code>npm</code>仓库。<br>所以基本是无代价兼容现有前端项目的，可以放心使用。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="js">npm install -g yarn
+</code></pre>
+<p>是的，使用<code>npm</code>安装哈，简单便捷，和和气气。</p>
+<p>可以配置一下国内仓库<br>常用的淘宝镜像</p>
+<pre><code>yarn config set registry https://registry.npm.taobao.org
+</code></pre><p>厂内的tnpm镜像</p>
+<pre><code>yarn config set registry http://r.tnpm.oa.com
+</code></pre><h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p><code>yarn</code>的命令行功能基本与<code>npm</code>处于对等状态。</p>
+<p>常用命令行对比：</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><pre><code>yarn init // npm init
+</code></pre><h4 id="安装全部依赖"><a href="#安装全部依赖" class="headerlink" title="安装全部依赖"></a>安装全部依赖</h4><pre><code>yarn // npm install
+</code></pre><h4 id="安装某个依赖"><a href="#安装某个依赖" class="headerlink" title="安装某个依赖"></a>安装某个依赖</h4><pre><code>yarn add react        // npm install react --save
+yarn remove react     // npm uninstall react --save
+yarn add react --dev  // npm install react --save-dev
+yarn global add react // npm install react -g
+</code></pre><h4 id="更新依赖"><a href="#更新依赖" class="headerlink" title="更新依赖"></a>更新依赖</h4><pre><code>yarn upgrade react    // npm update react --save
+</code></pre><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><pre><code>yarn run start        //npm run start
+</code></pre><h2 id="end"><a href="#end" class="headerlink" title="end"></a>end</h2><p><code>yarn</code>才刚刚起步，截致博文时间的时候，版本是<code>0.17.6</code>，github issues也有很多反馈（目前我还不知道有什么bugs）。<br>但是，<code>yarn</code>确实受到很多人的关注和期待。<br>我也好好好好期待。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[cors跨域探讨]]></title>
+      <url>/2016/11/08/cors/</url>
+      <content type="html"><![CDATA[<h2 id="前端跨域"><a href="#前端跨域" class="headerlink" title="前端跨域"></a>前端跨域</h2><p>前端跨域方案很多，<code>jsonp</code>、<code>iframe</code>等等，但是个人觉得，最正宗，最无损的跨域方式还是<code>CORS</code>。<br><code>CORS</code>(<code>Cross-origin resource sharing</code>)是一个W3C标准，翻译过来是<em>跨域资源共享</em>。<br>它允许浏览器向跨域（协议、域名、端口任一不相同）服务器发送<code>XMLHttpRequest</code>请求。<br>目前支持所有现代浏览器（&gt;IE10）<br>借阅了<strong>阮一峰</strong>大神的<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">《跨域资源共享 CORS 详解》</a>，结合自己的理解，说一说自己的<code>CORS</code>的领会。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>CORS</code>协议本身，可以说，完全是由浏览器执行的。<br>对前端开发者而言，<code>CORS</code>是在浏览器检查到跨域请求的时候，自动发起的。<br>对后台开发者而言，只要在<code>headers</code>中返回特定的信息（相当于白名单）–具体的<code>CORS</code>步骤，浏览器会根据<code>headers</code>中返回的信息做出具体的行为。</p>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p>浏览器会自动将请求分为两类：简单请求、非简单请求。<br>只要同时满足以下条件，就属于简单请求。</p>
+<p><pre><br> (1) 请求方法是以下三种方法之一：<br>· HEAD<br>· GET<br>· POST<br>（2）HTTP的头信息不超出以下几种字段：<br>· Accept<br>· Accept-Language<br>· Content-Language<br>· Last-Event-ID<br>· Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain<br></pre><br>凡是不同时满足上面两个条件，就属于非简单请求。<br>浏览器对这两种请求的处理，是不一样的。<br><a id="more"></a></p>
+<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><p>当浏览器发起简单请求的时候，会自动在请求头加上<code>origin</code>，标识请求来源。<br>这时候，服务器需要携带<code>Access-Control-Allow-Origin</code>返回，并且里面的值包含<code>origin</code>，浏览器才会允许<code>xhr</code>获取返回的内容。<br>一条简单的跨域请求就完成了：<br>前端不需要写任何东西。<br>后台也可以不做任何逻辑处理，一律返回<code>Access-Control-Allow-Origin</code>。<br>全部的<code>CORS</code>把关工作都在浏览器端正式执行。</p>
+<p>同时，发起跨域请求的时候，默认是不带<code>cookie</code>的，需要手动开启，后台也需要权限允许。</p>
+<p>一个简单的跨域样例如下：<br><img src="http://i1.piimg.com/567571/8e1dc61836f71770.png" alt=""></p>
+<h3 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h3><p>当浏览器判定是非简单请求的时候，会在发正式请求前，想同一地址发起一个<code>options</code>的预请求。<br>预请求携带了正式请求的方法（method）和特殊头（headers）。</p>
+<pre><code class="text">Access-Control-Request-Method: POST,
+Access-Control-Request-Headers: CARVEN
+</code></pre>
+<p>然后服务器返回自己允许的方法（method）和特殊头（headers），当然还有允许域</p>
+<pre><code class="txt">Access-Control-Allow-Method: POST, PUT
+Access-Control-Allow-Headers: CARVEN, ZJY
+Access-Control-Allow-Origin: http://localhost:63342
+</code></pre>
+<p>然后浏览器会比较，如果请求发起内容–<code>origin</code>,<code>method</code>,<code>headers</code>，都在服务器响应的名单里，正式请求就可以发起了，流程再次回归到<strong>简单请求</strong>.</p>
+<hr>
+<h4 id="为什么会有非简单请求？"><a href="#为什么会有非简单请求？" class="headerlink" title="为什么会有非简单请求？"></a>为什么会有非简单请求？</h4><p>对于非简单（偏激理解为 危险）的请求，做到询问与逻辑代码的隔离。</p>
+<p>比如：PUT、DELETE等method，从规范来说，会使目标地址发生增、删等行为，使目标服务器资源发生改变。</p>
+<p>所以，浏览器会发起正式请求前，先向发起一次预请求，等到允许后再发正式请求。</p>
+<hr>
+<p>请求如图：<br><img src="http://p1.bpimg.com/567571/f7da324c07160e48.png" alt=""><br><img src="http://p1.bpimg.com/567571/e781b1a4f442c2ed.png" alt=""></p>
+<h2 id="控制CORS"><a href="#控制CORS" class="headerlink" title="控制CORS"></a>控制CORS</h2><p>在ES6的fetch中，已经可以控制<code>cors</code>开关了。</p>
+<pre><code class="js">fetch(url,{ mode: mode})
+</code></pre>
+<blockquote>
+<ul>
+<li>mode=same-origin，不支持跨域，直接在浏览器端拦截跨域请求</li>
+<li><p>mode=no-cors，不执行跨域协议，即不存在跨域问题，即使有特殊header，也不发options。<br>但是只支持HEAD、GET、POST，且代码不能接收到响应信息。</p>
+</li>
+<li><p>mode=cors，默认，执行cors协议。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>前面举的实行例子，只是最简单的<code>cors</code>规则演示，但其实，前后台手动通过获取<code>headers</code>上携带的各种信息，可以很灵活的做其他的逻辑处理。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[koa+socket.io尝试简单的web动作同步]]></title>
+      <url>/2016/10/10/koa-socket-io%E5%B0%9D%E8%AF%95%E7%AE%80%E5%8D%95%E7%9A%84web%E5%8A%A8%E4%BD%9C%E5%90%8C%E6%AD%A5/</url>
+      <content type="html"><![CDATA[<h2 id="动作同步"><a href="#动作同步" class="headerlink" title="动作同步"></a>动作同步</h2><p>尝试用过<code>browser-sync</code>辅助开发的前端同学，大概都会感到神奇：<strong>在多个端打开网页，网页的动作却是完全同步的</strong>。<br><img src="http://www.browsersync.cn/img/scroll-demo.gif" alt=""><br>当然我还没有看过源码，大概也知道是通过’websocket’实现信息同步。<br>今天在看书籍《跨终端Web》–<em>徐凯</em> 的时候，里面有一部分 <code>web动作同步</code>的代码演示。于是做了demo做练习。</p>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><blockquote>
+<p>koa : @1.1.2<br>socket.io : @1.5.0</p>
+</blockquote>
+<p>其中<code>koa</code>并没有什么特别意思，只是作为一个服务器存在，用<code>express</code>或者其他什么都可以。<br><code>socket.io</code>是我们需要的通讯库</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>1、 前端捕获正在发生的动作<code>action</code>，和触发动作的元素<code>target</code>，通过<code>客户端socket</code>传输到<code>服务器socket</code>;<br>2、 <code>服务器socket</code>接收到信息，再将信息广播到其他所有<code>客户端socket</code>;<br>3、 其他<code>客户端socket</code>接收到广播信息，使特定的元素<code>target</code>触发特定的动作<code>action</code><br><a id="more"></a></p>
+<h2 id="服务端准备"><a href="#服务端准备" class="headerlink" title="服务端准备"></a>服务端准备</h2><p>服务器的准备很简单：搭起服务器，接入<code>socket.io</code>。</p>
+<p>1、<br>首先利用<code>koa-generator</code>搭起一个<code>koa</code>程序.</p>
+<pre><code class="bash">koa -e web-transcribe
+cd web-transcribe &amp;&amp; npm install
+</code></pre>
+<p>2、<br>接入<code>socket.io</code></p>
+<pre><code class="bash">npm install --save socket.io
+</code></pre>
+<p>接着在<code>./bin/</code>下，新建一个js文件<code>io-server.js</code></p>
+<pre><code class="js">//io-server.js
+var io=require(&#39;socket.io&#39;)();
+exports.listen= function (_server) {
+    return io.listen(_server);
+};
+io.on(&#39;connection&#39;, function (_socket) {
+    console.log(&#39;connection:\t&#39; + _socket.id );
+    //接收客户端信息
+    _socket.on(&#39;send&#39;, function (json) {
+        //广播到其他客户端
+        _socket.broadcast.emit(&#39;get&#39;,json);
+    })
+});
+</code></pre>
+<p>在’./bin/www’中加入<code>io-server.js</code>的引用</p>
+<pre><code class="js">var app = require(&#39;../app&#39;);
+var debug = require(&#39;debug&#39;)(&#39;demo:server&#39;);
+var http = require(&#39;http&#39;);
+//加下面这一句，接入io-server.js
+var io = require(&#39;./io-server&#39;);
+
+var port = normalizePort(process.env.PORT || &#39;3000&#39;);
+
+var server = http.createServer(app.callback());
+
+server.listen(port);
+server.on(&#39;error&#39;, onError);
+server.on(&#39;listening&#39;, onListening);
+//加下面这一句,使socket.io监听在server上
+io.listen(server);
+//...
+</code></pre>
+<h2 id="客户端的准备"><a href="#客户端的准备" class="headerlink" title="客户端的准备"></a>客户端的准备</h2><p>客户端的准备要比较多。</p>
+<blockquote>
+<p>1、 准确捕获发生的动作和目标元素<br>2、 通过<code>socket</code>发送出去<br>3、 接受<code>socket</code>，并使目标元素促发动作。</p>
+</blockquote>
+<h4 id="1、-准确捕获发生的动作和目标元素"><a href="#1、-准确捕获发生的动作和目标元素" class="headerlink" title="1、 准确捕获发生的动作和目标元素"></a>1、 准确捕获发生的动作和目标元素</h4><p>正在发生的动作相对比较好捕获，因为只是简单的实验，我只做了<code>click</code>动作的捕获。<br>如何确定正在发生动作的元素呢。<br>编写如下代码</p>
+<pre><code class="js">//transcribe.js
+//确定正在发生动作的元素
+function getSelector (element) {
+    var tagName = element.tagName.toLowerCase();
+    //去空格
+    function trim(string) {
+        return string &amp;&amp; string.replace(/^\s+|\s+$/g,&quot;&quot;) || string;
+    }
+
+    //id绑定的，直接返回。
+    if (element.id){
+        return &#39;#&#39; + element.id;
+    }
+    //html
+    if (element == document || element == document.documentElement ){
+        return &#39;html&#39;;
+    }
+    //body
+    if (element == document.body) {
+        return &#39;html&gt;&#39; + tagName;
+    }
+    //无父级元素，则返回自己
+    if (!element.parentNode) {
+        return tagName;
+    }
+
+    //最后是有父类元素的情况下，确定target是同种兄弟元素的第几个，返回 parentNode &gt; childNode 的精确形式
+    var ix = 0,
+        siblings = element.parentNode.childNodes,
+        elementTagLength = 0,
+        className = trim(element.className);
+
+    //统计同种兄弟元素
+    for (var i = 0, l = siblings.length; i &lt; l; i++){
+        if (className) {
+            if(trim(siblings[i].className) === className){
+                ++elementTagLength;
+            }
+        }
+        else {
+            if ( (siblings[i].nodeType == 1) &amp;&amp; (siblings[i].tagName === element.tagName) ) {
+                ++elementTagLength;
+            }
+        }
+    }
+    //确定target是父类元素下的第几个兄弟元素
+    for (i = 0, l = siblings.length; i &lt; l; i++){
+        var sibling = siblings[i];
+        if (element === sibling) {
+            return arguments.callee(element.parentNode) + &#39;&gt;&#39;
+                + ( className
+                    ? &#39;.&#39; + className.replace(/\s+/g,&#39;,&#39;)
+                    : tagName)
+                + ( (!ix &amp;&amp; elementTagLength === 1)
+                    ? &#39;&#39;
+                    : &#39;:nth-child(&#39; + (ix + 1) + &#39;)&#39;);
+        }
+        else if (sibling.nodeType == 1) {
+            ix++;
+        }
+    }
+
+};
+</code></pre>
+<p>最终返回的是<code>id || class || targetName</code></p>
+<p>我们需要做一些优化，筛选掉无用的事件，减少<code>socket</code>传输量。<br>在一个html的<code>&lt;head&gt;</code>内写入以下代码，改造<code>addEventListener</code>,为调用过<code>addEventListener</code>的元素加入标识。</p>
+<pre><code class="js">&lt;script&gt;
+  var __addEventListener = Element.prototype.addEventListener;
+  Element.prototype.addEventListener = function (type, handler, capture) {
+    if(!this[&#39;events&#39;]){
+      this[&#39;events&#39;] = {};
+    }
+    this[&#39;events&#39;][type] = 1;
+    return __addEventListener.apply(this, [type, handler, capture]);
+  }
+&lt;/script&gt;
+</code></pre>
+<p>并且编写一个函数做辨识</p>
+<pre><code class="js">//transcribe.js
+var findHashEventsElements = function (ele, eventType) {
+    if (!ele.tagName) return null;
+    // 有events标识的 或者 html标签内绑定的 或者 js直接绑定的
+    if ( (ele[&#39;events&#39;] &amp;&amp; ele[&#39;events&#39;][eventType]) || ele.hasAttribute(&quot;on&quot; + eventType) || ele[&#39;on&#39; + eventType] ) {
+        return ele;
+    }
+    else {
+        if (ele.parentNode != null) {
+        //可能有事件委托，追溯上一层
+            return findHashEventsElements(ele.parentNode, eventType);
+        }
+        else {
+            return null;
+        }
+    }
+};
+</code></pre>
+<h4 id="2、-通过socket发送正在发生的动作和目标元素"><a href="#2、-通过socket发送正在发生的动作和目标元素" class="headerlink" title="2、 通过socket发送正在发生的动作和目标元素"></a>2、 通过<code>socket</code>发送正在发生的动作和目标元素</h4><p>正式做<code>click</code>动作的全局时间监听</p>
+<pre><code class="js">//transcribe.js
+//启动socket连接
+var socket = io();
+document.addEventListener(&#39;click&#39;, function (e) {
+    if (e.button === 0) {
+        var target = e.target,
+            enable = findHashEventsElements(target, &#39;click&#39;);
+
+        if(enable){
+        //发送socket信息哦
+            socket.emit(&#39;send&#39;, {
+                action: &#39;click&#39;,
+                target: getSelector(target),
+                time: +new Date()
+            })
+        }
+    }
+},true);
+</code></pre>
+<h4 id="3、-接受socket，并使目标元素促发目标动作。"><a href="#3、-接受socket，并使目标元素促发目标动作。" class="headerlink" title="3、 接受socket，并使目标元素促发目标动作。"></a>3、 接受<code>socket</code>，并使目标元素促发目标动作。</h4><p>新建一个文件<code>trigger.js</code>，写入促发代码</p>
+<pre><code class="js">//trigger.js
+socket.on(&#39;connect&#39;, function () {
+    console.log(&#39;connect&#39;);
+    socket.on(&#39;get&#39;, function (data) {
+        console.log(&quot;trigger\t&quot;+data.target+&quot;\t&quot;+data.action);
+        document.querySelector(data.target).dispatchEvent(new Event(data.action));
+    })
+});
+</code></pre>
+<p>之前这里，我使用了<code>JQuery</code>的<code>trigger</code>:</p>
+<pre><code class="js">$(data.target).trigger(data.action)
+</code></pre>
+<p>但是这样会造成页面间的重复触发。<br>就比如<br><code>a.html</code>触发了 click;<br><code>b.html</code>页面收到指令，也触发 click，结果这个click又重新发送socket到<code>b.html</code>;<br><code>b.html</code>收到指令，又触发click，结果这个click又重新发送socket到<code>a.html</code>;<br>这样反复，永不停歇。<br>看来<code>JQuery</code>的<code>trigger</code>是直接操作元素触发的，于是改用原生的<code>dispatchEvent</code>。完成</p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p>合并源代码到<code>io.js</code>.<br>编写简单的html，完成一个demo</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;script&gt;
+      var __addEventListener = Element.prototype.addEventListener;
+      Element.prototype.addEventListener = function (type, handler, capture) {
+        if(!this[&#39;events&#39;]){
+          this[&#39;events&#39;] = {};
+        }
+        this[&#39;events&#39;][type] = 1;
+        return __addEventListener.apply(this, [type, handler, capture]);
+      }
+    &lt;/script&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+    &lt;link rel=&#39;stylesheet&#39; href=&#39;/stylesheets/style.css&#39; /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;
+    &lt;button id=&quot;btn1&quot;&gt;blue&lt;/button&gt;
+    &lt;button onClick=&quot;body_color(&#39;red&#39;)&quot;&gt;red&lt;/button&gt;
+    &lt;button class=&quot;reset_btn&quot;&gt;reset&lt;/button&gt;
+    &lt;script&gt;
+      document.getElementById(&#39;btn1&#39;).addEventListener(&#39;click&#39;, function () {
+        body_color(&#39;blue&#39;)
+      })
+      document.querySelector(&quot;.reset_btn&quot;).onclick= function () {
+        body_color(&#39;none&#39;);
+      }
+      function body_color(color) {
+          document.body.style[&#39;background&#39;] = color;
+      }
+    &lt;/script&gt;
+    &lt;script src=&quot;/javascripts/io.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><a href="https://github.com/zjy01/web-transcribe" target="_blank" rel="noopener">源代码</a></p>
+<p>看效果图哟<br><img src="http://p1.bpimg.com/567571/ee184984bded2120.gif" alt=""></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>现在只是最简单的<code>click</code>传输。<br>之后完善代码，就可以捕获其他动作。<br>完善服务器，做成代码植入的形式。<br>玩起来还是乐趣无穷的。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> socket </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[好用的分屏tab react-native-scrollable-tab-view]]></title>
+      <url>/2016/09/02/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%88%86%E5%B1%8Ftab-react-native-scrollable-tab-view/</url>
+      <content type="html"><![CDATA[<h2 id="我们需要导航栏"><a href="#我们需要导航栏" class="headerlink" title="我们需要导航栏"></a>我们需要导航栏</h2><p>如果一个人每天都有惊喜的话，我今天的最大惊喜就是找到了一个<code>react-native-scrollable-tab-view</code>。<br>我们在写一个应用的时候，总是会有需要，将多个页面放在一屏，通过导航栏切换，如<code>微信</code>、<code>淘宝</code><br><img src="http://i2.buimg.com/567571/a3171197d0762fcd.jpg" alt=""><br>这时候我们需要一个组件来帮我们快速实现这个功能。<br><a id="more"></a></p>
+<h2 id="react-native-tabbar"><a href="#react-native-tabbar" class="headerlink" title="react-native-tabbar"></a>react-native-tabbar</h2><p>之前我找到的是<a href="https://github.com/alinz/react-native-tabbar" target="_blank" rel="noopener">react-native-tabbar</a>，也是一个实现这个场景的模块。但是有一些不适合我的使用。<br> 1、 样式有点搓<br> 2、 只能通过点击导航栏<code>tab</code>直接切换<br> 3、 分在不同屏的组件（及页面）是一起<code>mount</code>的，而不是切换过去后才<code>mount</code>的</p>
+<p> 特别是因为第三点，我几乎想自己重写一个组件去处理了。</p>
+<h2 id="遇见-react-native-scrollable-tab-view"><a href="#遇见-react-native-scrollable-tab-view" class="headerlink" title="遇见 react-native-scrollable-tab-view"></a>遇见 react-native-scrollable-tab-view</h2><p>遇见<code>react-native-scrollable-tab-view</code>，是因为我在<a href="http://reactnative.cn/" target="_blank" rel="noopener">React Native 中文网</a> 学习 <a href="http://reactnative.cn/docs/0.31/animations.html#content" target="_blank" rel="noopener">动画</a>的使用，里面介绍<code>Rebound</code>的时候有举例到。<br>于是点了进去。 <a href="https://github.com/skv-headless/react-native-scrollable-tab-view" target="_blank" rel="noopener">react-native-scrollable-tab-view</a><br><img src="http://reactnative.cn/static/docs/0.31/img/Rebound.gif" alt=""></p>
+<p>这个组件几乎完全符合了我的预想。</p>
+<ul>
+<li>样式好看，且可配置</li>
+<li>导航tab位置可配</li>
+<li>页面切换有动画</li>
+<li>可通过滑动页面实现切换</li>
+<li>页面是第一次切换获取的时候<code>mount</code></li>
+</ul>
+<p>唯一不太喜欢的是，当 导航tab 移至底部的时候，tab的指示线 依然实在 tab下方，而不是 tab上方，为此，我还专门<code>fork</code>了代码，做了修改，添加了配置项，并发起了<code>pull request</code>。<br>后来才看到，这一项功能，已经有人做了修改，并提交了<code>pull request</code>,几乎下一个版本就可以用上了。</p>
+<p>完美。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>真的是小收获呀，写<code>react native</code>怎么做这样的导航栏，一直困扰了我很久，甚至失去了编写新应用的热情，很高兴遇见它</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> react native </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[体验koa]]></title>
+      <url>/2016/09/01/%E4%BD%93%E9%AA%8Ckoa/</url>
+      <content type="html"><![CDATA[<h2 id="体验koa"><a href="#体验koa" class="headerlink" title="体验koa"></a>体验koa</h2><p>之前使用<code>nodejs</code>开发后台服务，使用的一直是<code>express</code>。<br>后来了解到<code>express</code>开发团队重新开发了一个框架<code>koa</code>。</p>
+<p>先不说优点有什么，秉着探索的精神，先体验一下 koa</p>
+<h2 id="不同之处"><a href="#不同之处" class="headerlink" title="不同之处"></a>不同之处</h2><p><a href="https://github.com/guo-yu/koa-guide" target="_blank" rel="noopener">koa 中文文档</a></p>
+<p>koa 给人感觉最大的不同就是，在处理流程上使用的是<br><code>ES6</code> 的 <code>generator</code></p>
+<p><code>generator</code>通过<code>yield</code>和<code>next</code>的方法，使得流程清晰易见。</p>
+<a id="more"></a>
+<h2 id="使用koa"><a href="#使用koa" class="headerlink" title="使用koa"></a>使用koa</h2><p>跟 <code>express</code> 一样，<code>koa</code>也有一个生成器。<br>我们直接全局安装</p>
+<pre><code class="bash">npm install -g koa-generator
+</code></pre>
+<p>然后新建一个项目，我习惯使用<code>ejs</code>模板引擎。</p>
+<pre><code class="bash">koa newKoa -e # 新建一个项目，使用ejs模板引擎（默认使用jade）
+cd newKoa
+npm install #安装模块
+</code></pre>
+<p>目录如图，和<code>express</code>项目目录如出一辙<br><img src="http://i4.buimg.com/567571/8d5d1444629f121a.png" alt=""></p>
+<p>启动</p>
+<pre><code>npm start
+</code></pre><p>在浏览器输入<code>localhost:3000</code>访问：</p>
+<p><img src="http://i4.buimg.com/567571/1263cadf6af16c8b.png" alt=""></p>
+<p>体验结束</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p><code>koa</code> 还有 <code>2.x</code> 版本，我这次并没有尝试。<br>但是在安装中可以感受到，为了减低学习成本，团队在假设<code>koa</code>的使用，维持了很多<code>express</code>的语法。<br>学习起来不会很费力。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[html邮件模板编写实践]]></title>
+      <url>/2016/09/01/html%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF%E7%BC%96%E5%86%99%E5%AE%9E%E8%B7%B5/</url>
+      <content type="html"><![CDATA[<h2 id="编写邮件模板"><a href="#编写邮件模板" class="headerlink" title="编写邮件模板"></a>编写邮件模板</h2><p>最近在写业务开发的时候，需要去写邮件通知的模板。<br>积累了一些邮箱编写经验呀呀。</p>
+<h2 id="邮件html编写要求"><a href="#邮件html编写要求" class="headerlink" title="邮件html编写要求"></a>邮件html编写要求</h2><p>邮件编写参照的是 阮一峰大神的<a href="http://www.ruanyifeng.com/blog/2013/06/html_email.html" target="_blank" rel="noopener">HTML Email 编写指南</a></p>
+<p>里面大致提了</p>
+<blockquote>
+<p>使用table 布局<br>外链除了图片全部失效<br>css使用行内样式为佳</p>
+</blockquote>
+<p><a href="http://www.campaignmonitor.com/css/" target="_blank" rel="noopener">各邮件对css的支持</a></p>
+<a id="more"></a>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>行内样式写起来很痛苦，所以，一开始我打算写的是<code>&lt;style&gt;&lt;/style&gt;</code>标签。<br>写完后，我向各个主邮箱发送了测试</p>
+<blockquote>
+<p>gmail.com<br>163.com<br>qq.com<br>tencent.com</p>
+</blockquote>
+<p>结果如图<br><img src="http://i4.buimg.com/567571/499d93d9763eb2d0.gif" width="600"><br>图上可见，<code>QQ</code>、<code>tencent</code>、<code>163</code>对<code>&lt;style&gt;</code>的支持尚可，但是<code>gmail</code>已经完全把<code>&lt;style&gt;</code>过滤掉了。</p>
+<p>所以需要改用 行内样式 做实验<br><img src="http://i4.buimg.com/567571/ecfa68a317a3a1b6.gif" width="600"></p>
+<p>可以看到，样式完全支持了</p>
+<h2 id="如何写行内样式"><a href="#如何写行内样式" class="headerlink" title="如何写行内样式"></a>如何写行内样式</h2><p>如果让自己手动写行内样式，那么就是太痛苦了。<br>那么，有没有办法自动将自己的样式转成行内样式呢？</p>
+<p>一开始，我的想法是，使用js遍历所有dom，获取css值，然后写在dom的style属性里。<br>可是这个办法我探索了一晚上，没有找到一个函数，只获取css声明过的样式，只能获得所有样式的值。</p>
+<p>后台直接google了一下<code>gulp-inline</code>，结果搜索出一个<code>gulp-inline-css</code>插件，可以将css转成 inline-css，即行内样式，<br>用法如下</p>
+<pre><code class="js">var gulp = require(&#39;gulp&#39;),
+    inlineCss = require(&#39;gulp-inline-css&#39;);
+
+gulp.task(&#39;default&#39;, function() {
+    return gulp.src(&#39;./*.html&#39;)
+        .pipe(inlineCss({
+                applyStyleTags: true,
+                applyLinkTags: true,
+                removeStyleTags: true,
+                removeLinkTags: true
+        }))
+        .pipe(gulp.dest(&#39;build/&#39;));
+});
+</code></pre>
+<p>完美。</p>
+<p>顺便提一下，gmail不支持 <code>position</code>样式，我发现各个邮箱，就gmail的限制比较多。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>有了合适的插件，编写邮件就方便多了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> gulp </tag>
+            
+            <tag> css </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[gulp流程控制]]></title>
+      <url>/2016/08/29/gulp%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</url>
+      <content type="html"><![CDATA[<h1 id="烂笔头"><a href="#烂笔头" class="headerlink" title="烂笔头"></a>烂笔头</h1><p>  很久没有写博客了。<br>  记得最近的实习生活都颇有收获，一直想着记下什么，当真正想写的时候，才发现什么都不记得了。<br>  所有，上周刚刚有了一点小收获，赶紧得记下来。</p>
+<h1 id="情况"><a href="#情况" class="headerlink" title="情况"></a>情况</h1><p>   周一在打包一个文件的时候，打包引入后，发现文件报错了。<br>   大致是因为我打算将关于<code>webpack</code>的部分整合到<code>gulp</code>里面的(用的是<code>webpack-stream</code>，我也是最近才知道，<code>webpack-stream</code>是<code>gulp-webpack</code>的进阶版)，整合完成后，进行打包。<br>   原来的打包文件是这样写的：</p>
+<pre><code class="js">   gulp.task(&#39;dev&#39;,function(){
+   //希望&#39;webpack_test&#39;,&#39;devconcatcss&#39;,&#39;devsass&#39;顺序执行
+        gulp.run(&#39;webpack_test&#39;,&#39;devconcatcss&#39;,&#39;devsass&#39;/*,...*/);
+   });
+</code></pre>
+<p>   <img src="http://i4.buimg.com/567571/e0e122ad0dbfa518.png" alt=""><br>   我是将<code>webpack</code>打包放在打包列表的首位的，结果看<code>cmd</code>里面的打包流程序列，<code>webpack</code>任务最先开始，然后其他任务很快跟上（毫秒级），所有任务都完成后，<br>   <code>webpack</code>打包结果才出来，我意识到是控制流程有问题。而且系统提示<code>gulp.run</code>过旧了。于是打算修改控制流程。</p>
+   <a id="more"></a>
+<h1 id="gulp流程控制"><a href="#gulp流程控制" class="headerlink" title="gulp流程控制"></a>gulp流程控制</h1><p>我们期待的结果是</p>
+<pre><code>  //webpack_test先执行，任务彻底结束后，执行devconcatcss，任务彻底结束后，执行devsass...
+</code></pre><h2 id="利用-gulp-task-依赖"><a href="#利用-gulp-task-依赖" class="headerlink" title="利用 gulp.task 依赖"></a>利用 gulp.task 依赖</h2><p>  一开始是打算使用依赖关系</p>
+<pre><code>  gulp.task(&#39;dev&#39;,[&#39;webpack_test&#39;,&#39;devconcatcss&#39;,&#39;devsass&#39;/*,...*/]function(){
+          console.log(&#39;dev finish&#39;)
+     });
+</code></pre><p>  <img src="http://i4.buimg.com/567571/a4b5dd8ac4b82d61.png" alt=""><br>  结果发现，虽然<code>dev</code>在最后才执行,但是依然是<code>dev finish</code>后，webpack打包结果才出现，所以控制失败。</p>
+<h2 id="gulp-task-添加-return"><a href="#gulp-task-添加-return" class="headerlink" title="gulp.task 添加 return"></a>gulp.task 添加 return</h2><p>  查阅资料后发现，我们之前的任务编写有问题</p>
+<pre><code>  //之前我们是这样编写的
+  gulp.task(&#39;webpack_test&#39;, ()=&gt;{
+       gulp.src(&#39;&#39;)
+       //...
+  })
+
+  //而别人是这样子写的
+  gulp.task(&#39;webpack_test&#39;, ()=&gt;{
+       return gulp.src(&#39;&#39;)
+          //...
+  })
+</code></pre><p>  <b style="color: red">划重点</b>,一个<code>return</code>有什么用呢？ 原来 <code>return gulp.src...</code>是通过返回一个<code>stream</code>，来让控制程序知道当前任务的进行情况。<br>  这样就可以知道当前依赖任务是否完成，执行下一任务。</p>
+<p>  于是我就给所有任务加上了<code>return</code><br>  <img src="http://i4.buimg.com/567571/038967d7cd92eb0a.png" alt=""><br>  流程中发生了好的情况。</p>
+<p>  <code>webpack_test</code>任务在 dev任务之前结束了，<span style="color: red">但是[数组]中的任务没有先后依赖关系</span>。<br>  如果我通过</p>
+<pre><code>  gulp.task(&#39;before1&#39;, &#39;before2&#39;)
+  gulp.task(&#39;before2&#39;, &#39;before3&#39;)
+  ...
+</code></pre><p>  这样的方式一个个加控制，就太麻烦了。</p>
+<h2 id="引入插件-gulp-sequence"><a href="#引入插件-gulp-sequence" class="headerlink" title="引入插件 gulp-sequence"></a>引入插件 gulp-sequence</h2><p>  于是我 引入了新的组件<code>gulp-sequence</code>。</p>
+<pre><code>  gulp.task(&#39;dev&#39;,[&#39;clean&#39;, &#39;webpack_test&#39;],function(cb){
+      /*
+      流程说明：
+      clean,webpack_test 同时执行，执行完成后，执行 gulpSequence
+       gulpSequence： devconcatcss-&gt;devsass-&gt;...-&gt;images顺序执行
+      */
+      gulpSequence(
+          &#39;devconcatcss&#39;,
+          &#39;devsass&#39;
+          /*, ... */
+      )(cb);
+  });
+</code></pre><p>  <img src="http://i4.buimg.com/567571/ac94312c284c10ea.png" alt=""><br>  流程终于成功了，一切都按照自己预想的进行了。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>遇到问题，就有收获</p>
+]]></content>
+      
+        <categories>
+            
+            <category> nodejs </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> gulp </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[electron初学习]]></title>
+      <url>/2016/07/21/electron%E5%88%9D%E5%AD%A6%E4%B9%A0/</url>
+      <content type="html"><![CDATA[<h2 id="什么是electron"><a href="#什么是electron" class="headerlink" title="什么是electron"></a>什么是electron</h2><p>Electron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。<br>Electron 集合了 nodejs + Chromium 浏览器浏览器；这意味着前端开发者可以通过web的方式构建视图，通过nodejs去进行io操作，甚至可以在html文档中直接调用nodejs功能；<br>这可以使前端开发者以一种非常熟悉的方式去开发一款桌面应用。</p>
+<p>当electron启动一个应用的时候，最创建一个主进程（就是启动的入口文件）。这个主进程负责与你系统的GUI交互，并为你的应用创建GUI（就是新建窗口）；<br>借用<a href="http://get.ftqq.com/" target="_blank" rel="noopener">Get社区</a>的一个图片进行流程展示，一定要看哦；<br><img src="http://newsget-cache.stor.sinaapp.com/0b998dc2ebd3441852e5423fc8e723c1.png" width="500"><br>继续向下看：<br><a id="more"></a></p>
+<h2 id="入手electron"><a href="#入手electron" class="headerlink" title="入手electron"></a>入手electron</h2><p>一开始认识electron的时候，因为我一直在写react的缘故，我以为electron也会需要一大堆的辅助组件、复杂的构建流程，但是不是的，electron的使用出奇简单；<br>electron只需要一个核心组件<code>electron-prebuilt</code>就能运行，当然，你一定是已经安装了<code>nodejs</code>的；<br>习惯来说，我会全局安装一个<code>electron-prebuilt</code></p>
+<pre><code class="bash">npm install -g electron-prebuilt
+</code></pre>
+<p>并在electron项目的文件夹中安装一个本地组件</p>
+<pre><code>npm install --save-dev electron-prebuilt
+</code></pre><p>我们先驾起一个最简单的应用试一试:<br>新建 main.js</p>
+<pre><code>&#39;use strict&#39;;
+const { app, BrowserWindow } = require(&#39;electron&#39;);
+let mainWindow;
+app.on(&#39;ready&#39;, () =&gt; {
+    mainWindow = new BrowserWindow({
+        width: 600,
+        height: 400
+    });
+    //引入视图文件
+    mainWindow.loadURL(&quot;https://www.baidu.com&quot;);
+});
+</code></pre><p>在项目文件夹，运行</p>
+<pre><code>electron main.js
+</code></pre><p>就可以看到一个桌面应用色生成，并加载了百度首页作为视图；</p>
+<p>我是通过Get社区的<a href="http://get.ftqq.com/7870.get" target="_blank" rel="noopener">用Electron开发桌面应用</a>的教程来初步学习electron的，大家也可去过去膜拜，过程还是很详细的；<br>但是因为教程较老，很多语法已经不适用了。<br>比如</p>
+<pre><code>var app = require(&#39;app&#39;);
+var BrowserWindow = require(&#39;browser-window&#39;);
+</code></pre><p>应该改为</p>
+<pre><code>const { app, BrowserWindow } = require(&#39;electron&#39;);
+</code></pre><p>等等。<br>我在github上写了一个新版的，不过没有tag步骤，大家可以参考我的，使用教程里的一步步深入。<br><a href="https://github.com/zjy01/electron-sound" target="_blank" rel="noopener">https://github.com/zjy01/electron-sound</a></p>
+<p>当然，我自己也一步步搭建了一个小应用，大家也可以透过这个应用的搭建步骤去初步了解到electron。<br>我们会接触到：</p>
+<blockquote>
+<p>Yeoman 生成器<br>在静态js资源中直接使用node模块<br>添加任务栏上的图标和菜单（Tray，Menu）<br>ipc通讯<br>右键菜单、粘贴板clipboard、弹窗dialog<br>按钮监听</p>
+</blockquote>
+<h2 id="electron-–-二维码生成器"><a href="#electron-–-二维码生成器" class="headerlink" title="electron – 二维码生成器"></a>electron – 二维码生成器</h2><h3 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h3><p>一般接触一个新的应用，我们还可以通过Yeoman去快速搭建一个项目结构。<br>关于Yeoman的介绍我在之前的博客里面写过：<a href="/2016/05/30/yeoman">使用yeoman快速搭建前端项目结构</a><br>如果你还没有安装<code>Yeoman</code>,我们可以通过下面的命令安装</p>
+<pre><code>npm install -g yo
+</code></pre><p>接着我们安装electron项目的生成器</p>
+<pre><code>npm install -g generator-electron
+</code></pre><p>这样，我们就可以用yeoman去搭建一个electron项目了；</p>
+<pre><code># 创建项目文件夹并进入（也可以右键创建）
+mkdir electron-qr &amp;&amp; cd electron-qr
+# 生成文件结构
+yo electron
+# 耐心等待 npm install 完成
+</code></pre><p>得到以下结构图<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tgw1f61j3vybl6j305w05z74y.jpg" alt=""><br>改一改目录结构，新建一个js，成以下模样<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tgw1f61j71r4o5j306z07kgmf.jpg" alt=""><br>当然，要记得在html中引入index.js</p>
+<pre><code>&lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>并在主进程文件中修改视图文件地址</p>
+<pre><code>win.loadURL(`file://${__dirname}/app/index.html`);
+</code></pre><p>可以打开看看啦</p>
+<pre><code># 项目根目录执行
+electron .
+</code></pre><h3 id="在静态js资源中直接使用node模块（添加生成二维码功能）"><a href="#在静态js资源中直接使用node模块（添加生成二维码功能）" class="headerlink" title="在静态js资源中直接使用node模块（添加生成二维码功能）"></a>在静态js资源中直接使用node模块（添加生成二维码功能）</h3><hr>
+<p>通过修改<br><code>index.html</code> 和 <code>index.css</code>，使得视图如下所示<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tgw1f61jd63ecnj30go0dbjsb.jpg" alt=""></p>
+<p>nodejs有一个模块<code>qr-image</code>可用于快速生成二维码，我们先安装</p>
+<pre><code>npm install --save qr-image
+</code></pre><p>接着，我们编写<code>app/index.js</code></p>
+<pre><code>const qr = require(&#39;qr-image&#39;),//二维码模块
+    qrInput = document.getElementById(&#39;msg&#39;),//信息输入框
+    qrBtn = document.getElementById(&#39;qr-btn&#39;),//生成二维码按钮
+    qrImg = document.getElementById(&#39;qr&#39;);//二维码图片区
+
+let imgOfQr;
+qrBtn.addEventListener(&#39;click&#39;, function () {
+    let msg = qrInput.value;
+    imgOfQr = qr.imageSync(msg, {//生成png
+        &#39;margin&#39;:1,
+        &#39;size&#39;:10,
+        &#39;ec_level&#39;:&#39;Q&#39;
+    });
+
+    qrImg.src = &#39;data:image/png;base64,&#39;+imgOfQr.toString(&#39;base64&#39;)
+});
+</code></pre><p>如此，我们的主体功能就完成了，已经可以输入文字，生成二维码了，如此简单<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tgw1f61jmk3ip8j30gl0d6q46.jpg" alt=""></p>
+<p>下面我们来添加一下桌面应用特有的功能</p>
+<h3 id="添加任务栏上的图标和菜单（Tray，Menu）"><a href="#添加任务栏上的图标和菜单（Tray，Menu）" class="headerlink" title="添加任务栏上的图标和菜单（Tray，Menu）"></a>添加任务栏上的图标和菜单（Tray，Menu）</h3><hr>
+<p><code>remote.Tray</code>可以为窗口建立一个任务栏的小图标；<br><code>remote.Menu</code>可以编写一个菜单；<br>我们利用这两个组件做一个小图标出来。<br>首先选用一张小图片，我就用我博客的icon啦；<br>然后在<code>app/index.js</code>继续添加代码</p>
+<pre><code>   const path = require(&#39;path&#39;);
+   const { remote } = require(&#39;electron&#39;);
+   const { Tray, Menu } = remote;
+   const trayIcon = new Tray(path.join(__dirname,&#39;logo.ico&#39;));
+   const trayMenuTemplate = [
+       {
+           label: &quot;版本&quot;,
+           submenu:[
+               {
+                   label: &quot;electron: &quot; + process.versions.electron
+               },
+               {
+                   label: &quot;chrome: &quot; + process.versions.chrome
+               },
+               {
+                   label: &quot;nodejs: &quot; + process.versions.node
+               },
+           ]
+       },
+       {
+           label: &quot;退出&quot;
+       }
+   ];
+
+   const TrayMenu = Menu.buildFromTemplate(trayMenuTemplate);
+   trayIcon.setToolTip(&quot;右键查看信息&quot;);//小图标hover提示
+   trayIcon.setContextMenu(TrayMenu);//设置小图标菜单
+   Menu.setApplicationMenu(TrayMenu);//顺便可以设置一个应用顶部的菜单
+</code></pre><p>如图<br><img src="http://ww1.sinaimg.cn/large/0060lm7Tgw1f61l5pznvoj308003c3yn.jpg" alt=""><br>——————————————————————<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61l5q73j1j30fk05it98.jpg" alt=""></p>
+<h3 id="ipc通讯"><a href="#ipc通讯" class="headerlink" title="ipc通讯"></a>ipc通讯</h3><hr>
+<p>为了安全，也为了方便管理，很多东西需要在主进程处理（比如关闭、新建窗口），<br>那么，如果在渲染进程（应用窗口）中，与主进程进行通讯，使主进程在适当的时候处理事务呢？<br>那就是通过ipc（信息处理中心）啦；<br>在主进程中，使用<code>ipcMain</code>，在渲染进程中，使用<code>ipcRenderer</code>；<br>比如，</p>
+<blockquote>
+<p>我们在上一步的“退出”添加功能，使其关闭窗口；<br>当点击任务小图标的时候，窗口能得到焦点</p>
+</blockquote>
+<p>在<code>app/index.js</code>中修改</p>
+<pre><code>...
+const { remote, ipcRenderer } = require(&#39;electron&#39;);
+...
+    {
+        label: &quot;退出&quot;,
+        //click在ApplicationMenu中是不适用的，只能在任务小图标中使用
+        click: () =&gt; ipcRenderer.send(&#39;main-render-quit&#39;) //发送信息
+    }
+...
+trayIcon.on(&#39;click&#39;, () =&gt; ipcRenderer.send(&#39;main-render-focus&#39;));
+</code></pre><p>在主进程文件<code>index.js</code>中修改：</p>
+<pre><code>const { app, BrowserWindow, ipcMain } = require(&#39;electron&#39;);
+...
+ipcMain.on(&#39;main-render-quit&#39;, () =&gt; app.quit() );//监听信息，如果有&#39;main-render-quit&#39; send 过来，就执行后面的函数
+ipcMain.on(&#39;main-render-focus&#39;, () =&gt; mainWindow.focus() );
+</code></pre><h3 id="复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）"><a href="#复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）" class="headerlink" title="复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）"></a>复制、保存二维码（右键菜单、粘贴板clipboard、弹窗dialog）</h3><p>现在我们已经可以生成二维码了，但是如果我们想把二维码发给别人呢？我们需要使用复制功能；</p>
+<p>首先引入右键菜单所需的<code>MenuItem</code>， 还有粘贴板<code>clipboard</code>，图片元素 <code>nativeImage</code>，系统文件弹窗<code>dialog</code>，文件系统模块<code>fs</code><br>在<code>app/index.js</code>中修改</p>
+<pre><code>...
+const { remote, ipcRenderer, clipboard, nativeImage } = require(&#39;electron&#39;);
+const { Tray, Menu, MenuItem, dialog } = remote; //render进程的dialog需要在remote调用
+const fs = require(&#39;fs&#39;);
+...
+</code></pre><p>继续在<code>app/index.js</code>中实现逻辑</p>
+<pre><code>//新建一个菜单
+var menu = new Menu();
+menu.append(new MenuItem({
+    label: &#39;复制&#39;,
+    click: () =&gt; {//复制逻辑
+        clipboard.writeImage(
+            nativeImage.createFromBuffer(imgOfQr)
+        );
+    }
+}));
+menu.append(new MenuItem({
+    label: &#39;保存&#39;,
+    click: () =&gt; {
+        dialog.showSaveDialog({//复制逻辑
+            title: &#39;请选择保存路径&#39;,
+            filters: [
+                {name: &#39;Images&#39;, extensions: [&#39;jpg&#39;, &#39;png&#39;, &#39;gif&#39;]},
+            ]
+        }, (win) =&gt; {
+            fs.writeFile(win, nativeImage.createFromBuffer(imgOfQr).toPng(), (err) =&gt; {
+                if(err) {
+                    console.warn(err);
+                }
+            });
+        });
+    }
+}));
+
+qrImg.addEventListener(&#39;contextmenu&#39;, function (e) {
+    e.preventDefault();
+    menu.popup(remote.getCurrentWindow());//添加菜单
+}, false);
+</code></pre><p><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61o40pmjqj30bc09faaf.jpg" alt=""><br>——————————————————————<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f61o4229kzj30jv0h741r.jpg" alt=""></p>
+<h3 id="输入框聚焦（按钮监听）"><a href="#输入框聚焦（按钮监听）" class="headerlink" title="输入框聚焦（按钮监听）"></a>输入框聚焦（按钮监听）</h3><hr>
+<p>这是一个可有无的小功能，但是为了展示快捷键，还是多一个小功能吧<br>我现在预想这样一个功能：<br>按下<code>ctrl+alt+i</code>的时候，输入框获得焦点<br>为了实现这个功能，我们需要用到按钮监听组件<code>globalShortcut</code>，这个是在主进程监听，所以我们也需要用到<code>ipc</code></p>
+<p>在主进程文件<code>index.js</code>中修改</p>
+<pre><code>const {app, BrowserWindow, ipcMain, globalShortcut } = require(&#39;electron&#39;);
+...
+app.on(&#39;ready&#39;, function() {
+...
+setGlobalShortcuts();
+});
+function setGlobalShortcuts() {
+    globalShortcut.unregisterAll();
+    globalShortcut.register(&#39;ctrl+alt+i&#39;, function () {//j监听按钮
+        mainWindow.webContents.send(&#39;global-shortcut&#39;, 0);//向某个窗口发送信息
+    });
+}
+...
+</code></pre><p>在渲染窗口的文件<code>app/index.js</code>中修改</p>
+<pre><code>ipcRenderer.on(&#39;global-shortcut&#39;, (event, arg) =&gt; {
+    switch (arg){
+        case 0: qrInput.focus();
+    }
+});
+</code></pre><p>成功！！</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>上<a href="http://electron.atom.io/docs/" target="_blank" rel="noopener">electron官网</a>查看文档，凭着前端经验，就可以做很多事情啦！！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> electron </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[前端小积累]]></title>
+      <url>/2016/07/17/%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%A7%AF%E7%B4%AF/</url>
+      <content type="html"><![CDATA[<p>一周周实习，很少时间写博客了，但本周的实习中，遇到了一些问题，可以说是争长了阅历，所以一定要好好记下来。<br>遇到的问题主要是关于<strong>跨域</strong>和<strong>css3</strong>的；</p>
+<p>下面我们探讨一下跨域问题，还是css3下的translate会导致显示模糊的问题。</p>
+<a id="more"></a>
+<h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><p>跨域的方式其实挺多，有<code>jsonp</code>，<code>CORS</code>，<code>iframe</code>等，详细的可以去google；<br>但其实常用的还是<code>jsonp</code>和<code>CORS</code>；</p>
+<p>这周在做一个功能，但是做得东西因为前端和后台接口不在同一个域名下，需要用到跨域；<br>当时导师要我确立一个跨域方法，我疾呼没想多久，就定下了jsonp，因为这个方案对前端和后台来说，都是实现成本较低的。<br>于是问题就出现了。</p>
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h3><p>jsonp的实现原理，做前端的应该都知道。<br><strong>前端工作</strong></p>
+<pre><code class="js">&lt;script&gt;
+function deal(data){
+    //处理data
+}
+&lt;/script&gt;
+</code></pre>
+<pre><code>&lt;script src=&quot;http://api.zjy.space/do?callback=deal&quot;&gt;&lt;/script&gt;
+</code></pre><p><strong>后台工作</strong><br>假设<code>PHP</code></p>
+<pre><code>...//计算接口数据$data
+$callback=$_GET[&quot;callback&quot;];
+echo $callback.&quot;(&quot;.$data.&quot;)&quot;;
+</code></pre><p>把上面串联起来，当前端调用<code>&lt;script src=&quot;http://api.zjy.space/do?callback=deal&quot;&gt;&lt;/script&gt;</code>的时候，其实就相当于执行了<code>deal(data)</code>；</p>
+<p>这就是jsonp的简略理解。<br>但是，我们发ajax请求的时候，常用的库是<code>JQuery</code>的<code>$.ajax</code>库，它将<code>jsonp</code>和其他的<code>GET</code>,<code>POST</code>一起封装起来，使人很容易忽略他的真正实现过程，一些很关键的东西很容易忽略起来。</p>
+<pre><code>$.ajax({
+    url: &quot;ttp://api.zjy.space/do&quot;,
+    dataType: &quot;jsonp&quot;,
+    success: function(data){
+        //处理data
+    },
+    error: function(err){
+        //处理err
+    }
+})
+</code></pre><h4 id="jsonp的容易忽略的坑"><a href="#jsonp的容易忽略的坑" class="headerlink" title="jsonp的容易忽略的坑"></a>jsonp的容易忽略的坑</h4><ul>
+<li><p>针对上面<code>$.ajax</code>的写法，如果我要通过<code>jsonp</code>发送<code>POST</code>请求呢？<br>熟悉jquery的同学可能很快就写下来了。</p>
+<pre><code>$.ajax({
+  url: &quot;ttp://api.zjy.space/do&quot;,
+  type: &quot;POST&quot;,
+  dataType: &quot;jsonp&quot;,
+  success: function(data){
+      //处理data
+  },
+  error: function(err){
+      //处理err
+  }
+})
+</code></pre><p style="color:red; font-size: 24px;">错！</p><br><p style="color:blue; font-size: 24px;">想想上面的jsonp实现方法（src请求资源），怎么可能发出post请求</p>
+</li>
+<li><p>如果我要通过<code>jsonp</code>发送一些特定的<code>headers</code>呢？<br>熟悉jquery的同学可能很快就写下来了。</p>
+<pre><code>$.ajax({
+  url: &quot;ttp://api.zjy.space/do&quot;,
+  dataType: &quot;jsonp&quot;,
+  headers:{
+      &quot;my-name&quot;:&quot;carven&quot;
+  },
+  success: function(data){
+      //处理data
+  },
+  error: function(err){
+      //处理err
+  }
+})
+</code></pre><p style="color:red; font-size: 24px;">错！</p><br><p style="color:blue; font-size: 24px;">想想上面的jsonp实现方法（src请求资源），怎么可能可以修改headers信息</p>
+
+</li>
+</ul>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>恰巧，我们的跨域需要post和headers,所以jsonp方案被否定了，而且还存在跨域问题。<br>于是，我们转头去选择CORS方案。<br>由于我们需要发送自定义头信息，所以，我们需要实现的是非简单类型的CORS，即发送真正请求前，需要发送一次<code>预检</code>请求，协商好真正请求的请求方式、允许的headers等等；<br>当然，这些的后台要做的工作，对前端来说，这是无感知的；</p>
+<p>接口在后台导师的努力下，修改完成，但是我在做交互调试的过程中出现了问题，原来，接口之间使用了<code>session</code>作为信息交流的手段，大家也知道，<code>session</code>是依赖于<code>cookie</code>的；<br>而CORS请求的其中一个特点就是，不会自动发送<code>cookie</code>，如果前端对<code>cookie</code>的概念不深刻的话（我也学过后台），是很容易忽略这一点的。</p>
+<p>如何使CORS请求携带cookie呢。方式其实很简单，这个需要前端和后台一起协作。</p>
+<ul>
+<li>前端使请求携带cookie<pre><code>...
+xhr.withCredentials = true;
+</code></pre>或者 $.ajax<pre><code>$.ajax({
+  url: &quot;ttp://api.zjy.space/do&quot;,
+  xhrFields: {
+      withCredentials: true
+  },
+  ...
+})
+</code></pre></li>
+<li>后台允许请求携带cookie<br>假设PHP<pre><code>header(&quot;Access-Control-Allow-Credentials:true&quot;);
+...
+</code></pre></li>
+</ul>
+<p>这样就成功啦。</p>
+<h2 id="CSS3之translate导致的模糊"><a href="#CSS3之translate导致的模糊" class="headerlink" title="CSS3之translate导致的模糊"></a>CSS3之translate导致的模糊</h2><p>现在大部分浏览器都已经支持css了，特别是translate这些常用的属性；<br>比如垂直水平居中的实现</p>
+<pre><code>.vertical-center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+</code></pre><p>但是，在使用translate的情况下，可能会出现模糊的情况。是怎么回事呢。</p>
+<p>我假设目前有一个<code>div盒子</code>的宽度是<code>299px</code>，<br>那么<code>translate(-50%, -50%)</code>就相当于<code>translate(-149.5px, 149.5px)</code>,<br>然而，1px其实已经是最低的显示单位了，如果强行处理0.5px的像素，显示器该如何显示呢？<br>所以，小数点后面的像素就会缺失，造成一种显示涣散、模糊的感觉。</p>
+<p>网上有说通过设置父元素</p>
+<pre><code>transform-style: preserve-3d;
+</code></pre><p>我尝试了，没有得到解决，也不懂其中原理。</p>
+<p style="color:red">如果有人知道怎么决解这一个问题，欢迎联系我，或者在下面评论哦。</p>
+
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>这一周的实习收获让我很开心。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> css </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[react-native使用cookie]]></title>
+      <url>/2016/07/03/react-native-cookie/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不久前，因为课程需要，我使用<code>react native</code>搭建了人生第一个完整的app－－一个广外的教务查询系统。<br>祥见<a href="/2016/06/15/我的第一个react项目/">我的第一个react native项目</a><br>总体上,那个项目可以分成三个部分</p>
+<blockquote>
+<p>1、手机端app，负责展示数据<br>2、爬虫服务器，负责爬取教务系统的信息，返回给手机端app<br>3、广外的教务系统，显示学生信息<br><img src="http://i1.piimg.com/567571/55e033a5832a747d.png" alt=""><br>在这一个系统中，爬虫服务器担当大任。当客户端传输登录的帐号密码的时候，爬虫服务器进行模拟登录，并保存<code>cookie</code>在缓存中，生成一个token返回给app；<br>app此后凭借token向爬虫服务器请求信息，爬虫服务器根据token选取cookie，向教务系统爬取信息，处理后返回给客户端。<br>毫无疑问，这是可行的，我也做成功了，凭借app获得了不错的分数。<br>但是，后来想一想，这并不是最好的解决方案。我依赖于以前写的爬虫程序，运行在服务器上，做成了这一个系统。<br><b>但是，手机客户端本来就是一个具有很强处理能力的终端，为什么要把这个工作屈身在一个服务器上呢。应该让每一个客户端做处理，拜托爬虫服务器才对啊</b><br><a id="more"></a></p>
+<h2 id="尝试cookie"><a href="#尝试cookie" class="headerlink" title="尝试cookie"></a>尝试cookie</h2><p>于是我在手机程序上开始做尝试。一开始的想法和在服务端上差不多，毕竟都是<code>js</code>写的，改动不需要很多。也是想模拟登录，然后获取到<code>cookie</code>，进行全局保存。<br>写到一般的时候，我突然想到，app作为一个客户端，会不会自动保存cookie呢？我对原生<code>android</code>了解不多，之前听<code>quanta</code>里面的安卓师兄们讨论是说，安卓是不支持保存cookie的。<br>但是<code>react native</code>毕竟是<code>js</code>转<code>android</code>(或<code>iOS</code>)，谁知道在转化过程有没有做处理了。google一番得到模棱两可的说法。看来还是得试验一番。<br>于是用<code>php</code>写了一个简单的设置和获取cookie的程序（这时候还是php简单好用）。一试，好家伙，<code>react native</code>直接支持<code>cookie</code>的自动保存，不需要添加任何模块。<br>于是，改写计划就在脑子里生成了。</p>
+</blockquote>
+<h2 id="改写程序"><a href="#改写程序" class="headerlink" title="改写程序"></a>改写程序</h2><p><code>react native</code>进行网络请求的函数是<code>fetch</code>，会自动保存网络请求的cookie，不需要自己做任何的程序处理，就像平时用浏览器上网一样简单。<br>我针对常用的网络请求–<code>GET</code>和<code>POST</code>，分别写了一个接口函数。<br><b>GET</b></p>
+<pre><code class="js">fetchGet($url, $filed){
+        if ($filed) {
+            $url += &quot;?&quot; + querystring.stringify($filed);
+        }
+        return fetch($url)
+            .then(res =&gt; {
+                if (res.ok) {
+                    return res.text()
+                }
+                else {
+                    throw res.status + &quot;: 访问目标网络发生错误&quot;;
+                }
+            })
+            .then(text =&gt; {
+                return cheerio.load(text);
+            })
+    }
+</code></pre>
+<p><b>POST</b></p>
+<pre><code>fetchPost: function ($url, $filed) {
+        var params=querystring.stringify($filed),
+            url=urls.parse($url),
+            origin=&#39;http://&#39;+url.host,
+            headers={
+            &#39;Proxy-Connection&#39;: &#39;keep-alive&#39;,
+            &#39;Content-Length&#39;:params.length,
+            &#39;Cache-Control&#39;: &#39;max-age=0&#39;,
+            &#39;Accept&#39;:&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;,
+            &#39;Origin&#39;: origin,
+            &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.12 Safari/537.31&#39;,
+            &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;,
+            &#39;Accept-Encoding&#39;: &#39;gzip,deflate,sdch&#39;,
+            &#39;Accept-Language&#39;: &#39;zh-CN,zh;q=0.8&#39;,
+            &#39;Accept-Charset&#39;: &#39;GBK,utf-8;q=0.7,*;q=0.3&#39;
+        };
+        const option = {
+            method:&#39;POST&#39;,
+            headers,
+            body:params
+        };
+
+        return fetch($url, option)
+            .then(res =&gt; {
+                if(res.ok){
+                    return res.text()
+                }
+                else{
+                    throw res.status + &quot;: 访问目标网络发生错误&quot;;
+                }
+            })
+            .then(text =&gt; {
+                return cheerio.load(text);
+            })
+    }
+</code></pre><p>然后我们可以在其他接口函数里面调用。</p>
+<pre><code>//获取课程信息
+    getCourse($data){
+        let $url=this.getUrl(&#39;course&#39;);
+        if($data){
+            var $files={
+                &quot;xnxq01id&quot;:$data.xq,
+                &quot;sfFD&quot;:1
+            };
+            return this.fetchPost($url, $files)
+                .then($ =&gt; this.dealCourse($))
+        }
+        else{
+            return this.fetchGet($url)
+                .then($ =&gt; this.dealCourse($))
+        }
+    }
+</code></pre><p>可以看到，一点的cookie处理过程都没有，但是程序是可以完美运行的。</p>
+<h2 id="react-native使用cheerio"><a href="#react-native使用cheerio" class="headerlink" title="react-native使用cheerio"></a>react-native使用cheerio</h2><p>说起js端的爬虫，<code>cheerio</code>就不得不提了。cheerio模仿jquery的dom操作链式写法，可以是程序很方便地对爬取过来的网页信息进行处理。<br>上面的post和get接口函数里面，我也使用了cheerio哦。</p>
+<p>下面展示一下写法。</p>
+<pre><code>var cheerio = require(&quot;cheerio&quot;);
+var html=&quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p id=&#39;msg&#39;&gt;hello world&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;;//模拟一个网页信息。
+var $ = cheerio.load(html);
+console.log($(&quot;#msg&quot;).text());//hello world
+</code></pre><p>但是，只是在<code>nodejs</code>端的写法，cheerio里面使用了nodejs的<code>events</code>底层模块做事件处理，所以<code>react native</code>是不可能直接使用<code>cheerio</code>的。<br>但是，如果不使用<code>cheerio</code>，那么在react native 端写爬虫就没有优势了。<br>于是，上网一查，找到了一个新的模块<code>cheerio-without-node-native</code>;<br>很显然，这个是脱离<code>node</code>直接给<code>react native</code>用的<code>cheerio</code>;<br>用法也跟上面的一样，只要改变引用的模块就行了。</p>
+<pre><code>var cheerio = require(&quot;cheerio-without-node-native&quot;);
+var html=&quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p id=&#39;msg&#39;&gt;hello world&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;;//模拟一个网页信息。
+var $ = cheerio.load(html);
+console.log($(&quot;#msg&quot;).text());//hello world
+</code></pre><p>具体代码见github <a href="https://github.com/zjy01/gwjw/tree/v1.1.0" target="_blank" rel="noopener">gwjw</a></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>于此，新的app的架构就发生了翻天覆地的变化了。<br><img src="http://i1.piimg.com/567571/c6a5a4eabdf21fb9.png" alt=""><br>爬虫服务器正式从这一应用中退役了。<br>一来，减少了网络请求的传播次数，加快了响应速度。<br>二来，提高了计算速率，有效利用客户端计算能力。<br>三来，减少服务器的负担。</p>
+<p>还有一件事就是，原本我打算让我们应用上线的，可惜申请的时候被驳回了。。毕竟是一个依赖于爬虫的程序，上线就侵我母校（GDUFS）的权啦。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> react native </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[我的第一个react native项目]]></title>
+      <url>/2016/06/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAreact%E9%A1%B9%E7%9B%AE/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当实习生还是很忙的，而且还要准备期末考试，很久没有记下自己的博客。前阵子因为大作业需要，用到了<code>react native</code>，现在才想起来一定要记下来给自己。</p>
+<h2 id="学习react-native"><a href="#学习react-native" class="headerlink" title="学习react native"></a>学习react native</h2><p><code>react</code>因为日常开发有用到，所以也算是比较熟悉了，但是一直没有正式开始接触<code>react native</code>。所以这里不讲react了，单单是说在了解了react之后如何学习react native开发。<br>寒假还没学习react，找实习的时候，一家公司一直跟我说，用了react就可以写多端应用。所以我脑子里一直有react <code>write one, use anywhere</code>的概念，知道真正学习了react，并且接触了<code>react native</code>之后，<br>才会了解到react官网所说的<code>learn one, write anywhere</code>，react在不同端实现东西，仅仅是语法相同，要用到的组件之类的基本是完全不同的，所以写一套代码想在多端运行，基本是不可能的。</p>
+<p>环境搭建就不说了。。自行谷歌。<br>我学习react native的时候，所写的程序是一个电影列表，react native 中文网有相应的<a href="http://reactnative.cn/docs/0.27/tutorial.html" target="_blank" rel="noopener">教程</a>。<br>通过这个教程，就可以大致了解到react-native所用到的各种基础组件（View, Text之类的），对flex布局有大致了解。同时，极客学院也有关于实现这个代码的<a href="http://www.jikexueyuan.com/course/1504.html" target="_blank" rel="noopener">教程</a></p>
+<a id="more"></a>
+<h2 id="我的react-native-程序"><a href="#我的react-native-程序" class="headerlink" title="我的react native 程序"></a>我的react native 程序</h2><p>由于学校的手机软件大作业需要，我要亲手做一个app，我对安卓开发并不熟悉，而且时间非常有限。于是我打算选择 react-native。<br>事实证明我的选择非常正确。。我开发这个app只用了5天时间，包括后台和客户端。。后台是nodejs 的 express框架写的接口， 客户端是react native 写的安卓程序，可以说，我这一整套应用都是用<br>js来实现的。</p>
+<h3 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h3><p>我拟定的一个应用是广外教务查询（广外是我的学校–广东外语外贸大学），产品功能是可以通过这一款app快速的查询到 学期课表、期末考试成绩、等级考试成绩。这些都是学校教务系统的功能，我只是做了移动版。我并没有<br>学校方的后台接口，这意味着我要自己搭建一个后台，用作模拟登陆教务系统，并爬取相应的信息。我第一时间想到的就是nodejs，因为jquery的选择器简单好用，最适合提取信息，而nodejs刚好有一个包是<a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">cheerio</a>,<br>可以在nodejs运行，省去了写正则的时间。对后台代码有兴趣的可以联系我哦。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>首先，客户端代码在这里–<a href="https://github.com/zjy01/gwjw" target="_blank" rel="noopener">gwjw</a>，<br>只要是看了上面那个电影列表的教程，并且对react理解不差的话，一定可以看懂我的程序的，初学者应该也能有所收获。<br>主要讲一下编写客户端用到的东西。</p>
+<blockquote>
+<p>react-native-tabbar—一个网友写的通过按底部按钮切换视图界面的组件,需要install<br>ScrollView————可滚动的view，当ScrollView超过高度是，可滚动（是的，View会把超出的部分隐藏）<br>ListView————–展示一些列的子元素<br>ToastAndroid———-弹出系统的提示框（黑底在偏底部水平居中的那种），android原生的也叫toast，一般做一些小消息提示<br>Picker—————-相当于html的select吧<br>TouchableOpacity——普通的可点击按钮<br>看图<br>可见，react native 提供了相对丰富的组件。此外同<code>fetch</code>做网络请求。<br>这里可以下载到我写的app<a href="https://pan.baidu.com/s/1qYvhu6C" target="_blank" rel="noopener">广外教务查询.apk</a><br>。。（需要数字广外的帐号密码登录）</p>
+</blockquote>
+<p>下见图：</p>
+<p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/72574623.jpg" width="300"><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/74893793.jpg" width="300"><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/56652045.jpg" width="300"><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-6-15/81527796.jpg" width="300"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> react native </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[使用yeoman快速搭建前端项目结构]]></title>
+      <url>/2016/05/30/yeoman/</url>
+      <content type="html"><![CDATA[<h2 id="接触yeoman"><a href="#接触yeoman" class="headerlink" title="接触yeoman"></a>接触yeoman</h2><p>最近在慕课网上观看<a href="http://www.imooc.com/u/102030/courses?sort=publish" target="_blank" rel="noopener">@Materliu</a>老师的课程<a href="http://www.imooc.com/learn/507" target="_blank" rel="noopener">React实战–打造画廊应用</a>，<br>接触到了新的东西–<code>yeoman</code>。前端工程师可以通过<code>yeoman</code>快速的搭建好一个项目结构。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>当然，现在前端大部分工具都在node下运行，yeoman也一样，现在还没有搭建nodejs环境的前端工程师已经out啦。<br>所以：前提条件，已经安装了node，没有安装的，直接google安装就好。<br>下面是正式的搭建</p>
+<a id="more"></a>
+<h3 id="安装yeoman"><a href="#安装yeoman" class="headerlink" title="安装yeoman"></a>安装yeoman</h3><p>我们可以直接登录<a href="http://yeoman.io/" target="_blank" rel="noopener">yeoman的官网</a>查看<a href="http://yeoman.io/learning/" target="_blank" rel="noopener">Get Started</a>教程。</p>
+<ol>
+<li>首先是安装yeoman工具<pre><code class="bash">npm install -g yo
+</code></pre>
+</li>
+<li>然后我们需要安装相应的生成器（generator(s)）。</li>
+</ol>
+<p>生成器的npm报名普遍是<code>generator-XYZ</code>格式。<br>我们可以到<a href="http://yeoman.io/generators/" target="_blank" rel="noopener">yeoman的生成器页面</a>查看需要的生成器。<br>比如我现在需要的是生成一个react项目，我是搜索并点击进去，会有相应的安装教程。<br><img src="http://i4.buimg.com/78db63dcbf230428.png" alt=""><br>现在我们安装一个生成器</p>
+<pre><code># 无redux版
+npm install -g generator-react-webpack
+</code></pre><p>或者</p>
+<pre><code># 有redux版
+npm install -g generator-react-webpack-redux
+</code></pre><h3 id="使用yeoman"><a href="#使用yeoman" class="headerlink" title="使用yeoman"></a>使用yeoman</h3><p>现在我们要使用yeoman搭建一个react项目了。我安装的是无redux版的react-webpack生成器，所以我们如下操作</p>
+<pre><code># 创建项目文件夹
+mkdir reactExample &amp;&amp; cd reactExample
+# 生成文件结构
+yo react-webpack
+</code></pre><p><code>yo react-webpack</code>期间也会询问一下配置，比如是否使用预编译的css之类的。选择完成后，一个完整的react项目出现了。<br><img src="http://i2.buimg.com/fd010043b4267034.png" alt=""><br>里面有项目文件，还有测试文件。</p>
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><pre><code>npm start
+</code></pre><p>运行了新建的项目后，可以看到如下画面。他们给自己打了广告<br><img src="http://i2.buimg.com/4a0e30c883121375.png" alt=""></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>yeoman还有很多的功能运用，包括测试、生成dist文件、持续插入新模块，使用，大家看看官方文档吧。<br>这里仅仅简单介绍了利用yeoman生成一个项目的事例。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> react js </tag>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[js原生函数之call和apply，bind]]></title>
+      <url>/2016/05/16/js%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0%E4%B9%8Bcall%E5%92%8Capply/</url>
+      <content type="html"><![CDATA[<h2 id="call-和-apply"><a href="#call-和-apply" class="headerlink" title="call 和 apply"></a>call 和 apply</h2><p><code>call</code> 和 <code>apply</code> 和 <code>bind</code> 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。</p>
+<p>js原生函数中的call和apply都不陌生，这两个方法的作用相似，接受两类参数。</p>
+<blockquote>
+<p>第一类是context（上下文），传入的参数作为执行函数的上下文，也是要传入的第一个参数。<br>第二类的argument（参数），传入的参数作为函数执行的参数,call是逐个参数传入，apply是将参数以数组方式传入。</p>
+</blockquote>
+<p>应用如下</p>
+<pre><code class="js">var callObj = {c:1};
+var applyObj = {c:2};
+function fun(a,b){
+    return a+b+this.c;
+}
+
+fun(2,3);//NaN
+fun.call(callObj,2,3);//6;
+fun.apply(applyObj,[2,3]);//7
+</code></pre>
+<a id="more"></a>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>日常的应用这里不提了，收集了一些我平时看到的，比较意想不到的应用。</p>
+<h3 id="将NodeList转数组"><a href="#将NodeList转数组" class="headerlink" title="将NodeList转数组"></a>将NodeList转数组</h3><p><code>document.querySelectorAll()</code>是大家常用的DOM元素选择器，他会返回查询到的DOM元素的数组，也就是NodeList;<br>我曾经试过使用forEach去循环监听里面的各个dom，结果失败了，因为NodeList并不具有数组的函数功能。<br>如果我们要对每个Node遍历处理，就不能用数组的方式去处理了，当然，通过<code>for</code>循环还是可以的。<br>另一方面，出于其他理由，我们要将NodeList转成数组呢。<br>于是可以用到call</p>
+<pre><code>var pList = document.querySelectorAll(&#39;p&#39;);//NodeList
+var pArray = [].slice.call(pList);//Array
+</code></pre><p>顺便一提，ES6标准中有一个<code>Array.from()</code> 方法可以将一个类数组对象或可迭代对象转换成真正的数组。</p>
+<pre><code>var pList = document.querySelectorAll(&#39;p&#39;);//NodeList
+var pArray = Array.from(pList);//Array
+</code></pre><h3 id="Currying-柯里化"><a href="#Currying-柯里化" class="headerlink" title="Currying(柯里化)"></a>Currying(柯里化)</h3><p>Currying(柯里化)(部分函数应用)是应用 call 和 apply 的一个函数式编程。Currying 允许我们创建返回已知条件的函数</p>
+<pre><code>function curry(fun){
+    if(arguments.length &lt; 1){
+        return this;
+    }
+    //获取后面的参数
+    var args = Array.prototype.slice.call(arguments, 1);
+    console.log(args);
+    //将后面的参数作为fun的参数
+    return function () {
+        //这里的arguments和上面的arguments不是同一个变量，这是传入本function的参数
+        return fun.apply(this, args.concat(Array.prototype.slice.call(arguments,0)));
+    }
+}
+
+//定义一个函数是 1 + a + b
+function addOneToNumber(a , b) {
+    return 1 + a + b;
+}
+
+// 将addOneToNumber柯里化
+var addOneCurried = curry(addOneToNumber, 10);// 柯里化同时传进一个参数，将a常数化/已知化
+console.log(addOneCurried(10, 2)); // 1 + 10 + 10 = 21；
+</code></pre><p>其实也是通过<code>Array.prototype.slice</code>将类数组转换成数组的一个应用，只是赋予了更加复杂的应用逻辑;<br>这里同时也是闭包的一个应用过程；</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>说了call和apply，也是要介绍一下bind的。<br>bind方法用于明确指定调用 this 方法。在作用域方面，类似于 call 和 apply 。当你将一个对象绑定到一个函数的 this对象时，你就会用到 bind。</p>
+<pre><code>var tom = {
+    hobby: &#39;reading&#39;,
+    advantage: &#39;programming&#39;
+};
+
+function getHobby(){
+    return this.hobby;
+}
+
+console.log(getHobby());//undefined
+console.log(getHobby.bind(tom)());//reading
+</code></pre><p>bind 和 call的使用方式很类似，同样接受两部分参数，上下文this和作用函数的后续参数，下面是我猜想的bind的模拟实现方法。</p>
+<pre><code>Function.prototype.bind = function(scope) {
+    var _that = this;
+    var args = Array.prototype.slice.call(arguments,1);
+    return function() {
+        return _that.apply(scope, args.concat(Array.prototype.slice.call(arguments)));
+    }
+};
+</code></pre><p>bind和call的主要区别在于，bind返回的是一个新函数，而call这是直接执行了该函数。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本来想写一篇call/apply整理一次自己的思路的，原本以为可以写很多，最后发现实在想不起什么了，自己果然还是学得太少。<br>后来想到了bind，作为和call的对比也就加了进来，之前没想到bind除了thisArg外还可以继续接受其他参数，因为之前看别人写的bind方法模拟不是这样的，<br>原来我看到的别人写的bind实现原理代码是这样的：</p>
+<pre><code>Function.prototype.bind = function(scope) {
+  var _that = this;
+
+  return function() {
+    return _that.apply(scope, arguments);
+  }
+}
+</code></pre><p>后来自己实验了一遍，发现不对，才自己做了修改</p>
+<pre><code>Function.prototype.bind = function(scope) {
+    var _that = this;
+    var args = Array.prototype.slice.call(arguments,1);
+    return function() {
+        return _that.apply(scope, args.concat(Array.prototype.slice.call(arguments)));
+    }
+};
+</code></pre><p>虽然不一定是正确的，但至少是我的理解范围内的原理解释。<br>想不到最终收获的是<code>bind</code>。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[利用canvas实现毛笔字帖（三）]]></title>
+      <url>/2016/04/24/%E6%AF%9B%E7%AC%94%E5%AD%97%E5%B8%963/</url>
+      <content type="html"><![CDATA[<h3 id="上接javascript"><a href="#上接javascript" class="headerlink" title="上接javascript"></a>上接javascript</h3><p>上接 <span style="font-size:20px"><a href="/2016/04/23/毛笔字帖2/">利用canvas实现毛笔字帖（二）</a></span><br><a id="more"></a></p>
+<h4 id="二、-根据功能需要完善代码"><a href="#二、-根据功能需要完善代码" class="headerlink" title="二、 根据功能需要完善代码"></a>二、 根据功能需要完善代码</h4><p><em style="color:red">3. 第3部分<code>controller.js</code></em><br>这一部分的功能就是要修改毛笔的颜色，还有清空画布。<br>功能简单，我们一起向下讲。<br>一开始依然是init<br>controller.js</p>
+<pre><code class="js">var controller = {
+    canvas: null,//html中的canvas对象，主要标签
+    context: null, //canvas对象获取的context，用于绘图
+
+    init: function (canvas) {
+     this.canvas = canvas;//接收外界canvas，赋值给自己的属性``canvas``，在下面的其他方法中需要用到
+     this.context = canvas.getContext(&#39;2d&#39;);//通过canvas获取context，赋值给自己的属性``context``，在下面的其他方法中需要用到
+
+     //事件监听
+     this.bindEvent();
+    },
+
+    bindEvent: function () {
+        var self = this;
+        //事件委托监听
+        document.getElementById(&#39;controller&#39;).addEventListener(&#39;click&#39;, function (event) {
+            var target = event.target;
+            if(target.nodeName.toLowerCase() == &#39;div&#39;){//颜色控制按钮
+                self.setColor(target);
+            }
+            else if(target.id == &#39;reset&#39;){//画布清除按钮
+                self.clear();
+            }
+        });
+    },
+
+    setColor: function (target) {
+        //设置笔画颜色
+    },
+
+    clear: function () {
+        //清除画布
+    }
+};
+</code></pre>
+<p>上面的代码很简单，就是监听不同的行为，执行不同的方法。当按了颜色控制的div时，执行<code>setColor()</code>方法；<br>当按了清除画布的button时，执行<code>clear()</code>方法。</p>
+<p>监听搞定之后呢，我们来具体完善要执行的方法</p>
+<pre><code>    setColor: function (target) {
+        //移除其他标签的class
+        document.querySelector(&#39;.on&#39;).className = &#39;&#39;;
+        //设置画笔颜色为被点击的元素的id（id名称本来就是对应的颜色的名称）
+        this.context.strokeStyle = target.id;
+        //设置被点击的标签的class为on
+        target.className += &#39; on&#39;;
+    },
+
+    clear: function () {
+        //清除画布，画布会一片空白
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        //重新绘制出米字格背景
+        paper.drawPaper();
+    }
+</code></pre><p>这样，我们完成了controller部分的编写<br>在html中调用controller</p>
+<pre><code>&lt;script src=&quot;js/paper.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/write.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/controller.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        var canvas = document.getElementById(&#39;canvas&#39;);
+        paper.init(canvas);
+        write.init(canvas);
+        controller.init(canvas);
+    };
+&lt;/script&gt;
+</code></pre><p>效果如图：<br><img src="http://i3.piimg.com/48582901b89010ee.png" width="50%"></p>
+<h3 id="依赖关系和模块加载优化（require-js）"><a href="#依赖关系和模块加载优化（require-js）" class="headerlink" title="依赖关系和模块加载优化（require.js）"></a>依赖关系和模块加载优化（require.js）</h3><p>其实完成上面的代码之后呢，整个系统的功能已经完成了，下面要做的只是一些使用方式的优化，我们用require.js来修改一下我们的代码。</p>
+<blockquote>
+<p>首先第一点，html里面要引用带的html太多，不便管理；<br>其次，代码木块见有依赖关系，比如controller就以来paper，js模块间的加载顺序就要特别注意。<br>而用require.js就不必可以在意这些事情。</p>
+</blockquote>
+<h4 id="改写模块"><a href="#改写模块" class="headerlink" title="改写模块"></a>改写模块</h4><p>下面改造一下之前写的模块。<br>paper.js</p>
+<pre><code>define(function () {
+    var paper = {/*...*/};
+    return paper;
+});
+</code></pre><p>write.js</p>
+<pre><code>define(function () {
+    var write = {/*...*/};
+    return write;
+});
+</code></pre><p>controller.js</p>
+<pre><code>define([&#39;paper&#39;], function (paper) {
+    var controller = {/*...*/};
+    return controller;
+});
+</code></pre><p>如下，已经将模块改成适用require.js的形式了。</p>
+<h4 id="编写require入口文件"><a href="#编写require入口文件" class="headerlink" title="编写require入口文件"></a>编写require入口文件</h4><p>index.js</p>
+<pre><code>require([&#39;paper&#39;,&#39;controller&#39;,&#39;write&#39;], function (paper, controller, write) {
+    //初始化获取canvas和context
+    var canvas = document.getElementById(&#39;canvas&#39;);
+
+    paper.init(canvas);
+    controller.init(canvas);
+    write.init(canvas);
+});
+</code></pre><h4 id="在-html-中调用-require-js"><a href="#在-html-中调用-require-js" class="headerlink" title="在 html 中调用 require.js"></a>在 html 中调用 require.js</h4><p>首先，我们在网上下载一个 <a href="http://requirejs.org/docs/release/2.2.0/minified/require.js" target="_blank" rel="noopener">require.js</a>，放在项目的js目录中。<br>然后，在html做如下引用。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;毛笔字&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width;height=device-height;initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
+    &lt;link href=&quot;css/write.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;canvas id=&quot;canvas&quot;&gt;
+    您的浏览器版本不支持canvas，请更新或者下载chrome
+&lt;/canvas&gt;
+&lt;div id=&quot;controller&quot;&gt;
+    &lt;div id=&quot;black&quot; class=&quot;on&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;red&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;green&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;yellow&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;purple&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;orange&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;blue&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;indigo&quot;&gt;&lt;/div&gt;
+    &lt;button id=&quot;reset&quot;&gt;清除&lt;/button&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/index&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>一句<code>&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/index&quot;&gt;&lt;/script&gt;</code>就能搞定，实在太方便啦。</p>
+<p>完整代码我就放在我的github项目中，大家可以去下载参考<br><a href="https://github.com/zjy01/canvas-demo/tree/master/write" target="_blank" rel="noopener">代码/canvas-demo/write</a><br>这里还有在线的效果演示<br><a href="http://carvenzhang.cn/canvas-demo/write/" target="_blank" rel="noopener">在线演示</a></p>
+<p>有了这个经验，做一个你画我猜的游戏出来已经不是问题啦。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>canvas的api还在持续更新，会更加强大，大家一起学习</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> js </tag>
+            
+            <tag> canvas </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[利用canvas实现毛笔字帖（二）]]></title>
+      <url>/2016/04/23/%E6%AF%9B%E7%AC%94%E5%AD%97%E5%B8%962/</url>
+      <content type="html"><![CDATA[<h3 id="上接javascript"><a href="#上接javascript" class="headerlink" title="上接javascript"></a>上接javascript</h3><p>上接 <span style="font-size:20px"><a href="/2016/04/23/毛笔字帖1/">利用canvas实现毛笔字帖（一）</a></span></p>
+<h4 id="二、-根据功能需要完善代码"><a href="#二、-根据功能需要完善代码" class="headerlink" title="二、 根据功能需要完善代码"></a>二、 根据功能需要完善代码</h4><p><em style="color:red">2. 第2部分<code>write.js</code></em><br>第二部分决定先介绍write部分，因为controller部分必须要结合write部分才能看到效果。<br>针对<code>write.js</code>部分，前面有介绍，是用来实现通过鼠标（手指）写字的核心部分。<br>分析一下要做的事情。</p>
+<blockquote>
+<ul>
+<li>当鼠标按下(mousedown)时，我们认为是毛笔落在纸上了。</li>
+<li>当鼠标移动(mousemove)时，我们认为是毛笔在移动。</li>
+<li>当鼠标放开(mouseup)时，我们认为是毛笔收起了。</li>
+<li>当鼠标移出canvas范围时，我们认为毛笔移出字帖的范围了，也认为是收笔了。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h5 id="1-事件监听设置"><a href="#1-事件监听设置" class="headerlink" title="1. 事件监听设置"></a>1. 事件监听设置</h5><p>针对以上的想法，我们可以写下以下的代码了。<br>主要是一系列的事件监听，兼顾到pc端的 <code>mouse事件</code> 和移动端的 <code>touch事件</code>。<br>其中，我们在代码里设置了isWriting属性用作状态标识，只有在 <code>isWriting==true</code> 的情况下，<code>writing()</code>方法才会实行</p>
+<pre><code class="js">var write = {
+        canvas: null, //html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        isWriting: false,//状态属性，标识是否正在下笔写字
+
+        init: function (canvas) {
+            this.canvas = canvas;//接收外界canvas，赋值给自己的属性``canvas``，在下面的其他方法中需要用到
+            this.context = canvas.getContext(&#39;2d&#39;);//通过canvas获取context，赋值给自己的属性``context``，在下面的其他方法中需要用到
+
+            //事件监听
+            this.bindEvent();
+        },
+
+        bindEvent: function () {
+            var self = this;
+            //pc端
+            //下笔
+            self.canvas.onmousedown = function (e) {
+                e.preventDefault();
+                self.startWrite(self.getCo(e.clientX, e.clientY))
+            };
+
+            //移动，在鼠标移动期间不断执行。
+            self.canvas.onmousemove = function (e) {
+                e.preventDefault();
+                if(self.isWriting){
+                    self.writing(self.getCo(e.clientX, e.clientY));
+                }
+            };
+
+            //收笔
+            self.canvas.onmouseup = function (e) {
+                e.preventDefault();
+                if(self.isWriting) {
+                    self.endWrite();
+                }
+            };
+
+            //出界
+            self.canvas.onmouseout = function (e) {
+                e.preventDefault();
+                if(self.isWriting) {
+                    self.endWrite();
+                }
+            };
+
+            //手机端
+            //下笔
+            self.canvas.addEventListener(&#39;touchstart&#39;, function (e) {
+                e.preventDefault();
+                var touch = e.touches[0];//第一个触摸手指
+                self.startWrite(self.getCo(touch.clientX, touch.clientY))
+            });
+
+            //移动
+            self.canvas.addEventListener(&#39;touchmove&#39;, function (e) {
+                e.preventDefault();
+                if(self.isWriting){
+                    var touch = e.touches[0];
+                    self.writing(self.getCo(touch.clientX, touch.clientY));
+                }
+            });
+
+            //收笔
+            self.canvas.addEventListener(&#39;touchend&#39;, function (e) {
+                e.preventDefault();
+                self.endWrite();
+            })
+        },
+        //描绘区
+        startWrite: function (co) {
+            this.isWriting = true;
+            //···
+        },
+        writing: function (co) {
+            //···
+        },
+        endWrite: function(){
+            this.isWriting = false;
+        },
+    };
+</code></pre>
+<p>同样的，在外界通过调用<code>write.js</code>的<code>init()</code>方法完成其初始化，并让其运行起来，如下。</p>
+<pre><code>var canvas = document.getElementById(&#39;cnavas&#39;);
+write.init(canvas);
+</code></pre><h5 id="2-完善绘制操作的方法"><a href="#2-完善绘制操作的方法" class="headerlink" title="2. 完善绘制操作的方法"></a>2. 完善绘制操作的方法</h5><p>下面我们来完善绘制操作的方法。<code>startWrite</code> <code>writing</code> <code>endWrite</code> 分别表示开始下笔，正在写字，结束收笔。<br>其实，实际上要在canvas是实现写字效果，<br>就是针对鼠标移动，不断的根据鼠标上一次移动的位置和下一次移动的位置，调用canvas的<code>stroke()</code> api 画密密麻麻衔接的线段，看起来就像沿着鼠标描线一样。<br>为此，我们需要设置一些辅助的属性和方法。如下。</p>
+<pre><code>var write = {
+    //···
+    lastX: 0,//画笔上次停留坐标x轴值
+    lastY: 0,//画笔上次停留坐标y轴值
+    //···
+    //辅助函数区
+    //根据传进来的鼠标坐标，return 当前点相对于canvas（米字格字帖）的左上角的左边位置。
+    getCo: function (clientX, clientY) {
+        var canvasLT = this.canvas.getBoundingClientRect();
+        return {x: clientX - canvasLT.left, y: clientY - canvasLT.top};
+    }
+}
+</code></pre><p>如此，我们可以开始写下动作操作了</p>
+<pre><code>//描绘区
+    startWrite: function (co) {
+        this.isWriting = true;
+        this.lastX = co.x;
+        this.lastY = co.y;
+    },
+    writing: function (co) {
+            this.context.beginPath();
+            this.context.moveTo(this.lastX, this.lastY);
+            this.context.lineTo(co.x, co.y);
+            this.context.stroke();
+
+            //维护更新鼠标的上一次位置为当前位置，供下一次writing使用
+            this.lastX = co.x;
+            this.lastY = co.y;
+        }
+    },
+    endWrite: function(){
+        this.isWriting = false;
+    },
+</code></pre><p>在我们的html文件中做以下调用，一个简单的写字笔效果已经出来了，太神奇了</p>
+<pre><code>&lt;script src=&quot;js/paper.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/write.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.onload = function () {
+        var canvas = document.getElementById(&#39;canvas&#39;);
+        paper.init(canvas);
+        write.init(canvas);
+    };
+&lt;/script&gt;
+</code></pre><p><img src="http://i3.piimg.com/f188b21a33e7ef7a.png" width="50%"></p>
+<p>目前效果已经有了，但是，很明显，笔画线条太细，不是我们想要的毛笔字，我们先尝试给一个比较粗的笔画试一试，<br>设置<code>lineWidth</code>为canvas宽度的1/20</p>
+<pre><code>this.context.lineWidth = canvas.width/20;
+</code></pre><p>效果如图：<br><img src="http://i3.piimg.com/62a449d7dd72d3de.png" width="50%"><br>很多毛刺的艺术感，这是因为我们画了很多不同方向的直线，而无法衔接造成的，所以，我们要对线段做平滑处理</p>
+<pre><code>//描边处理，使笔画圆滑
+    this.context.lineCap = &#39;round&#39;;
+    this.context.lineJoin = &#39;round&#39;;
+</code></pre><p>效果如图：<br><img src="http://i3.piimg.com/3de0829e493bd5ff.png" width="50%"><br>毛笔字感觉出来了！！！</p>
+<h5 id="3-根据移笔速度处理线条粗细"><a href="#3-根据移笔速度处理线条粗细" class="headerlink" title="3. 根据移笔速度处理线条粗细"></a>3. 根据移笔速度处理线条粗细</h5><p>毛笔字感觉出来了，但是，我们仔细观察会发现，字体的线条大小是一致的，我们要精益求精，对线条粗细做一些处理。<br>我们知道，毛笔字的线条粗细跟下笔的力度，速度等有关系，在浏览器中，我们目前没办法获知下笔力度，但是可以计算出速度 <code>v=s/t</code>。<br>所以，我们用速度来计算线条粗细。</p>
+<p>根据公式 <code>v=s/t</code>，我们需要知道 <code>s</code>和<code>t</code>才能拿到<code>v</code>，s可以根据坐标计算，t则要用到<code>Date()</code>。<br>我们需要用到新的辅助属性和方法，如下</p>
+<pre><code>var write = {
+//···
+    lineWidthMax: 0, //画笔最大粗细
+    lineWidthMin: 1, //画笔最小粗细
+    lastTime: 0, //上次笔时间
+
+    init: function(canvas){
+        //this.context.lineWidth = canvas.width/20;
+        this.lineWidthMax = canvas.width/20;
+    },
+
+//···
+//描绘区
+//修改startWrite，主要增加了时间
+    startWrite: function (co) {
+        this.isWriting = true;
+        this.lastX = co.x;
+        this.lastY = co.y;
+        //设置当前时间
+        this.lastTime = new Date().getTime();
+    },
+//修改writing，主要增加了时间计算和笔画粗细设置
+    writing: function (co) {
+        var curTime = new Date().getTime();//获取当前时间戳（毫秒级）
+        if(curTime != this.lastTime){
+            this.context.beginPath();
+            //设置笔画宽度，根据getLineWidth计算出来
+            this.context.lineWidth = this.getLineWidth(this.getS(this.lastX, this.lastY, co.x, co.y), curTime - this.lastTime);
+            this.context.moveTo(this.lastX, this.lastY);
+            this.context.lineTo(co.x, co.y);
+            this.context.stroke();
+
+            //维护更新鼠标的上一次位置为当前位置，供下一次writing使用
+            this.lastX = co.x;
+            this.lastY = co.y;
+            //维护更新鼠标的上一次写笔时间为当前时间，供下一次writing使用
+            this.lastTime = curTime;
+        }
+    },
+ //辅助函数区
+ //新增下面函数
+    //根据坐标计算距离
+    getS: function (sx, sy, ex, ey) {
+        return Math.sqrt((ex - sx)*(ex - sx) + (ey - sy)*(ey - sy))
+    },
+    //根据 距离s 和 时间t 计算笔画粗细
+    getLineWidth: function (s, t) {
+        var v = s/t;
+        var resultLineWidth = 0;
+        if(v &lt; 0.1){//速度到达某个最小值时，笔画很大，这里的8和0.1是我自己随便调的数，有兴趣的朋友可以自己找到更合理的方式和数值
+            resultLineWidth = this.lineWidthMax;
+        }
+        else if(v &gt;8){//速度到达某个最大值时，笔画很小
+            resultLineWidth = this.lineWidthMin;
+        }
+        else{ // 根据速度赋予线条宽度值，速度比例和笔画宽度比例的计算
+            resultLineWidth = this.lineWidthMax - (v-0.1)/(8-0.1)*(this.lineWidthMax - this.lineWidthMin)
+        }
+
+        return resultLineWidth;
+    }
+};
+</code></pre><p>这时，我们再看看效果图<br>效果如图：<br><img src="http://i4.piimg.com/894faf37c08454ea.png" width="50%"></p>
+<p>oh, 不，笔画粗细虽然转换了，但是有时会转换得非常突然，这是因为前一刻和下一刻的速度相差很大（笔记计算机响应mousemove的时间我们没办法控制），<br>我们必须继续优化。<br>我们的想法是，下一次绘制的笔画粗细必须收到上一次笔画粗细的控制，我做了下面的修改。</p>
+<pre><code class="js">var write = {
+    //···
+    lastLineWidth: 0,
+    init: function (canvas) {
+        //···
+        this.lastLineWidth = this.lineWidthMax /2;
+        //···
+    }
+    //···
+    //描绘区
+    //修改startWrite，主要增加线条宽度
+    startWrite: function (co) {
+        this.isWriting = true;
+        this.lastX = co.x;
+        this.lastY = co.y;
+        //设置当前时间
+        this.lastTime = new Date().getTime();
+        //设置落笔的最近线条宽度 lastWidth
+        this.lastLineWidth = this.lineWidthMax /2;
+    },
+    //辅助函数区
+    //修改getLineWidth，优化线条宽度，受lastLineWidth限制
+    getLineWidth: function (s, t) {
+        var v = s/t;
+        var resultLineWidth = 0;
+        if(v &lt; 0.1){
+            resultLineWidth = this.lineWidthMax;
+        }
+        else if(v &gt;8){
+            resultLineWidth = this.lineWidthMin;
+        }
+        else{ // 根据速度赋予线条宽度值
+            resultLineWidth = this.lineWidthMax - (v-0.1)/(8-0.1)*(this.lineWidthMax - this.lineWidthMin)
+        }
+
+        //防止变化突然，使线条平滑，借鉴上次线条粗细取值
+        resultLineWidth = this.lastLineWidth * 3/5 + resultLineWidth * 2/5;
+        this.lastLineWidth = resultLineWidth;
+
+        return resultLineWidth;
+    }
+};
+</code></pre>
+<p>最终效果完成。大家可以试一试了。我对粗细的把控不是很好，大家可以发挥自己的才智想想怎么做更加真实的模范。<br><img src="http://i2.piimg.com/3aefad286a3e104a.png" width="50%"><br>完整的代码<br>write.js</p>
+<pre><code>var write = {
+        canvas: null, //html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        isWriting: false,//是否正在下笔写字
+        lineWidthMax: 0, //画笔最大粗细
+        lineWidthMin: 1, //画笔最小粗细
+
+        lastX: 0,//画笔上次停留位置
+        lastY: 0,
+        lastTime: 0, //上次笔时间
+        lastLineWidth: 0,
+
+        init: function (canvas) {
+
+            this.canvas = canvas;
+            this.context = this.canvas.getContext(&#39;2d&#39;);
+
+            this.lineWidthMax = canvas.width/20;
+            this.lastLineWidth = this.lineWidthMax /2;
+            //描边处理，使笔画圆滑
+            this.context.lineCap = &#39;round&#39;;
+            this.context.lineJoin = &#39;round&#39;;
+
+            //事件绑定
+            this.bindEvent();
+        },
+
+        bindEvent: function () {
+            var self = this;
+            //pc端
+            //下笔
+            self.canvas.onmousedown = function (e) {
+                e.preventDefault();
+                self.startWrite(self.getCo(e.clientX, e.clientY))
+            };
+
+            //移动
+            self.canvas.onmousemove = function (e) {
+                e.preventDefault();
+                if(self.isWriting){
+                    self.writing(self.getCo(e.clientX, e.clientY));
+                }
+            };
+
+            //收笔
+            self.canvas.onmouseup = function (e) {
+                e.preventDefault();
+                self.endWrite();
+            };
+
+            //出界
+            self.canvas.onmouseout = function (e) {
+                e.preventDefault();
+                if(self.isWriting) {
+                    self.endWrite();
+                }
+            };
+
+            //下笔
+            self.canvas.addEventListener(&#39;touchstart&#39;, function (e) {
+                e.preventDefault();
+                var touch = e.touches[0];
+                self.startWrite(self.getCo(touch.clientX, touch.clientY))
+            });
+
+            //移动
+            self.canvas.addEventListener(&#39;touchmove&#39;, function (e) {
+                e.preventDefault();
+                if(self.isWriting){
+                    var touch = e.touches[0];
+                    self.writing(self.getCo(touch.clientX, touch.clientY));
+                }
+            });
+
+            //收笔
+            self.canvas.addEventListener(&#39;touchend&#39;, function (e) {
+                e.preventDefault();
+                self.endWrite();
+            })
+        },
+
+        //描绘区
+        startWrite: function (co) {
+            this.isWriting = true;
+            this.lastX = co.x;
+            this.lastY = co.y;
+            this.lastTime = new Date().getTime();
+            this.lastLineWidth = this.lineWidthMax /2;
+        },
+        writing: function (co) {
+            var curTime = new Date().getTime();
+            if(curTime != this.lastTime){
+                this.context.beginPath();
+                this.context.lineWidth = this.getLineWidth(this.getS(this.lastX, this.lastY, co.x, co.y), curTime - this.lastTime);
+                this.context.moveTo(this.lastX, this.lastY);
+                this.context.lineTo(co.x, co.y);
+                this.context.stroke();
+
+                this.lastX = co.x;
+                this.lastY = co.y;
+                this.lastTime = curTime;
+            }
+        },
+
+        endWrite: function(){
+            this.isWriting = false;
+        },
+
+        //辅助函数区
+        getCo: function (clientX, clientY) {
+            var canvasLT = this.canvas.getBoundingClientRect();
+            return {x: clientX - canvasLT.left, y: clientY - canvasLT.top};
+        },
+        getS: function (sx, sy, ex, ey) {
+            return Math.sqrt((ex - sx)*(ex - sx) + (ey - sy)*(ey - sy))
+        },
+        getLineWidth: function (s, t) {
+            var v = s/t;
+            var resultLineWidth = 0;
+            if(v &lt; 0.1){
+                resultLineWidth = this.lineWidthMax;
+            }
+            else if(v &gt;8){
+                resultLineWidth = this.lineWidthMin;
+            }
+            else{ // 根据速度赋予线条宽度值
+                resultLineWidth = this.lineWidthMax - (v-0.1)/(8-0.1)*(this.lineWidthMax - this.lineWidthMin)
+            }
+
+            //防止变化突然，使线条平滑，借鉴上次线条粗细取值
+            resultLineWidth = this.lastLineWidth * 3/5 + resultLineWidth * 2/5;
+
+            this.lastLineWidth = resultLineWidth;
+            return resultLineWidth;
+        }
+    };
+</code></pre><hr>
+<p>这是绘制的第二部分，我们在接下来的一篇博客里再讲第三部分，请期待<br><span style="font-size:20px"><a href="/2016/04/24/毛笔字帖3/">利用canvas实现毛笔字帖（三）</a><span>，<br>跟大家一起将这一字帖的控制部件的功能完善起来，同时，将模块改造成 <code>requirejs</code>的形式</span></span></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[利用canvas实现毛笔字帖（一）]]></title>
+      <url>/2016/04/23/%E6%AF%9B%E7%AC%94%E5%AD%97%E5%B8%961/</url>
+      <content type="html"><![CDATA[<p>最近在慕课网上找到了很好的canvas教程，<br>来自 <a href="http://www.imooc.com/u/108955/courses?sort=publish" target="_blank" rel="noopener">@liuyubobobo</a> 的 <a href="http://www.imooc.com/learn/284" target="_blank" rel="noopener">学写一个字</a> canvas绘图教程<br>在 <a href="http://www.imooc.com/u/108955/courses?sort=publish" target="_blank" rel="noopener">@liuyubobobo</a> 老师的系列canvas教程中，我学到不少知识。<br>今天，运用在视频中的所学，结合自己的代码风格，我自己尝试也写一个字帖出来，在这里分享一下思路和过程<br>具体代码其实已经push在github上，感兴趣的可以clone下来参考一下。<br><a href="https://github.com/zjy01/canvas-demo/tree/master/write" target="_blank" rel="noopener">代码/canvas-demo/write</a><br>这里还有在线的效果演示<br><a href="http://carvenzhang.cn/canvas-demo/write/" target="_blank" rel="noopener">在线演示</a></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>如图：<br><img src="http://i2.piimg.com/3aefad286a3e104a.png" width="80%"><br>在canvas在实现这样一个效果，有一个米字格，可以用鼠标（pc）甚至手指（手机）在上面写字，字要有点像毛笔字。<br>下面有控制部件，可以控制笔的颜色，还是可以清空米字格的墨迹。</p>
+<p>下面就开始着手去写了。</p>
+<a id="more"></a>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>css和html部分不是很多，也不是我要讲的重点，简单贴出来</p>
+<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;毛笔字&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width;height=device-height;initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
+    &lt;link href=&quot;css/write.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;canvas id=&quot;canvas&quot;&gt;
+    您的浏览器版本不支持canvas，请更新或者下载chrome
+&lt;/canvas&gt;
+&lt;div id=&quot;controller&quot;&gt;
+    &lt;div id=&quot;black&quot; class=&quot;on&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;red&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;green&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;yellow&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;purple&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;orange&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;blue&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;indigo&quot;&gt;&lt;/div&gt;
+    &lt;button id=&quot;reset&quot;&gt;清除&lt;/button&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><pre><code class="css">#canvas{
+    display: block;  margin: 20px auto;  border: #ff1722 5px solid;
+}
+/*控制器*/
+#controller{
+    text-align: center;
+}
+#controller&gt;div{
+    display: inline-block;  width: 30px;  height: 30px;  border: gray 2px solid;
+}
+#black{
+    background: black;
+}
+#red{
+    background: red;
+}
+#green{
+    background: green;
+}
+#yellow{
+    background: yellow;
+}
+#purple{
+    background: purple;
+}
+#orange{
+    background: orange;
+}
+#blue{
+    background: blue;
+}
+#indigo{
+    background: indigo;
+}
+#controller&gt;div.on{
+    border-color: red;
+}
+#reset{
+    display: inline-block;  vertical-align: top;  width: 50px;  height: 34px;
+}
+</code></pre>
+<h3 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h3><p>js部分就很关键了，涉及到很多api，交互流程，编程思路，下面慢慢来讲：</p>
+<hr>
+<h4 id="一、-按功能设计代码模块"><a href="#一、-按功能设计代码模块" class="headerlink" title="一、 按功能设计代码模块"></a>一、 按功能设计代码模块</h4><p>首先，按照功能分类，我们将代码分成3个模块</p>
+<p><em style="color:red">1. 第1部分<code>paper.js</code></em><br>负责绘制出米字格的字帖背景<br>代码设计属性如下<br>paper.js</p>
+<pre><code class="js">var paper = {
+        canvas: null,//html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        init: function (canvas) {
+        //初始化方法
+        },
+        drawPaper: function(){
+        //绘制米字格图纸的接口
+        },
+
+        drawDotted: function(sx, sy, ex, ey){
+        //绘制虚线的接口
+        }
+    };
+</code></pre>
+<p><em style="color:red">2. 第2部分<code>controller.js</code></em><br>负责控制画笔的颜色和清理画布，即控制面板的功能实现。<br>代码设计属性如下<br>controller.js</p>
+<pre><code class="js">var controller = {
+        canvas: null,//html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        init: function (canvas) {
+        //初始化方法
+        },
+        bindEvent: function () {
+        //事件监听的设置区域
+        },
+
+        setColor: function (target) {
+        //设置画笔颜色的接口
+        },
+
+        clear: function () {
+        //清理画布墨迹的接口
+        }
+    };
+</code></pre>
+<p><em style="color:red">3. 第3部分<code>write.js</code></em><br>第三部分也是最关键最复杂的部分，负责描绘出鼠标（手指）划过的笔画<br>因为要协调笔画，会用到比较多的辅助函数和辅助参数，下面会一一介绍<br>write.js</p>
+<pre><code class="js">var write = {
+        canvas: null, //html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        isWriting: false,//是否正在下笔写字
+        lineWidthMax: 0, //画笔最大粗细
+        lineWidthMin: 1, //画笔最小粗细
+
+        lastX: 0,//画笔上次停留位置
+        lastY: 0,
+        lastTime: 0, //上次移笔时间
+        lastLineWidth: 0,//上次画下的笔宽
+        init: function (canvas) {
+        //初始化方法
+        },
+        bindEvent: function () {
+        //事件监听的设置区域
+        },
+
+        //描绘区
+        startWrite: function (co) {
+        //开始落笔
+        },
+        writing: function (co) {
+        //笔移动，正在写字
+        },
+        endWrite: function(){
+        //收笔
+        },
+
+        //辅助函数区
+        getCo: function (clientX, clientY) {
+        //返回落笔的位置
+        },
+        getS: function (sx, sy, ex, ey) {
+        //返回两点间的距离
+        },
+        getLineWidth: function (s, t) {
+        //计算笔迹的线条宽度
+        }
+    };
+</code></pre>
+<h4 id="二、-根据功能需要完善代码"><a href="#二、-根据功能需要完善代码" class="headerlink" title="二、 根据功能需要完善代码"></a>二、 根据功能需要完善代码</h4><p><em style="color:red">1. 第1部分<code>paper.js</code></em><br>针对paper模块，我们知道，是用来设置字帖纸的样式的。<br>我们要做的有两步</p>
+<ul>
+<li>一、 根据屏幕宽度设置米字格大小，兼容pc和手机</li>
+<li>二、 用虚线绘制出米字 （边框线条已经用css实现了）</li>
+</ul>
+<p>初始化方法<code>init()</code>是一个模块最开始的地方。我们从 <code>init</code>开始,边看代码边解释<br>外接通过编写如下代码调用paper，完成其初始化，并让运行</p>
+<pre><code>var canvas = document.getElementById(&#39;cnavas&#39;);
+paper.init(canvas);
+</code></pre><p>所以我们在paper.init中接受外界传来的canvas，并利用它完成初始化，运行绘制方法，编写如下</p>
+<pre><code class="js">var paper = {
+        canvas: null,//html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        init: function (canvas) {
+            this.canvas = canvas;//接收外界canvas，赋值给自己的属性``canvas``，在下面的其他方法中需要用到
+            this.context = canvas.getContext(&#39;2d&#39;);//通过canvas获取context，赋值给自己的属性``context``，在下面的其他方法中需要用到
+
+            //动态设置canvas大小，兼容手机和pc
+            this.canvas.width = Math.min(500, window.innerWidth - 20);// 米字格最大只能为500px
+            this.canvas.height = this.canvas.width;
+
+            this.drawPaper(); //绘制米字格背景，自己完善drawPaper方法
+        },
+        drawPaper: function() {},
+        drawDotted: function(sx, sy, ex, ey){}
+        //......
+    };
+</code></pre>
+<p><code>drawPaper()</code>方法就更加简单了，只需要调用<code>drawDotted()</code>接口绘制线段就可以了</p>
+<pre><code>//...
+        drawPaper: function(){
+            this.drawDotted(0, 0, this.canvas.width, this.canvas.height);//左上角到右下角的斜线
+            this.drawDotted(this.canvas.width, 0, 0, this.canvas.height);//左下角到右上角的斜线
+            this.drawDotted(this.canvas.width/2, 0, this.canvas.width/2, this.canvas.height);//中间的横线
+            this.drawDotted(0, this.canvas.height/2, this.canvas.width, this.canvas.height/2);//中间的竖线
+        },
+        drawDotted: function(sx, sy, ex, ey){}
+//...
+</code></pre><p><code>drawDotted()</code> 实现起来需要自己构思了，最新的h5标准已经有<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash" target="_blank" rel="noopener">setLineDash</a>用来绘制虚线，ie11以上都行，支持性不错，但是为了兼容，我们也尝试手写一些虚线函数出来</p>
+<pre><code>//···
+        drawDotted: function(sx, sy, ex, ey){
+            var lineInterval = 5;//虚线的间隔
+            this.context.save();//保存当前的context状态（快照，用于恢复，防止状态设置紊乱污染）
+
+            this.context.lineWidth = 3;//线宽
+            this.context.strokeStyle = &#39;#ff1722&#39;;//线条颜色
+
+            //setLineDash 虚线设置接口比较新，为了保险起见，自己编写一下
+            if(this.context.setLineDash){ // 使用h5的setLineDash方法
+                this.context.setLineDash([lineInterval, lineInterval]);//[线宽, 间隔宽]
+                this.context.moveTo(sx,sy);
+                this.context.lineTo(ex,ey);
+            }
+            else{//setLineDash不存在，自己手动处理
+                //len 虚线要绘制成多少段
+                var len = Math.ceil(Math.sqrt((ex - sx)*(ex - sx) + (ey - sy)*(ey - sy)) / lineInterval /2);
+                var lineIntervalX = (ex - sx) / len;//每一段间x轴上的间隔
+                var lineIntervalY = (ey - sy) / len;//每一段间y轴上的间隔
+                var index = 0;//计数器
+                this.context.beginPath();
+                while (index &lt; len) {//开始定制路线
+                    var targetX = sx + lineIntervalX;//计算当前段绘制的终点
+                    var targetY = sy + lineIntervalY;
+                    this.context.moveTo(sx, sy);//起点
+                    this.context.lineTo(targetX, targetY);//终点
+
+                    sx = targetX + lineIntervalX;//计算下一段绘制的起点
+                    sy = targetY + lineIntervalY;
+
+                    index ++;
+                }
+            }
+
+            this.context.stroke();//绘制线条
+            this.context.restore();//恢复保存的状态，对应 save() 方法
+        }
+//···
+</code></pre><p>如此，一个米字格图纸的绘制方法已经完成了，下面的代码汇总</p>
+<pre><code>var paper = {
+        canvas: null,//html中的canvas对象，主要标签
+        context: null, //canvas对象获取的context，用于绘图
+        init: function (canvas) {
+            this.canvas = canvas;//接收外界canvas，赋值给自己的属性``canvas``，在下面的其他方法中需要用到
+            this.context = canvas.getContext(&#39;2d&#39;);//通过canvas获取context，赋值给自己的属性``context``，在下面的其他方法中需要用到
+
+            //动态设置canvas大小，兼容手机和pc
+            this.canvas.width = Math.min(500, window.innerWidth - 20);// 米字格最大只能为500px
+            this.canvas.height = this.canvas.width;
+
+            this.drawPaper(); //绘制米字格背景，自己完善drawPaper方法
+        },
+        drawPaper: function(){
+            this.drawDotted(0, 0, this.canvas.width, this.canvas.height);//左上角到右下角的斜线
+            this.drawDotted(this.canvas.width, 0, 0, this.canvas.height);//左下角到右上角的斜线
+            this.drawDotted(this.canvas.width/2, 0, this.canvas.width/2, this.canvas.height);//中间的横线
+            this.drawDotted(0, this.canvas.height/2, this.canvas.width, this.canvas.height/2);//中间的竖线
+        },
+
+        drawDotted: function(sx, sy, ex, ey){
+            var lineInterval = 5;//虚线的间隔
+            this.context.save();//保存当前的context状态（快照，用于恢复，防止状态设置紊乱污染）
+
+            this.context.lineWidth = 3;//线宽
+            this.context.strokeStyle = &#39;#ff1722&#39;;//线条颜色
+
+            //setLineDash 虚线设置接口比较新，为了保险起见，自己编写一下
+            if(this.context.setLineDash){ // 使用h5的setLineDash方法
+                this.context.setLineDash([lineInterval, lineInterval]);//[线宽, 间隔宽]
+                this.context.moveTo(sx,sy);
+                this.context.lineTo(ex,ey);
+            }
+            else{//setLineDash不存在，自己手动处理
+                //len 虚线要绘制成多少段
+                var len = Math.ceil(Math.sqrt((ex - sx)*(ex - sx) + (ey - sy)*(ey - sy)) / lineInterval /2);
+                var lineIntervalX = (ex - sx) / len;//每一段间x轴上的间隔
+                var lineIntervalY = (ey - sy) / len;//每一段间y轴上的间隔
+                var index = 0;//计数器
+                this.context.beginPath();
+                while (index &lt; len) {//开始定制路线
+                    var targetX = sx + lineIntervalX;//计算当前段绘制的终点
+                    var targetY = sy + lineIntervalY;
+                    this.context.moveTo(sx, sy);//起点
+                    this.context.lineTo(targetX, targetY);//终点
+
+                    sx = targetX + lineIntervalX;//计算下一段绘制的起点
+                    sy = targetY + lineIntervalY;
+
+                    index ++;
+                }
+            }
+
+            this.context.stroke();//绘制线条
+            this.context.restore();//恢复保存的状态，对应 save() 方法
+        }
+    };
+</code></pre><p>如此，在html中调用 paper.init(canvas)，<br>一个米字格就会成功绘制在你的面前，是不是很简单又有趣<br><img src="http://i4.piimg.com/d16e3b4bad1ed327.png" width="50%"></p>
+<p>边幅有点长，这是绘制的第一部分，我们在接下来的一篇博客里再讲第二部分，请期待<br><span style="font-size:20px"><a href="/2016/04/23/毛笔字帖2/">利用canvas实现毛笔字帖（二）</a><span>，<br>跟大家真正实现毛笔写字的部分</span></span></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> js </tag>
+            
+            <tag> canvas </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[浅谈js的date对象对时间字符串的解析]]></title>
+      <url>/2016/04/15/%E6%B5%85%E8%B0%88js%E7%9A%84date%E5%AF%B9%E8%B1%A1/</url>
+      <content type="html"><![CDATA[<h2 id="遇见问题"><a href="#遇见问题" class="headerlink" title="遇见问题"></a>遇见问题</h2><p>最近的时间都在开发社团内部的应用–隧道口，虽然只有简单的几个页面，但是依然是遇到了不少坑。<br>其中 date 的时间处理就是一个。</p>
+<p>简单说一下需求。。现在在做一个活动列表，后台传一个json，里面包含活动的列表数组。<br>我遍历数组并创建对应的视图显示，并且以月份作为分类标准。<br>展示一下后台拿来的数据<br><img src="http://i2.piimg.com/2daef4b7237ba3bf.jpg" alt=""></p>
+<a id="more"></a>
+<p>做起来并不难，我开始写了如下版本</p>
+<pre><code class="js">data.forEach(function (value, index) {
+                var ct = new Date();
+
+                var st = new Date(value.activity_start_time);//活动开始时间
+                var et = new Date(value.activity_end_time);//活动结束时间
+
+                var sm = st.getMonth() + 1; //月份
+
+                var sd = st.getDate();
+                sd = sd &lt; 9 ? &#39;0&#39; + sd: sd; //日
+
+                var sh = st.getHours();
+                sh = sh &lt; 9 ? &#39;0&#39; + sh: sh; //时
+
+                var sn = st.getMinutes();
+                sn = sn &lt; 9 ? &#39;0&#39; + sn: sn; //分
+
+                //...省略
+
+                var params = {
+                    id: value.id,
+                    poster: value.activity_pic_url,
+                    title: value.activity_name,
+                    association: value.association_name,
+                    location: value.activity_location,
+                    like: value.like,
+                    comment: value.comment,
+                    status: status,
+                    sclass: sclass,
+                    day: sd,
+                    clock: sh + &#39;:&#39; + sn
+                };
+                //渲染
+                tpl += Mustache.render(self.item_tlp, params);
+                tpl += &#39;&lt;/div&gt;&#39;;
+
+            });
+</code></pre>
+<p>当然，这段代码成功运行了，至少我觉得成功运行了。<br>且看效果图</p>
+<p><img src="http://i2.piimg.com/1aef8e66bcbeafc1.jpg" alt=""></p>
+<p>很完美的成功了。</p>
+<p>可是在ios下运行的结果就很不理想了</p>
+<p><img src="http://i2.piimg.com/3e5ade8766af3057.jpg" alt=""></p>
+<p>全是 NAN 有没有。<br>一开始以为是 数字与字符串相加造成的问题（尽管js是可以数字与字符串相加的）<br>用parseInt改了一遍发现不行，后台调试发现在ios下显示 Invalid Date，看来是不同平台的Date对字符串的解析能力不同啊。</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>之后我在ie上测试发现了同样的问题（想不到ios和ie居然有同样坑的一天）。<br>查阅资料发现了问题所在，new Date(str) 对传进入的字符串有一定的格式要求，不同平台不一样，像我们后台传过来的时间格式是<br><code>20xx-xx-xx 00:00:00</code></p>
+<pre><code>new Date(&quot;20xx-xx-xx 00:00:00&quot;)
+</code></pre><p>这种格式在人看来是很容易理解了，然后，部分浏览器却解析不了，而所有浏览器都能解析的格式是</p>
+<pre><code>new Date(&quot;20xx/xx/xx 00:00:00&quot;)
+</code></pre><p>于是对后台传过来的数据修改成 <code>year/month/day</code> 的格式</p>
+<pre><code class="js">var st = new Date(Date.parse(value.activity_start_time.replace(/-/g,&quot;/&quot;)));
+var et = new Date(Date.parse(value.activity_end_time.replace(/-/g,&quot;/&quot;)));
+</code></pre>
+<p>大功告成。</p>
+<p>##<br>总之呢，以后解析时间用  <code>year/month/day</code> 就好</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> js </tag>
+            
+            <tag> date </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[https初尝试]]></title>
+      <url>/2016/04/04/https%E5%88%9D%E5%B0%9D%E8%AF%95/</url>
+      <content type="html"><![CDATA[<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>2016年3月11日,收到来自新加坡网友@Steven Goh 的一封邮件, 大体内容是他是一家公司(Kloudsec)的员工,这个公司的产品可以使用<code>LetsEncrypt cert</code>为用户免费搭建<code>HTTPS</code>,<br>希望我可以在中国帮他测试.抱着人人为我,我为人人的心态,我答应的进行尝试. 使用了我的博客网站 github pages 的 <a href="blog.carvenzhang.cn">blog.carvenzhang.cn</a>作为测试.</p>
+<a id="more"></a>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>根据@Steven Goh 的提示,我通过两篇文章的参考</p>
+<ul>
+<li><a href="http://boke112.com/2827.html" target="_blank" rel="noopener">http://boke112.com/2827.html</a></li>
+<li><a href="http://www.der-wer.com/forum.php?mod=viewthread&amp;tid=20745&amp;extra=page=1&amp;ordertype=1&amp;threads=thread" target="_blank" rel="noopener">http://www.der-wer.com/forum.php?mod=viewthread&amp;tid=20745&amp;extra=page=1&amp;ordertype=1&amp;threads=thread</a></li>
+</ul>
+<p>进行了https的配置</p>
+<p>如下的网址直接提供为github pages 博客搭建https的服务<br><a href="https://kloudsec.com/github-pages" target="_blank" rel="noopener">https://kloudsec.com/github-pages</a></p>
+<p>或者在官网首页进行一步步配置:</p>
+<ol>
+<li><p>登录 <a href="https://kloudsec.com/" target="_blank" rel="noopener">kloudsec</a></p>
+</li>
+<li><p>注册</p>
+</li>
+<li><p>输入自己想要配置的网址</p>
+</li>
+<li><p>去解析网址的网站,根据提示添加本网址的解析记录</p>
+</li>
+</ol>
+<p>由于不想进行截图,需要参考的朋友请看上提供的两篇文章吧.</p>
+<p>最终,我的博客网变成的https网站.<br>不过吗,由于的国外的工具,网站访问变得十分缓慢,我之后又关闭了配置.</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>虽然只是简单折腾了一番,也没有对https有什么加强的理解,不过至少初步接触了,希望以后有机会多多了解.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[前端模块化开发]]></title>
+      <url>/2016/03/11/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/</url>
+      <content type="html"><![CDATA[<p>其实对前端模块化开发的接触时间并不多，很多见解都是别人的，或者是偏的， 还是乐意记录下来，谁让我一天一个念头<br>说到前端模块化开发，其实是说 javascript 模块化开发。<br>目前，大众讲到的 javascript模块化规范 有3种，<code>CommonJS</code>、<code>AMD</code>（异步模块定义）、<code>CMD</code>（通用模块定义）</p>
+<a id="more"></a>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>CommonJS在 node 端模块采用的规范。<br>根据CommonJS规范，每一个文件都是一个模块，每一个模块都有一个独立的作用域，文件内的变量都是私有的，其他文件不可使用（除非 赋值到 global上）<br>每个文件对外的接口是 <code>module.exports 对象</code>。其他文件通过使用这个对象的属性和方法，实现对本文件的使用。</p>
+<p><code>require</code>用于引用其他模块，实际获得的是其他模块的<code>module.exports</code>对象。</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>example.js</p>
+<pre><code class="javascript">var x = 5;
+var addX = function(value) {
+  return value + x;
+};
+module.exports.x = x;
+module.exports.addX = addX;
+</code></pre>
+<p>index.js</p>
+<pre><code class="js">var example = require(&#39;./example.js&#39;);
+
+console.log(example.x); // 5
+console.log(example.addX(1)); // 6
+</code></pre>
+<h4 id="CommonJS模块的特点："><a href="#CommonJS模块的特点：" class="headerlink" title="CommonJS模块的特点："></a>CommonJS模块的特点：</h4><blockquote>
+<p>所有代码都运行在模块作用域，不会污染全局作用域。</p>
+<p>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。</p>
+<p>模块加载的顺序，按照其在代码中出现的顺序。</p>
+</blockquote>
+<h4 id="require内部处理流程"><a href="#require内部处理流程" class="headerlink" title="require内部处理流程"></a>require内部处理流程</h4><p><code>require</code> 实际是 指向当前模块的 <code>module.require</code>, <code>module.require</code> 又调用Node的 <code>Module._load</code>(此Module非彼module)</p>
+<pre><code class="js">Module._load = function(request, parent, isMain) {
+  // 1. 检查 Module._cache，是否缓存之中有指定模块
+  // 2. 如果缓存之中没有，就创建一个新的Module实例
+  // 3. 将它保存到缓存
+  // 4. 使用 module.load() 加载指定的模块文件，
+  //    读取文件内容之后，使用 module.compile() 执行文件代码
+  // 5. 如果加载/解析过程报错，就从缓存删除该模块
+  // 6. 返回该模块的 module.exports
+};
+</code></pre>
+<p>其中 <code>module.compile()</code>执行如下：</p>
+<pre><code class="js">Module.prototype._compile = function(content, filename) {
+  // 1. 生成一个require函数，指向module.require
+  // 2. 加载其他辅助方法到require
+  // 3. 将文件内容放到一个函数之中，该函数可调用 require
+  // 4. 执行该函数
+};
+</code></pre>
+<p>这是大概的CommonJS 流程<br>详见<a href="http://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="noopener">CommonJS规范</a></p>
+<h2 id="AMD（异步模块定义）"><a href="#AMD（异步模块定义）" class="headerlink" title="AMD（异步模块定义）"></a>AMD（异步模块定义）</h2><blockquote>
+<p>AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。</p>
+</blockquote>
+<p>CommonJS 采用的是同步加载机制，如果用于 客户端，必定受到网络的限制。所以，CommonJS不 适用于客户端。<br>而 AMD 采用的是 模块异步加载 方式，在需要执行到模块文件的时候，实现异步加载，回调执行。<br>看例子：</p>
+<pre><code class="js">//...
+require([&#39;math&#39;], function (math) {
+　　　　math.add(2, 3);
+　　});
+//...
+</code></pre>
+<p>当执行到这一段代码的时候， 浏览器会先 加载 <code>math</code> 模块，在<code>math</code>模块加载成功后， 再执行后面的回调函数 <code>math.add(2,3)</code></p>
+<h4 id="require-js"><a href="#require-js" class="headerlink" title="require.js"></a>require.js</h4><p>说道AMD 就不得不提 require.js了。<br>因为目前要实现 AMD ， 不要按照require要求的写法。<br>首先下载最新require.js ，然后在 html 底部写上如下代码：</p>
+<pre><code class="js">&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p><code>data-main</code>用于指定网页程序的主模块</p>
+<p>main.js</p>
+<pre><code class="js">require([&#39;moduleA&#39;, &#39;moduleB&#39;, &#39;moduleC&#39;], function (moduleA, moduleB, moduleC){
+　　　　// some code here
+　　});
+</code></pre>
+<p>要加载的模块也必须使用特定的写法,使用<code>define()</code><br>moduleA.js</p>
+<pre><code class="js">define([&#39;moduleD&#39;],function (){
+　　　　var add = function (x,y){
+　　　　　　return x+y;
+　　　　};
+　　　　return {
+　　　　　　add: add
+　　　　};
+　　});
+</code></pre>
+<h2 id="CMD（通用模块定义）"><a href="#CMD（通用模块定义）" class="headerlink" title="CMD（通用模块定义）"></a>CMD（通用模块定义）</h2><blockquote>
+<p>CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。</p>
+</blockquote>
+<p><code>CMD</code> 跟 <code>AMD</code> 在使用方面非常相似。（其实我没用过）</p>
+<p>知呼上的比较</p>
+<blockquote>
+<p> 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.</p>
+<p> CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：</p>
+<p>作者：玉伯<br>链接：<a href="https://www.zhihu.com/question/20351507/answer/14859415" target="_blank" rel="noopener">https://www.zhihu.com/question/20351507/answer/14859415</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<pre><code class="js">// CMD
+define(function(require, exports, module) {
+var a = require(&#39;./a&#39;)
+a.doSomething()
+// 此处略去 100 行
+var b = require(&#39;./b&#39;) // 依赖可以就近书写
+b.doSomething()
+// ... 
+})
+
+// AMD 默认推荐的是
+define([&#39;./a&#39;, &#39;./b&#39;], function(a, b) { // 依赖必须一开始就写好
+a.doSomething()
+// 此处略去 100 行
+b.doSomething()
+...
+})
+</code></pre>
+<p>就是说， 模块加载完成后， AMD 是立刻执行的，而 CMD是在需要用到的时候才执行的<br>针对这些不同, 在体现上：<br>AMD 速度会相对快， 但是会浪费资源<br>CMD 节省资源， 性能会差一点（反应时间）</p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><code>react.js</code> 让 <code>webpack</code> 流行起来。（至少我是通过 <code>react.js</code> 认识到 <code>webpack</code> 的）<br><code>react.js</code> 可以说是前端（浏览器）项目，可是在编程风格上，确实不折不扣的 <code>CommonJS</code> 风格。<br><code>webpack</code> 兼容了 <code>CommonJS</code> 和 <code>AMD</code>。</p>
+<p>webpack 是一个模块管理工具。 对于 CommonJS 的模块， 对将其 最终打包在一个js文件里面， 对于不写不需要立刻执行的文件，也可以拆分出来，在运行时异步加载。</p>
+<p>当然， 这里并不打算 说明怎么使用 webpack ， google上有很多丰富的教程。</p>
+<hr>
+<p>巨人的肩膀上，加自己的一点感悟</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[浅谈闭包]]></title>
+      <url>/2016/03/11/%E6%B5%85%E8%B0%88%E9%97%AD%E5%8C%85/</url>
+      <content type="html"><![CDATA[<p>闭包 – closure， 应该可以说是javascript的一个难点吧， 其实说难也不难， 只是因为没有真正一个权威的人/书去给他一个真正的定义。<br>不过，学编程的人一路都要有自己的理解，很少人乐意去v死记一个定义。<br>自己看闭包也有很久了，但是每次回想起来又忘了自己改如何形容它， 它真的很难吗？其实并没有，每次看别人的博客，还是很快就能理清楚思路的，<br>于是终究还是要自己写下来，自己给自己一个理解。</p>
+<h3 id="苍白描述"><a href="#苍白描述" class="headerlink" title="苍白描述"></a>苍白描述</h3><p>闭包可以理解为，在函数（命名为A函数）内部创建一个内部函数，并暴露到A函数外部去（暴露方法可以是返回一个内部函数，或者将内部函数赋值给 全局/外部 变量），<br>然后可以通过暴露出来的内部函数，操作A函数内部的变量。</p>
+<blockquote>
+<p>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。<br>–阮一峰（<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习Javascript闭包（Closure）</a>）</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域(Scope)"></a>作用域(Scope)</h3><p>闭包的特色是依赖于作用域实现的。<br>关于作用域，这里有一篇很好的公众号文章<br><a href="http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=402664349&amp;idx=1&amp;sn=cf424dbaba68d4b677c54dc37b4b363e&amp;scene=1&amp;srcid=0311EqtRFXg2L9zRpcUKUPc7#rd" target="_blank" rel="noopener">理解JavaScript中的作用域和上下文</a></p>
+<p>简单来说，每个变量被定义时，都绑定在了一个作用域中，作用域有全局的和局部的。<br>比如</p>
+<pre><code class="js">var a = 1;
+var fun1 = function () {
+    var b = 1;
+    var fun2 = function () {
+        //...
+    }
+
+    console.log(a);//1
+    console.log(fun1);//[Function]
+    console.log(b);// 1
+    console.log(fun2);// [Function]
+}
+
+console.log(a);//1
+console.log(fun1);//[Function]
+fun1();
+console.log(b);// 报错 not found
+console.log(fun2);// 报错 not found
+</code></pre>
+<p>上面的例子中， a、fun1 都是全局变量，在全局中声明; b、fun2 都是 fun1 内部的 局部变量， 在fun1中声明。<br>当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。<br>通过作用链域，可以决定变量的访问。<br>作用链域的寻找可以理解成可以向上爬寻的。<br>上面代码的作用链域可以展示如下</p>
+<pre><code>    window（全局作用域，包含 a、fun1）
+      ^
+      |
+      |
+      |
+    fun1（fun1 函数内部作用域，包含b、fun2）
+</code></pre><p>当 fun1的语句在内部找不到需要的变量是，就会沿着箭头向上寻找外部的作用域，如果找不到再向上，直到找到或者到了全局作用域。<br>但是， 箭头上面的语句却不可以向下寻找作用域，所以外部语句不能访问到内部变量（这是一般情况下）</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>那么怎么才能 是函数外部能够访问内部的变量呢，闭包可以做到。<br>引用<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习Javascript闭包（Closure）</a>的代码</p>
+<pre><code class="js">function f1(){
+　　　　var n=999;
+　　　　nAdd=function(){n+=1}
+　　　　function f2(){
+　　　　　　alert(n);
+　　　　}
+　　　　return f2;
+　　}
+　　var result=f1();
+　　result(); // 999
+　　nAdd();
+　　result(); // 1000
+</code></pre>
+<blockquote>
+<p>在这段代码中，result实际上就是闭包f2函数。<br>它一共运行了两次，第一次的值是999，第二次的值是1000。<br>这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
+<p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1。<br>因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p>
+</blockquote>
+<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><p>闭包的特性就在外部读取函数内部的变量。<br>这个特性有什么作用呢，思路是因人而异的。<br>比如 </p>
+<blockquote>
+<p>模拟对象的私有属性，只能通过函数内部的方法访问函数的属性<br>面向对象编程</p>
+</blockquote>
+<p>可以一一衍生下去</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[gulp尝试开发]]></title>
+      <url>/2016/03/10/gulp%E5%B0%9D%E8%AF%95%E5%BC%80%E5%8F%91/</url>
+      <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>这是挺久之前的事情了，还是觉得先记录下来，免得自己忘记了。<br>在实习的公司做web开发，gulp 是经常用到的，可是我做的不仅仅的前端，还包括后台，<br>所以将前端文件移至后台这种事当然也需要我做啦，用gulp，但是，文件移至后台目录后，资源文件的路径必须修改，<br>（我做的后台的是用express做的），一时间，没有找到适合的插件，于是我萌生了自己开发一下gulp插件的想法。</p>
+<a id="more"></a>
+<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><p>参考了几篇博客<br><a href="http://www.u396.com/gulp-plugin-guildlines.html" target="_blank" rel="noopener">Gulp插件制作指南</a><br><a href="http://www.cnblogs.com/chyingp/p/writting-gulp-plugin.html" target="_blank" rel="noopener">Gulp：插件编写入门</a>  </p>
+<p>先来看一下插件的全部代码</p>
+<pre><code class="js">&#39;use strict&#39;;
+var gutil = require(&#39;gulp-util&#39;);
+var through = require(&#39;through2&#39;);
+const PLUGIN_NAME = &#39;gulp-url-replace&#39;;
+module.exports = function (options) {
+    var pattern = [];
+    var testClose = /\/$/;
+    var pp;
+    for (pp in options) {
+        var odir = {};
+        if (testClose.test(pp)) {
+            odir.o = new RegExp(pp, &#39;g&#39;);
+        }
+        else {
+            odir.o = new RegExp(pp + &#39;/&#39;, &#39;g&#39;);
+        }
+
+        if (testClose.test(options[pp])) {
+            odir.n = options[pp];
+        }
+        else {
+            odir.n = options[pp] + &#39;/&#39;;
+        }
+        pattern.push(odir);
+    }
+
+    return through.obj(function (file, enc, cb) { //流/编码/回调
+
+        if (typeof options !== &#39;object&#39;) {
+            this.emit(&#39;error&#39;, new gutil.PluginError(PLUGIN_NAME, &#39;Streaming not supported&#39;));
+            return cb();
+        }
+
+        if (file.isNull()) {
+            this.push(file);
+            return cb();
+        }
+
+        if (file.isStream()) {
+            this.emit(&#39;error&#39;, new gutil.PluginError(PLUGIN_NAME, &#39;Streaming not supported&#39;));
+            return cb();
+        }
+
+        var content = file.contents.toString();
+        pattern.forEach(function (r) {
+            content = content.replace(r.o, r.n);
+        });
+        file.contents = new Buffer(content);
+
+
+        this.push(file);
+        cb();
+    });
+};
+</code></pre>
+<p>省略出主干就是</p>
+<pre><code class="js">//引入依赖
+var gutil = require(&#39;gulp-util&#39;);
+var through = require(&#39;through2&#39;);
+//暴露主函数
+module.exports = function (options) {
+    //返回处理流 Node Stream
+    return through.obj(function (file, enc, cb) {
+        // 主体处理
+    });
+};
+</code></pre>
+<p>下面分步解释：</p>
+<h4 id="引入依赖模块"><a href="#引入依赖模块" class="headerlink" title="引入依赖模块"></a>引入依赖模块</h4><pre><code class="js">ar gutil = require(&#39;gulp-util&#39;);
+var through = require(&#39;through2&#39;);
+</code></pre>
+<blockquote>
+<p>gulp-util： 错误日志打印模块，按照gulp的统一规范打印错误日志<br>through2： Node Stream的简单封装，目的是让链式流操作更加简单  </p>
+</blockquote>
+<h4 id="gulp-的-through2-开发标准样例"><a href="#gulp-的-through2-开发标准样例" class="headerlink" title="gulp 的 through2 开发标准样例"></a>gulp 的 through2 开发标准样例</h4><pre><code class="js">const PLUGIN_NAME = &#39;gulp-url-replace&#39;;
+module.exports = function (options) {
+    return through.obj(function (file, enc, cb) {
+
+        // 如果文件为空，不做任何操作，转入下一个操作，即下一个 .pipe()
+        if (file.isNull()) {
+            this.push(file);
+            return cb();
+        }
+
+        // 插件不支持对 Stream 对直接操作，跑出异常
+        if (file.isStream()) {
+            this.emit(&#39;error&#39;, new gutil.PluginError(PLUGIN_NAME, &#39;Streaming not supported&#39;));
+            return cb();
+        }
+
+        // 将文件内容转成字符串
+        var content = file.contents.toString();
+
+        //对文件内容处理
+        content = dosomething(content);
+
+        // 然后将处理后的字符串，再转成Buffer形式
+        file.contents = new Buffer(content);
+
+        // 下面这两句基本是标配啦，可以参考下 through2 的API
+        this.push(file);
+
+        cb();
+    });
+};
+</code></pre>
+<p>以上两步就是开发gulp插件的步骤了</p>
+<h4 id="gulp-url-replace-核心逻辑"><a href="#gulp-url-replace-核心逻辑" class="headerlink" title="gulp-url-replace 核心逻辑"></a>gulp-url-replace 核心逻辑</h4><pre><code class="js">//正则保存的数组
+var pattern = [];
+//测试 源路径是否以“/”结尾
+    var testClose = /\/$/;
+    var pp;
+    // odir参数正则话，并统一以“/”结尾
+    for (pp in options) {
+        var odir = {};
+        if (testClose.test(pp)) {
+            odir.o = new RegExp(pp, &#39;g&#39;);
+        }
+        else {
+            odir.o = new RegExp(pp + &#39;/&#39;, &#39;g&#39;);
+        }
+
+        if (testClose.test(options[pp])) {
+            odir.n = options[pp];
+        }
+        else {
+            odir.n = options[pp] + &#39;/&#39;;
+        }
+        pattern.push(odir);
+    }
+
+    //省略
+
+    //转化成字符串
+    var content = file.contents.toString();
+    //循环正则替换
+    pattern.forEach(function (r) {
+        content = content.replace(r.o, r.n);
+    });
+    //转化回node stream
+    file.contents = new Buffer(content);
+
+    //省略
+</code></pre>
+<p>如此，就完成了html中资源路径的替换</p>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>gulp的流处理是逐个处理的<br>例如</p>
+<pre><code class="js">gulp.src(&#39;./1.txt,./2.txt&#39;)
+.pipe(replace())
+...
+</code></pre>
+<p>那么 replace() 就会执行两次，两次传入的 file 分别是 1.txt和2.txt，<br>而不是两个文件一起传进来</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre><code class="shell">npm install gulp-url-replace --save-dev
+</code></pre>
+<pre><code class="js">var gulp = require(&#39;gulp&#39;);
+var replace = require(&#39;gulp-url-replace&#39;)
+gulp.task(&#39;move&#39;, function(){
+    gulp.src(&#39;./*.html&#39;)
+    .pipe(replace({
+                      &#39;lib/&#39;: &#39;&lt;%= stHost %&gt;/node/public/lib/&#39;,
+                      &#39;img/&#39;:&#39;&lt;%= stHost %&gt;/node/public/img/&#39;,
+                      &#39;css/&#39;: &#39;&lt;%= stHost %&gt;/node/public/css/&#39;,
+                      &#39;js/&#39;: &#39;&lt;%= stHost %&gt;/node/public/js/&#39;,
+                  }))
+    .pipe(gulp.dest(&quot;../production/views/&quot;))
+})
+</code></pre>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>虽然写法，publish，测试方面都不规范，但是，也是学到了gulp开发的一点知识，<br>以后可以自己本地做些可能用到的gulp插件<br>目前源代码已经发布在 github上<br><a href="https://github.com/zjy01/gulp-url-replace" target="_blank" rel="noopener">gulp-url-replace</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> nodejs </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> gulp </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[实习中结]]></title>
+      <url>/2016/03/04/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h2 id="罗嗦"><a href="#罗嗦" class="headerlink" title="罗嗦"></a>罗嗦</h2><hr>
+<p>开始实习至今也有差不多有个月了（实际工作时间是一个多月），见识了很多新的事物，学到很多新的知识。公司搬到了T.I.T创意园。。。<br>等等，很多感觉是自己一个人在学院撸码get不到的。 感觉自己的心态有了变化， 最近要准备 BAT 的面试， 那是我的梦想，所以感觉这段实习大概要结束了，做一个中期总结吧。</p>
+<p>实习的时间， 工作很不稳定， 有时候很空闲， 有时候有任务了， 就要加班到凌晨， 这都是理解的， 毕竟自己在学校做外包的时候，也会遇到各种紧急状况。<br>空闲的时候，就自己一个人上网学习， react，ES6的相关知识， 我也是在这段时间吸收的。</p>
+<a id="more"></a>
+<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><hr>
+<p>收获很多， 特别是近期的一个项目 — 微信好友关注度的统计， 说真的， 我没预想到这个项目的访问量会那么大。 一天的访问量（PV）达到了330万，访问人数（UV）也达到了98万。要不是紧要关头，数据库挂掉了，数据很可能上升到100万UV/日，每一次访问基本都要插入数据库，并查询大量集合（mongodb）<br>如此，我也正式见识了性能带来的问题，以前的东西，访问量太少了，根本感觉不到性能带来的影响。</p>
+<h3 id="逻辑处理"><a href="#逻辑处理" class="headerlink" title="逻辑处理"></a>逻辑处理</h3><p>代码的处理逻辑， 在人数 2000UV/分的时候，做了一次梳理， 将一些向自己服务器调用的请求，引向了另外一个服务器，请求数基本减少了一半（可怕）。<br>在后台的定时任务， 将打查询任务分成了很多个小查询任务，因为是后台定时任务，不需要考虑响应时间（没有用户在等待），分成小任务，减轻mongodb的压力</p>
+<h3 id="数据库处理"><a href="#数据库处理" class="headerlink" title="数据库处理"></a>数据库处理</h3><p>上面有谈到一个分子任务处理。<br>还有就是 分表处理， 有一个集合每一次访问都要插入数据， 想想一天 330万的访问量，这个集合非常大了，所以前面说到数据库服务器挂掉了，也是因为这个集合太大了<br>所以，我们后来做了分表处理，用一定的关联性（比如时间段），将一个大集合分成很多个小集合，这样子，数据库的压力大减 </p>
+<p>由于用到的mongodb数据库， 一开始寻找的数据库解决方案是 读写分离 ， 或者 主从数据库，但是应为连接问题，最终分表处理。虽然没有用到这些技术，但是至少也有了认知<br>数据库索引，好吧，这个是服务器管理者，我们的ceo做的， 数据库方面的优化，基本都是他在动手处理。 数据库索引，我没看到他是怎么处理的， 以后一定要学习，数据库查询的性能飞涨</p>
+<h3 id="服务器优化"><a href="#服务器优化" class="headerlink" title="服务器优化"></a>服务器优化</h3><p>用的是nodejs 的 express ， 一开始使用 单线程的 ，想着用pm2启动，挂了也会重启，就没有写cluster，然而，总算见识到，cluster的作用并仅仅是防止线程突然挂掉，<br>是真正的能够提升性能（使用后cpu所有核利用率基本100%）</p>
+<p>nginx负载均衡， 看了一眼ceo的ngnix负载均衡设置， 指向 ip 和设置 weight，可以做到把用户请求 分摊出去， 用多台服务器处理。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>先那么多啦， 学了很多</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 实习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 实习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[reactjs]]></title>
+      <url>/2016/01/26/reactjs/</url>
+      <content type="html"><![CDATA[<h3 id="react-js"><a href="#react-js" class="headerlink" title="react js"></a>react js</h3><p>最近在学习react js，ReactJS是Facebook开发的用于构建用户界面的JAVASCRIPT库，利用其可以实现组件式开发。</p>
+<h3 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h3><p>虽然JSX不是ReactJS所必须的，但是使用jsx无疑可以加快React的组件开发速度</p>
+<h3 id="所需文件"><a href="#所需文件" class="headerlink" title="所需文件"></a>所需文件</h3><p>我们大概清楚我们开发ReactJS需要的文件的，<br>首先的官方所需的<code>react.js</code> 和 <code>react-dom.js</code><br>然后是解析JSX语法所需要的<code>jsxtransform.js</code>,<br>后来因为迎接ES6,舍弃了jsx，改用babel，也是需要引入一个文件。</p>
+<p>加上自己写的各种组件，如此看来，网页的js引入将相当多，不利于管理。<br>而且像解析jsx或者ES6-&gt;ES5这样的工作，完全可以在开发时完成，而不用在使用时由客户端转译，影响效率。</p>
+<p>基于种种原因，我们需要用到一些其他工具。而我挑选赖webpack</p>
+<a id="more"></a>
+<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><pre>
+Webpack 是当下最热门的前端资源模块化管理和打包工具。
+它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。
+还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。
+通过 loader 的转换，任何形式的资源都可以视作模块，
+比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。
+</pre>
+
+<p>我因为一直在使用gulp，而选择了 webpack-stream 这样一款 gulp 模块。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先保证安装了nodeJs，然后可以开始下面的教程</p>
+<ol>
+<li><p>首先需要安装 gulp工具</p>
+<pre><code class="bash">sudo npm install -g gulp
+</code></pre>
+</li>
+<li><p>然后在自己的项目文件夹中安装gulp模块依赖</p>
+<pre><code class="bash">npm install --save-dev gulp
+</code></pre>
+</li>
+<li><p>在项目根目录下创建一个名为 gulpfile.js 的文件：</p>
+<pre><code class="bash">var gulp = require(&#39;gulp&#39;);
+gulp.task(&#39;default&#39;, function() {
+// 将你的默认的任务代码放在这
+});
+</code></pre>
+<p>gulp安装完成</p>
+</li>
+<li><p>安装webpack-stream</p>
+<pre><code class="bash">npm install --save-dev webpack-stream
+</code></pre>
+</li>
+<li><p>填写配置文件 webpack.config.js,具体请了解官网</p>
+<pre><code class="js">module.exports = {
+ entry: &#39;./public/javascripts/main/app.jsx&#39;,
+ output: {
+     path: __dirname,
+     filename: &#39;bundle.js&#39;
+ },
+ resolve: {
+     extensions: [&#39;&#39;, &#39;.js&#39;, &#39;.jsx&#39;]
+ },
+ module: {
+     loaders: [
+         {
+             test: /\.jsx$/,
+             loader: &#39;jsx-loader?harmony&#39;
+         },
+     ]
+ },
+ watch:true
+};
+</code></pre>
+</li>
+<li><p>建立gulp任务</p>
+<pre><code class="js">var gulp = require(&quot;gulp&quot;),
+ webpack = require(&quot;webpack-stream&quot;),
+ webpackConfig = require(&quot;./webpack.config.js&quot;);
+gulp.task(&quot;webpack&quot;, function () {
+ gulp.src(&quot;./public/javascripts/&quot;)
+     .pipe(webpack(webpackConfig))
+     .pipe(gulp.dest(&quot;./public/javascripts/build/&quot;));
+});
+</code></pre>
+</li>
+<li><p>使用</p>
+</li>
+</ol>
+<p>建立一个banner.jsx文件</p>
+<pre><code class="js">var banner;
+banner = React.createClass({
+    render: function () {
+        var $li = this.props.items.map(function (v, i) {
+            return(
+                &lt;li&gt;
+                    &lt;a href=&quot;javascript:;&quot;&gt;
+                        &lt;img src={v.img} /&gt;
+                        &lt;p&gt;
+                            {v.icon?&lt;span className=&quot;gathering-icon&quot;&gt;{v.icon}&lt;/span&gt;:&#39;&#39;}
+                            &lt;span className=&quot;title-msg&quot;&gt;{v.title}&lt;/span&gt;
+                        &lt;/p&gt;
+                    &lt;/a&gt;
+                &lt;/li&gt;
+            );
+        }, this);
+        var style={
+            width:this.props.items.length*10 + &#39;rem&#39;
+        };
+        return(
+            &lt;div className=&quot;collect-banner&quot;&gt;
+                &lt;ul style={style}&gt;
+                    {$li}
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        );
+    }
+});
+module.exports = banner;
+</code></pre>
+<p>再在content.jsx文件中引用它</p>
+<pre><code class="js">    var content,
+         Banner = require(&quot;./banner&quot;);
+
+     content = React.createClass({
+         render: function () {
+             var $ban=[
+                 {
+                     img:&#39;http://7xiu2h.com2.z0.glb.qiniucdn.com/FlKKdfH1XlzAW0bgZ4bfTS-5abNS&#39;,
+                     icon:&#39;派对&#39;,
+                     title:&#39;全能天王古惑仔-“包皮哥”强势登陆&#39;
+                 },
+                 {
+                     img:&#39;http://7xiu2h.com2.z0.glb.qiniucdn.com/FlKKdfH1XlzAW0bgZ4bfTS-5abNS&#39;,
+                     icon:&#39;红包&#39;,
+                     title:&#39;全能天王古惑仔-“包皮哥”强势登陆&#39;
+                 },
+             ];
+             return(
+                 &lt;div&gt;
+                     &lt;Banner items={$ban}/&gt;
+                 &lt;/div&gt;
+             );
+         }
+     });
+     module.exports = content;
+</code></pre>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>我们运行 webpack任务，会生成我们配置的<code>bundle.js</code>文件。<br>我们在项目中引用官方所需的<code>react.js</code> 和 <code>react-dom.js</code>和生成的<code>bundle.js</code>文件即可</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> react js </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[实习笔记2--20160121]]></title>
+      <url>/2016/01/21/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B02/</url>
+      <content type="html"><![CDATA[<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>今天主要是看Slim框架，slim是一个轻量级的php框架，比较适合写接口。</p>
+<h3 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h3><p>当然是新认识了一个框架啦，还学会了启动php内置服务器。</p>
+<a id="more"></a>
+<ol>
+<li>启动Php内置服务器<br>```bash<br>php -S 0.0.0.0:8088 [dir_root] [router]</li>
+</ol>
+<pre><code>
+2. Slim在apache服务器的配置
+slim使用静态路由，自带了一个.htaccess文件重写路由规则，
+所以需要开启 mod_rewrite模块，同时修改httpd.conf的AllowOverride权限
+```bash
+#开启write模块
+sudo a2enmod write
+
+#修改apache配置[httpd.conf]，使得相应的Directory 的 AllowOverride为all
+sudo vi /etc/apache2/apache2.conf
+</code></pre><p>如下</p>
+<pre><code>&lt;Directory /&gt;
+           Options FollowSymLinks
+           #AllowOverride None
+           #Require all denied
+           AllowOverride All
+           Require all granted
+   &lt;/Directory&gt;
+
+   &lt;Directory /usr/share&gt;
+           AllowOverride None
+           Require all granted
+   &lt;/Directory&gt;
+
+   &lt;Directory /var/www/&gt;
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           #None
+           Require all granted
+   &lt;/Directory&gt;
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 实习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 实习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[实习笔记1--20160120]]></title>
+      <url>/2016/01/20/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B01/</url>
+      <content type="html"><![CDATA[<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>今天主要做的是这种账号的注册和软件的安装。<br>实习了才知道，一个团队的任务管理居然要依赖与那么多的工具，尽管团队不大，但是任务分工看起来很严格呢。<br>软件也安装了很多，我把ws、ps、node、npm全都更新了一遍。设置了VPN，大半天的时间就过去了。<br>下午就看了微信公众平台的接口文档，第一次那么仔细的看，自己手写了一些步骤，然后上github找了别人的包，融进CI里面。</p>
+<a id="more"></a>
+<h3 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h3><p>第一天收获不少，首先的接触到了很多新的团队开发辅助工具。<br>然后在微信开发上也很有收获，通过域名截获和服务器代理，比较高效地对网站进行开发。</p>
+<ol>
+<li>在ubuntu上修改hosts文件，截获域名，比如<br>```bash<br>echo ‘127.0.0.1     www.baidu.com’ &gt;&gt; /etc/hosts</li>
+</ol>
+<pre><code>
+2. 配置成代理服务器
+```bash
+sudo service squid3 restart
+</code></pre><ol>
+<li>在实验手机上配置网络代理</li>
+</ol>
+<p>这样，当实验手机访问www.baidu.com的时候，实际访问的是代理服务器的127.0.0.1<br>如此，在开发的时候，可以一边调试代码，一边直接通过手机查看效果，不用上传的服务器</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 实习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 实习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[git分支管理]]></title>
+      <url>/2015/12/04/branch/</url>
+      <content type="html"><![CDATA[<h3 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h3><p>git用了挺久，但是对分支管理还是不熟悉。用这篇博客来记录一下常用的分支管理命令<br>1.首先绑定远程仓库</p>
+<pre><code class="bash">git remote add test git@github.com:zjy01/test.git
+</code></pre>
+<a id="more"></a>
+<p>2.新建分支并切换</p>
+<pre><code class="bash">git branch news #新建分支
+git checkout news #切换分支
+</code></pre>
+<p>或者</p>
+<pre><code class="bash">git checkout -b news #新建分支并切换到它
+</code></pre>
+<p>3.远程建立分支</p>
+<pre><code class="bash">git push test news #push本地分支到远程，自然就创建了远程的news分支
+git push test news:newsBranch #push本地news分支到远程newsBranch分支，会在远程新建newsBranch分支
+</code></pre>
+<p>4.删除远程分支<br>这个有点奇怪</p>
+<pre><code class="bash">git push test :news #推送一个空的分支到远程分支，可以达到删除效果
+git push --delete test news #git v1.70后
+#对tag可以用同样操作
+git push test --delete tag &lt;tagname&gt;
+#或者
+git tag -d &lt;tagname&gt;
+git push test :refs/tags/&lt;tagname&gt;
+</code></pre>
+<p>5.分支合并</p>
+<pre><code class="bash">git merge news #将news分支合并回主分支
+</code></pre>
+<p>6.其他<br>错误操作的还原</p>
+<pre><code class="bash">git checkout -- filename #将版本库的文件覆盖本地文件
+#如果你错删了东西，并且提交到了缓存区呢(git add)
+git reset HEAD filename
+git checkout -- filename
+</code></pre>
+<h3 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h3><blockquote>
+<p><a href="http://gitref.org/zh/index.html" target="_blank" rel="noopener">GIT参考手册</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的官方网站–git教程</a></p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[mvc]]></title>
+      <url>/2015/10/31/mvc/</url>
+      <content type="html"><![CDATA[<p>近来打算带经理们探讨一下mvc，相信可以从中学到不少知识。、<br>以前只会用框架，却不懂他的内部是怎么运行的，自己学的php和别人学的php有什么不同。</p>
+<a id="more"></a>
+<p>既然要跟别人分享，自然自己要先学习一番。</p>
+<p>所以就看了之前的 thinkphp框架，ci框架，laravel框架。<br>laravel框架是我最看不懂的框架，之前为了项目去学习它，后来项目放弃了，<br>所以也就没有真正实践到。</p>
+<p>最近学了nodejs，结合express的路由设置去看laravel，突然就觉得并没有那么难理解。<br>也许自己也真的成长了。</p>
+<p>留在quanta的时间不多，希望把自己懂的都留下来，自己成不了quanta的大神，<br>希望自己的知识能成为铸造大神的一份力。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> mvc </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[win7 安装 mac虚拟机]]></title>
+      <url>/2015/10/07/virtualMac/</url>
+      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　一周前社团ios方向刚完成招新，图新鲜的我也试装了一下虚拟机。自己装的时候是按教程来的，很轻松就装成了。<br>ios的经理见我装的那么溜，就把几个需要装虚拟机的小朋友推给我教他们装。<br>　　装的过程中遇到一些问题，也总结了一些经验。</p>
+<h3 id="说正事"><a href="#说正事" class="headerlink" title="说正事"></a>说正事</h3><p>　　<a href="http://jingyan.baidu.com/article/ff411625b9011212e48237b4.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/ff411625b9011212e48237b4.html</a><br>上面的网址是我装虚拟机的时候用的教程，已经很全面了。照这上面装就ok了。<br>下面我补充自己小心得。<br><a id="more"></a></p>
+<ol>
+<li><p>补丁不能放在有中文名的文件夹中（补丁路径不能有中文名），否则就会失败。</p>
+</li>
+<li><p>cpu开启虚拟化的教程<br><a href="http://jingyan.baidu.com/article/22fe7ced3b4c003002617f17.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/22fe7ced3b4c003002617f17.html</a><br>当你在启动mac镜像的时候提示什么“二进制···”的时候就表示你的cpu还没开启虚拟化</p>
+</li>
+<li><p>mac优化<br>虚拟机用mac会比较卡，主要是mac的动画特效多，虚拟机跟不上。可以优化一点点<br><a href="http://www.3lian.com/edu/2015/05-05/209925.html" target="_blank" rel="noopener">http://www.3lian.com/edu/2015/05-05/209925.html</a></p>
+</li>
+</ol>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>照着这样就基本ok啦</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ubuntu下的apache端口反向代理]]></title>
+      <url>/2015/10/05/proxy/</url>
+      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　在国庆期间，在阿里云上买了服务器和域名，自己这用node.js做了一个即时聊天系统，挂在2000端口上。<br>可是每次都在网址后面加一个<code>:2000</code>显得有点奇怪，也很麻烦，于是就想到了反向代理。<br>之前在管理社团服务器的时候，有过在nginx上捣鼓虚拟主机的经验，但是对于apache，我没有太多配置经验。<br><a id="more"></a></p>
+<h3 id="行动"><a href="#行动" class="headerlink" title="行动"></a>行动</h3><p>　　一开始当然是百度啦。好吧，我很少上谷歌，虽然我有师兄借我的代理服务器账号。<br>又是因为各种版本问题，我吃尽了苦头。</p>
+<blockquote>
+<p>ubuntu <strong>14.04</strong> 阿里云版<br>apache <strong>Apache/2.4.7 (Ubuntu)</strong></p>
+</blockquote>
+<p>直接说一下我完成的过程的。</p>
+<ol>
+<li>一股脑为apache开启一大堆模块先。其实我也不知道那个模块是干什么的。但是我之所以弄了很久都没有弄好。<br>就是因为我之前挑了一个教程里面值需要加载3个模块，结果访问网址一直提示服务器没有提供正确路径。<br>后来一次性加载这些模块就成功了。<pre><code class="bash">a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
+</code></pre>
+</li>
+<li><p>找到服务器配置文件的文件夹。ubuntu的都在<code>/etc/apache2/</code>下面</p>
+<pre><code class="bash">cd /etc/apache2/sites-available/
+ls -all
+</code></pre>
+<p> 这时候应该可以看到*.conf文件，可能是<code>000-default.conf</code>，他就是默认的配置文件。<br> 我们可以新建一个配置文件，用来配置我们的反向代理端口</p>
+<pre><code class="bash"> vi chat.zjy.space.conf
+</code></pre>
+<p> 其实文件名可以随便起，后缀保留.conf就好，但我为了好识别，直接把我要代理到端口的网址作为文件名<br> 然后在这个<code>hat.zjy.space.conf</code>里写入一下代码。</p>
+<pre><code class="txt"> &lt;VirtualHost *:80&gt;
+ ServerName chat.zjy.space
+ ServerAlias chat.zjy.space
+
+ ProxyPreserveHost On
+ ProxyRequests Off
+
+ &lt;Proxy *&gt;
+ Order deny,allow
+ Allow from all
+ &lt;/Proxy&gt;
+
+ ProxyPass / http://42.96.203.150:2000/
+ ProxyPassReverse / http://42.96.203.150:2000/
+ &lt;/VirtualHost&gt;
+</code></pre>
+<p> 其中，chat.zjy.space 是我要代理的网站，42.96.203.150是我服务器的ip，2000是我要指向的端口。<br> 这样，配置文件就写好了。</p>
+</li>
+<li><p>接下在退出vim后，仍然是在/etc/apache2/sites-available/文件夹里,运行a2ensite指令挂载这个配置文件，<br>然后重启服务器。</p>
+<pre><code class="bash">a2ensite chat.zjy.space.conf  #挂载配置
+service apache2 reload  #重启服务器
+</code></pre>
+</li>
+<li><p>这时候已经可以通过<a href="http://chat.zjy.space" target="_blank" rel="noopener">http://chat.zjy.space</a> 访问到 2000端口的网页。<br>如果想要卸载这个代理，可以运行 a2dissite指令</p>
+<pre><code>a2dissite chat.zjy.space.conf
+service apache2 reload
+</code></pre></li>
+</ol>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>自己管理一个服务器的感觉还是很棒的，可以为所欲为。<br>现在阿里云正在搞云翼计划，买一个月的服务器只要9.9元，买一年的只要99元。<br>而域名首年便宜的只要5元</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[基于nodejs+socket.io搭建的即时聊天系统]]></title>
+      <url>/2015/10/05/socket/</url>
+      <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>　　这个学期以来一直在学习nodejs，发现真的很便利，也萌生了利用nodejs搭建即时聊天系统的念头。<br>　　之前已经尝试过利用webSocket来搭建了，也很成功，相比PHP方便太多。我以为使用socket也差不多。<br>　　后来才发现自己的念头太简单了。<strong>使用socket更方便</strong>。<br>　　socket.io与单纯的webSocket不同，socket利用<code>on</code>和<code>emit</code>不断在客户端监听和触发各种自定义事件，自定义操作性很强</p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>　　这一次的聊天系统基于 nodejs+express+socket.io+bootstrap.<br>下面是我开发时的相应版本：</p>
+<blockquote>
+<p>socket.io <strong>v1.3.7</strong><br>nodejs <strong>v4.1.1</strong><br>express <strong>v4.13.1</strong><br>bootstrap <strong>v3.3.5</strong></p>
+<ul>
+<li>实例地址 ： <a href="http://chat.carvenzhang.cn" target="_blank" rel="noopener">http://chat.carvenzhang.cn</a></li>
+<li>源码地址 ： <a href="https://github.com/zjy01/socketChat/" target="_blank" rel="noopener">https://github.com/zjy01/socketChat/</a></li>
+<li>参考源码 ： <a href="https://github.com/coofly/qx-chat" target="_blank" rel="noopener">https://github.com/coofly/qx-chat</a> （博主是参考这个源码写的）</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<p>观看源码前需要了解 <code>nodejs</code> 和 <code>express</code></p>
+<h5 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h5><p>我讲得并不详细，如果基础比较差的建议结合其他博文教程学习。我的主要版本是比较新，能对你们提供帮助。</p>
+<ol>
+<li><p>首先要安装nodejs，没有安装的先到官网安装。</p>
+</li>
+<li><p>安装express</p>
+<pre><code class="js">npm install -g express-generator //安装express命令行工具
+</code></pre>
+</li>
+<li><p>建立express项目，我这里建的是ejs版</p>
+<pre><code>express ejs miniChat //建立miniChat项目
+cd miniChat //进入项目文件夹
+npm install //安装需求模块
+</code></pre><p> <img src="http://i11.tietuku.com/f4b06a2a31172c7f.png" height="600" width="600"><br> <img src="http://i11.tietuku.com/8e90fa55bd72b846.png" height="600" width="600"></p>
+</li>
+<li><p>安装nodejs 的 socket.io模块</p>
+<pre><code>npm install socket.io
+</code></pre></li>
+<li><p>使用socket.io建立服务端,我把socket的服务端文件专门放一个文件夹chat里<br><img src="http://i13.tietuku.com/b03bb9f2db0efdc7.png"><br>内容：</p>
+<pre><code class="javascript">//chat_server.js
+var io=require(&#39;socket.io&#39;)();//建立io
+exports.listen= function (_server) { // 将io的监听事件暴露出去，待会在www里面调用，这样io就和www项目监听同一个端口了。
+ return io.listen(_server);
+};
+···
+</code></pre>
+<pre><code class="javascript"> //这是www项目启动文件
+ var app = require(&#39;../app&#39;);
+ var io=require(&#39;../chat/chat-server&#39;);//添加这一句引入chat_server.js
+ var debug = require(&#39;debug&#39;)(&#39;minichat:server&#39;);
+ var http = require(&#39;http&#39;);
+ ···
+ server.listen(port);
+ io.listen(server);//添加这一句，socket.io监听webServer，使用同一个端口
+ ···
+</code></pre>
+</li>
+<li><p>去下载jquery.js , bootstrap , 客户端的 socket.io.js ，建议使用CDN</p>
+<pre><code class="html">&lt;!--放&lt;head&gt;里面 --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css&quot;&gt;
+
+&lt;!-- ···省略--&gt;
+
+&lt;!--放&lt;body&gt;底部 --&gt;
+   &lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;
+   &lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+   &lt;!-- 预防cdn网址文件失效，还准备了本地jq文件 --&gt;
+   &lt;script&gt;
+       window.jQuery || document.write(&#39;&lt;script src=&quot;/javascripts/jquery-1.11.1.min.js&quot; type=&quot;application/javascript&quot;&gt;&lt;\/script&gt;&#39;);
+   &lt;/script&gt;
+   &lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;
+   &lt;script src=&quot;//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+   &lt;!--socket.io--&gt;
+   &lt;script src=&quot;//cdn.socket.io/socket.io-1.3.7.js&quot;&gt;&lt;/script&gt;
+   &lt;script&gt;
+       window.io || document.write(&#39;&lt;script src=&quot;/javascripts/socket.io.js&quot; type=&quot;application/javascript&quot;&gt;&lt;\/script&gt;&#39;);
+   &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p>如果对bootstrap不熟悉可以参照源码写前端，我对bootstrap也很生疏，也是参照前人代码写的。<br>下面贴出部分后台和前端socket部分的代码，有兴趣的请到我的<a href="https://github.com/zjy01/socketChat/" target="_blank" rel="noopener">github</a>上fork过去</p>
+<pre><code>//chat_server.js
+var io=require(&#39;socket.io&#39;)();
+exports.listen= function (_server) {
+ return io.listen(_server);
+};
+var chat={
+//省略代码，这个存放了用户数据，还有对用户的操作
+};
+io.on(&#39;connection&#39;, function (_socket) {
+ console.log(_socket.id+&#39;: connection&#39;);
+ //触发客户端请求用户列表
+ _socket.emit(&#39;user-list&#39;,chat.users);
+ //触发客户端提示起聊天昵称
+ _socket.emit(&#39;set-name&#39;);
+ //发送服务器信息
+ _socket.emit(&#39;server-msg&#39;,&quot;欢迎来到Quanta聊天室&quot;);
+ //断开连接
+ _socket.on(&#39;disconnect&#39;, function () {
+     console.log(_socket.id+&#39;: disconnect&#39;);
+     if(_socket.nickname != null &amp;&amp; _socket.nickname!=&#39;&#39;){
+         //通知所有_socket触发user-quit
+         _socket.broadcast.emit(&#39;user-quit&#39;,_socket.nickname);
+         chat.deleteUser(_socket.nickname);
+     }
+ });
+ //用户加入
+ _socket.on(&#39;join&#39;, function (nickname) {
+     var re=chat.addUser(_socket,nickname);
+     if(re){
+         //通知自己
+         _socket.emit(&#39;join-done&#39;,nickname);
+         //通知所有人
+         _socket.broadcast.emit(&#39;user-join&#39;,nickname);
+     }
+ });
+ //修改昵称
+ _socket.on(&#39;change-name&#39;,function(newName){
+     var oldName=_socket.nickname;
+     var re=chat.changeName(_socket,oldName,newName);
+     if(re){
+         //通知所有人
+         _socket.emit(&#39;change-name-done&#39;,oldName,newName);
+         //通知所有人
+         _socket.broadcast.emit(&#39;user-change-name&#39;,oldName,newName);
+     }
+ });
+
+ _socket.on(&#39;say&#39;, function (content) {
+     if(!_socket.nickname){
+         return _socket.emit(&#39;set-name&#39;);
+     }
+     content=content.trim();
+     //发送给所有人
+     _socket.broadcast.emit(&#39;user-say&#39;,_socket.nickname,content);
+     //通知自己
+     return _socket.emit(&#39;say-done&#39;, _socket.nickname,content);
+ });
+});
+</code></pre><pre><code> //客户端chat对象，存放在chat.js里
+ var chat={
+     _socket:null,
+     nickname:null,
+     users:[],
+     init: function (callback) {
+         var self=this;
+         var server=&#39;http://&#39;+window.location.host;
+         self._socket=io(server);
+         callback(self._socket);
+     },
+     setName: function (nickname) {
+         var self=this;
+         self._socket.emit(&#39;join&#39;,nickname);
+     },
+     disconnect: function (nickname) {
+         var self=this;
+         self._socket.emit(&#39;disconnect&#39;,nickname);
+     },
+     changeName: function (nickname) {
+         var self=this;
+         self._socket.emit(&#39;change-name&#39;,nickname);
+     },
+     say: function (content) {
+         var self=this;
+         self._socket.emit(&#39;say&#39;,content);
+     }
+ }
+ //省略对对象操作的代码，存放在一个js（controller.js）里，这里就不展示了。
+</code></pre></li>
+<li>重申，教程很不详细，<a href="https://github.com/zjy01/socketChat/" target="_blank" rel="noopener">请戳这里找源码</a>，<a href="http://chat.carvenzhang.cn" target="_blank" rel="noopener">戳这里看成品</a></li>
+</ol>
+<h4 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h4><p>自己尝试做这个的时候，对express的应用更加熟练了。<br>但其实相比 <a href="https://github.com/coofly/qx-chat" target="_blank" rel="noopener">https://github.com/coofly/qx-chat</a> 里面的源码，虽然我觉得我做出来的结构更加清晰。但同时我也偷懒省略了很多东西。<br>比如原博主的服务端有加入xss攻击过滤，ie json兼容，我都没有加进去，有意的也可以去看看原来的。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> nodejs </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> socket </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[第一篇博客---hexo博客建成]]></title>
+      <url>/2015/10/05/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-hexo%E5%8D%9A%E5%AE%A2%E5%BB%BA%E6%88%90/</url>
+      <content type="html"><![CDATA[<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><hr>
+<p>　　在国庆期间，时间很充裕，刚好阿里云有一个云翼计划，大学生9.9一个月就可以拥有一台自己的服务器。我趁自己有点闲钱就入手了一个。</p><p>　　入手服务器后，不能一直用ip登陆吧，我便又在阿里云买了一个域名，8块钱一年（首年）。<br>刚有社团ios方向的一个伙伴说自己在github上建了一个博客，我没有试过，而且早就有建博客的念头了。<br>于是便打算也在个github建一个。</p>
+
+<h2 id="行动"><a href="#行动" class="headerlink" title="行动"></a>行动</h2><hr>
+<p>上网一查，原来有工具可以直接做一个静态博客的。心里想太简单了，也把工具定位在hexo。<br>然而构建其中却麻烦不断。我查了很多网站，这里提供一个对我帮助很大的网站。</p>
+<ul>
+<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="noopener">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a></li>
+</ul>
+<p>虽然这个网站的博主如今已经改用<code>keyll</code>做博客了，但是下面介绍的步骤依然对用<code>hexo</code>做博客帮助很大。</p>
+<p>但是时代在进步，我依照上面的教程依然遇到了问题。<br>下面我仅指出不一样的地方供参考。</p>
+<a id="more"></a>
+<ol>
+<li><p>hexo 的安装使用最好直接参照<a href="https://hexo.io/" target="_blank" rel="noopener">hexo官网</a>，现在hexo分离出命令行工具 hexo-cli了。</p>
+</li>
+<li><p>由于我的电脑安装不了github for windows,只安装了git bash.而hexo的deploy操作真是需要ssh key,<br>所以ssh key的操作一定要按照教程来。</p>
+</li>
+<li><p>windows 用户的 hexo deploy 操作一定要在git bash上面进行，因为本地命令好没有git，如果安装了github for windows另当别论</p>
+</li>
+<li><p>提供一下我的deploy设置，我被这个坑了好久</p>
+<pre><code class="css"># Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+type: git
+repo: git@github.com:zjy01/zjy01.github.io.git
+branch: master
+</code></pre>
+<p> 其中要注意冒号后都是留一个空格的，<code>type:</code>是git，仓库地址用<code>repo:</code>表示。<br> 如果设置错误了会有<code>Not a git repository (or any of the parent directories): .git</code>之类的报错，网上有教程提议git init，<br> 别相信，我试了，结果提交到github的完全不是生成的静态文件。</p>
+</li>
+<li><p>还有DNS我是直接用二级域名表示的，所以直接只设了一个，没有教程那么麻烦，看图<br><img src="http://i11.tietuku.com/87d8fb36ba1a79f1.png"></p>
+</li>
+<li><p>hexo说到底该是基于nodejs,博客中文乱码的时候记得把博客的.md文件转成utf-8格式，还有如果是使用webstorm的，还要在webstorm转码一次，<br>否则它还是默认用anci编码打开,否则你编辑完保存，md编码又变了</p>
+</li>
+<li><p>github只提供300m的博客空间，所以为了节省空间，图片都使用<a href="http://tuchuang.org/" target="_blank" rel="noopener">图床</a>保存然后接网址过来。<br>最近一段时间，图床用得很艰辛，于是找了新的图片网站 <a href="http://yotuku.cn/" target="_blank" rel="noopener">极简图床</a></p>
+</li>
+</ol>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><hr>
+<p>总之最后还是做成了，成就感不免还是有的。也是一个有博客的男人啦。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 博客 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+    
+    <entry>
+      <title></title>
+      <url>/404.html</url>
+      <content type="html"><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="all">
+    <meta name="robots" content="index,follow">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="http://blog.zjy.space" homepagename="回到我的主页"></script>
+</body>
+</html>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[关于我]]></title>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<h3 id="学校"><a href="#学校" class="headerlink" title="学校"></a>学校</h3><p>广东外语外贸大学思科信息学院</p>
+<h3 id="城市"><a href="#城市" class="headerlink" title="城市"></a>城市</h3><blockquote>
+<p>暂住&gt;&gt;&gt;&gt;&gt;广州<br>家乡&gt;&gt;&gt;&gt;&gt;茂名</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><hr>
+<blockquote>
+<p>自定位为web前端工程师，学习过 <code>html，css，javascript，nodejs，php</code><br>学校教过 <code>C++，JAVA， C#</code></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+  
+</search>
