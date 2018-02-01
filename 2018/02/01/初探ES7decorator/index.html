@@ -43,7 +43,7 @@
     
     <title>
         
-            归档: 2016/1 | 
+            初探ES7 Decorator | 
         
         zjyBlog
     </title>
@@ -53,8 +53,8 @@
     <link rel="icon" href="/public/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" itemprop="description" content="第一次尝试写decorator">
+    <meta name="keywords" content=",javascript">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -81,6 +81,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/vibrant-ink.min.css?e5E/qqGcGveS7VTH4M896w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -217,7 +220,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="zjyBlog">
-    <meta name="msapplication-starturl" content="/archives/2016/01/">
+    <meta name="msapplication-starturl" content="/2018/02/01/初探ES7decorator/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="zjyBlog">
@@ -232,13 +235,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="/archives/2016/01/">
+    <meta property="og:url" content="/2018/02/01/初探ES7decorator/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2016/1 | zjyBlog">
+    <meta property="og:title" content="初探ES7 Decorator | zjyBlog">
     <meta property="og:image" content="/public/img/favicon.png">
-    <meta property="og:description" content="">
-    
+    <meta property="og:description" content="第一次尝试写decorator">
+    <meta property="og:article:tag" content="javascript"> 
 
+    
+        <meta property="article:published_time" content="Thu Feb 01 2018 18:57:24 GMT+0800">
+        <meta property="article:modified_time" content="Thu Feb 01 2018 22:12:38 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -246,13 +252,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="/archives/2016/01/index.html" />
+        <link rel="canonical" href="/2018/02/01/初探ES7decorator/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "/2018/02/01/初探ES7decorator/index.html",
+    "headline": "初探ES7 Decorator",
+    "datePublished": "Thu Feb 01 2018 18:57:24 GMT+0800",
+    "dateModified": "Thu Feb 01 2018 22:12:38 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "carvenzhang",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/public/img/avatar.png"
+        },
+        "description": "From nothing to nothing"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "zjyBlog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/public/img/favicon.png"
+        }
+    },
+    "keywords": ",javascript",
+    "description": "第一次尝试写decorator",
+}
+</script>
 
 
     
@@ -286,225 +322,543 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#装饰器"><span class="post-toc-number">1.</span> <span class="post-toc-text">装饰器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现-Decorator"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现 Decorator</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写一个原始类"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">编写一个原始类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现方法型decorator"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">实现方法型decorator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现类的Decorator"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">实现类的Decorator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#decorator整合"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">decorator整合</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/01/26/reactjs/">reactjs</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            react js最近在学习react js，ReactJS是Facebook开发的用于构建用户界面的JAVASCRIPT库，利用其可以实现组件式开发。
-JSX虽然JSX不是ReactJS所必须的，但是使用jsx无疑可以加快React的组件开发速度
-所需文件我们大概清楚我们开发ReactJS需要的文件的，首先的官方所需的react.js 和 react-dom.js然后是解析JSX语法所需要的jsxtransform.js,后来因为迎接ES6,舍弃了jsx，改用babel，也是需要引入一个文件。
-加上自己写的各种组件，如此看来，网页的js引入将相当多，不利于管理。而且像解析jsx或者ES6-&gt;ES5这样的工作，完全可以在开发时完成，而不用在使用时由客户端转译，影响效率。
-基于种种原因，我们需要用到一些其他工具。而我挑选赖webpack
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/01/26/reactjs/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/public/img/avatar.png" width="44px" height="44px" alt="carvenzhang's avatar">
-            </div>
-            <div>
-                <strong>carvenzhang</strong>
-                <span>1月 26, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/javascript/">javascript</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/01/21/实习笔记2/">实习笔记2--20160121</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            事务今天主要是看Slim框架，slim是一个轻量级的php框架，比较适合写接口。
-收获当然是新认识了一个框架啦，还学会了启动php内置服务器。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/01/21/实习笔记2/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/public/img/avatar.png" width="44px" height="44px" alt="carvenzhang's avatar">
-            </div>
-            <div>
-                <strong>carvenzhang</strong>
-                <span>1月 21, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/实习/">实习</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/01/20/实习笔记1/">实习笔记1--20160120</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            事务今天主要做的是这种账号的注册和软件的安装。实习了才知道，一个团队的任务管理居然要依赖与那么多的工具，尽管团队不大，但是任务分工看起来很严格呢。软件也安装了很多，我把ws、ps、node、npm全都更新了一遍。设置了VPN，大半天的时间就过去了。下午就看了微信公众平台的接口文档，第一次那么仔细的看，自己手写了一些步骤，然后上github找了别人的包，融进CI里面。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/01/20/实习笔记1/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/public/img/avatar.png" width="44px" height="44px" alt="carvenzhang's avatar">
-            </div>
-            <div>
-                <strong>carvenzhang</strong>
-                <span>1月 20, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/实习/">实习</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                初探ES7 Decorator
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/public/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>carvenzhang</strong>
+        <span>2月 01, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=/2018/02/01/初探ES7decorator/">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/javascript/">javascript</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=初探ES7 Decorator&url=/2018/02/01/初探ES7decorator/index.html&pic=/public/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=初探ES7 Decorator&url=/2018/02/01/初探ES7decorator/index.html&via=carvenzhang" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=/2018/02/01/初探ES7decorator/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=/2018/02/01/初探ES7decorator/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><p>装饰器是 ES7 新有的特性，它允许我们使用简洁的方式，为已有的类、类的方法、类的属性 添加有趣的修饰。<br><a id="more"></a><br>可使用如下：</p>
+<pre><code class="js">// deco.js
+// 假设已实现 装饰器 studentDecorator、readonly、shouldITellYou
+@studentDecorator
+class Person{
+
+  @readonly
+  name = &#39;carvenzhang&#39;;
+
+  @shouldITellYou
+  getInfo(){
+    //...
+  }
+}
+</code></pre>
+<p>目前，node 还不支持 decorator，但是，感谢 babel，它提供了转译支持。<br>我们可以运行使用如下：</p>
+<pre><code class="bash"># 先安装 babel-cli 及 babel-plugin-transform-decorators-legacy
+babel --plugins transform-decorators-legacy deco.js &gt; deco.es5.js &amp;&amp; node deco.es5.js
+</code></pre>
+<h2 id="实现-Decorator"><a href="#实现-Decorator" class="headerlink" title="实现 Decorator"></a>实现 Decorator</h2><p>那么，装饰器要怎么实现了，什么场景下需要用到<code>decorator</code>呢。<br>装饰器比较使用于，在完整的系统功能上，提供辅助能力。比如 <em>记录日志</em> 、 <em>查询权限</em>。<br>目前由一个很好的集成装饰器，可以提供学习：<a href="https://github.com/jayphelps/core-decorators" target="_blank" rel="noopener">core-decorators</a>。</p>
+<p>我们可以通过编写一个权限审核的Decorator，达到学习decorator的目的。</p>
+<h3 id="编写一个原始类"><a href="#编写一个原始类" class="headerlink" title="编写一个原始类"></a>编写一个原始类</h3><p>我们编写一个很简单的class，模拟一些操作。</p>
+<pre><code class="js">// deco.js
+class DBAct{
+  constructor(options){
+    this._options = Object.assign({
+      auths:[]
+    }, options);
+  }
+  add(){
+    console.log(&#39;db add&#39;);
+  }
+  delete(){
+    console.log(&#39;db delete&#39;);
+  }
+  update(){
+    console.log(&#39;db update&#39;);
+  }
+  select(){
+    console.log(&#39;db select&#39;);
+  }
+}
+</code></pre>
+<p>这是一个数据库操作集合，可以通过调用方法， 实现增删改查。</p>
+<p>我们通过编写decorator，为其提供操作数据库前的权限审核能力。</p>
+<h3 id="实现方法型decorator"><a href="#实现方法型decorator" class="headerlink" title="实现方法型decorator"></a>实现方法型decorator</h3><p>首先，我们实现一个 decoraotr，为每个方法提供一个权限检查的能力。<br>供给方法使用的 decorator 有三个参数，<code>target</code>、<code>name</code>、<code>descriptor</code>，与<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener"><code>Object.defineProperty()</code></a>的参数一一对应。</p>
+<blockquote>
+<p>target: 类的原型对象，比如 DBAct.prototype<br>name: 要修饰的方法的属性名，比如 add<br>descriptor: 该属性的描述对象，包含 {configurable, enumerable, value, writable } 等值，其中value即实际修饰的函数。  </p>
+</blockquote>
+<p>实现如下：</p>
+<pre><code class="js">function authMethodDecorator(auth){
+  //函数封装层，返回decorator
+  return function(target, name, descriptor){
+    // 获取原函数
+    const method = descriptor.value;
+    // 重写函数
+    descriptor.value = function(...args) {
+      // 判断是否有该权限
+      if(this._options.auths.includes(auth)){
+        // 继续调用原函数
+        return method.apply(this, args);
+      } else {
+        // 无权限
+        console.log(`no permission to exec ${name}`)
+      }
+    }
+    return descriptor;
+  }
+}
+</code></pre>
+<p>整合起来调用如下：</p>
+<pre><code class="js">// deco.js
+class DBAct{
+  constructor(options){
+    this._options = Object.assign({
+      auth:{}
+    }, options);
+  }
+
+  // 只有在有 add 权限的情况下，才能进行 add 操作。
+  @authMethodDecorator(&#39;add&#39;)
+  add(){
+    console.log(&#39;db add&#39;);
+  }
+
+  // 只有在有 delete 权限的情况下，才能进行 delete 操作。
+  @authMethodDecorator(&#39;delete&#39;)
+  delete(){
+    console.log(&#39;db delete&#39;);
+  }
+  update(){
+    console.log(&#39;db update&#39;);
+  }
+  select(){
+    console.log(&#39;db select&#39;);
+  }
+}
+
+// 实例化
+const user1 = new DBAct({
+  auths:[&#39;add&#39;] // user1 仅有 add 权限
+});
+r1.add();
+r1.delete();
+
+// 关于方法的decorator
+function authMethodDecorator(auth){
+  //..
+}
+</code></pre>
+<p>最终通过babel转译，node调用，得到以下结果</p>
+<pre><code class="bash"># exec
+babel --plugins transform-decorators-legacy deco.js &gt; deco.es5.js &amp;&amp; node deco.es5.js
+
+# echo
+db add
+no permission to exec delete
+</code></pre>
+<h3 id="实现类的Decorator"><a href="#实现类的Decorator" class="headerlink" title="实现类的Decorator"></a>实现类的Decorator</h3><p>我们也可以实现一个Decorator，为整个class的每一个方法都统一做权限检查。<br>类的decorator仅有一个参数:</p>
+<blockquote>
+<p>target: 调用的类本身，比如 DBAct  </p>
+</blockquote>
+<p>实现如下：</p>
+<pre><code class="js">function authClassDecorator(auth){
+   //函数封装层，返回decorator
+  return function(target){
+    // 获取 class 上所有的描述对象
+    const descs = Object.getOwnPropertyDescriptors(target.prototype);
+    // 获取 class 上所有的属性名,此方法不兼容 Symbol，实际解决方案参考 core-decorator
+    const keys = Object.keys(descs);
+    //循环处理每一个方法
+    for (let i = 0, l = keys.length; i &lt; l; i++) {
+      const name = keys[i];
+      const desc = descs[name];
+
+      // 不处理 非函数 和 构造函数
+      if (typeof desc.value !== &#39;function&#39; || name === &#39;constructor&#39;) {
+        continue;
+      }
+      // 为每个方法分别调用一次 authMethodDecorator，重写给 target.prototype
+      Object.defineProperty(target.prototype, name, authMethodDecorator(auth)(target.prototype, name, desc));
+    }
+  }
+}
+</code></pre>
+<p>整合起来调用如下：</p>
+<pre><code class="js">// deco.js
+//所有方法都需要connect权限才能执行
+@authClassDecorator(&#39;connect&#39;)
+class DBAct{
+  constructor(options){
+    this._options = Object.assign({
+      auth:{}
+    }, options);
+  }
+  add(){
+    console.log(&#39;db add&#39;);
+  }
+  delete(){
+    console.log(&#39;db delete&#39;);
+  }
+  update(){
+    console.log(&#39;db update&#39;);
+  }
+  select(){
+    console.log(&#39;db select&#39;);
+  }
+}
+
+// 实例化
+const user1 = new DBAct({
+  auths:[&#39;add&#39;] // user1 仅有 add 权限
+});
+r1.add();
+r1.delete();
+
+// 关于方法的decorator
+function authMethodDecorator(auth){
+  //..
+}
+// 关于类的decorator
+function authClassDecorator(auth){
+  //..
+}
+</code></pre>
+<p>最终通过babel转译，node调用，得到以下结果</p>
+<pre><code class="bash"># exec
+babel --plugins transform-decorators-legacy deco.js &gt; deco.es5.js &amp;&amp; node deco.es5.js
+
+# echo
+no permission to exec add
+no permission to exec delete
+</code></pre>
+<h3 id="decorator整合"><a href="#decorator整合" class="headerlink" title="decorator整合"></a>decorator整合</h3><p>那么，我们能不能实现一个decoraotor，既能给calss用，也能给method用呢？<br>可以的：</p>
+<pre><code class="js">@authDecorator(&#39;connect&#39;)
+class DBAct{
+  constructor(options){
+    this._options = Object.assign({
+      auths:[]
+    }, options);
+  }
+
+  @authDecorator(&#39;add&#39;)
+  add(){
+    console.log(&#39;db add&#39;);
+  }
+
+  @authDecorator(&#39;delete&#39;)
+  delete(){
+    console.log(&#39;db delete&#39;);
+  }
+  update(){
+    console.log(&#39;db update&#39;);
+  }
+  select(){
+    console.log(&#39;db select&#39;);
+  }
+}
+
+const user1 = new DBAct({
+  auths:[&#39;add&#39;, &#39;connect&#39;] // user1 仅有 add 权限
+});
+user1.add();
+user1.delete();
+
+
+function authMethodDecorator(auth, target, name, descriptor){
+  // 获取原函数
+  const method = descriptor.value;
+  // 重写函数
+  descriptor.value = function(...args) {
+    // 判断是否有该权限
+    // if(this === target){
+    //   return method.apply(target, args)
+    // }
+    if(this._options.auths.includes(auth)){
+      // 继续调用原函数
+      return method.apply(this, args);
+    } else {
+      // 无权限
+      console.log(`no permission to exec ${name}`)
+    }
+  }
+  return descriptor;
+}
+
+function authClassDecorator(auth, target){
+  // 获取 class 上所有的描述对象
+  const descs = Object.getOwnPropertyDescriptors(target.prototype);
+  // 获取 class 上所有的属性名,此方法不兼容 Symbol，实际解决方案参考 core-decorator
+  const keys = Object.keys(descs);
+  //循环处理每一个方法
+  for (let i = 0, l = keys.length; i &lt; l; i++) {
+    const name = keys[i];
+    const desc = descs[name];
+
+    // 不处理 非函数 和 构造函数
+    if (typeof desc.value !== &#39;function&#39; || name === &#39;constructor&#39;) {
+      continue;
+    }
+    // 为每个方法分别调用一次 authMethodDecorator，重写给 target.prototype
+    Object.defineProperty(target.prototype, name, authMethodDecorator(auth, target.prototype, name, desc));
+  }
+}
+
+// 通过参数个数判断是 调用方式 method 还是 class
+function authDecorator(auth){
+  return function handle(...args) {
+    if (args.length === 1) {
+      return authClassDecorator(auth, ...args);
+    }
+    return authMethodDecorator(auth, ...args);
+  };
+}
+</code></pre>
+<p>最终通过babel转译，node调用，得到以下结果</p>
+<pre><code class="bash"># exec
+babel --plugins transform-decorators-legacy deco.js &gt; deco.es5.js &amp;&amp; node deco.es5.js
+
+# echo
+db add
+no permission to exec delete
+</code></pre>
+<p>这样，一个通用的decorator就出来了。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = '/2018/02/01/初探ES7decorator/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/2018/02/01/初探ES7decorator/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//carvenzhang.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/06/T460黑苹果安装/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -851,6 +1205,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -863,6 +1221,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
