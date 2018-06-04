@@ -334,3 +334,6 @@ db add
 no permission to exec delete
 ```
 这样，一个通用的decorator就出来了。
+
+## 迁移
+我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：[https://cloud.tencent.com/developer/support-plan?invite_code=jwpzso9zymr](https://cloud.tencent.com/developer/support-plan?invite_code=jwpzso9zymr)
