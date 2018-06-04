@@ -1199,6 +1199,7 @@ function setGlobalShortcuts() {
 });
 </code></pre><p>成功！！</p>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>上<a href="http://electron.atom.io/docs/" target="_blank" rel="noopener">electron官网</a>查看文档，凭着前端经验，就可以做很多事情啦！！</p>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><p>我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：<a href="https://cloud.tencent.com/developer/support-plan?invite_code=jwpzso9zymr" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=jwpzso9zymr</a></p>
 ]]></content>
       
         <categories>
